@@ -13,6 +13,8 @@ public class MyProject {
      * Graphics class^ - sends to user notes blahblahblah
      * Logic class
      * initializes pile, shuffles and etc
+     * 
+     * close game with  System.exit
      */
 
 }
