@@ -1,8 +1,8 @@
 import java.util.*;
 
 public class CardPile {
-    private ArrayList<Card> firstPile;
-    private ArrayList<Card> secondPile;
+    private ArrayList<Card> cardPile;
+    private final int WAR_TIME = 3;
 
 
     public Card removeCard () {
@@ -13,6 +13,8 @@ public class CardPile {
     }
 
     public Card removeThreeCards () {
+        if (cardPile.numOfCardsLeft() < 3)
+            return null;
 
     }
 
@@ -21,7 +23,7 @@ public class CardPile {
     }
 
     private int numOfCardsLeft () {
-
+        return cardPile.size();
     }
     /*
 Class Pile

@@ -1,28 +1,28 @@
 import java.lang.String;
 public class Card {
+    private String value;
     private String shape;
     private String colour;
-    private int value;
 
     public Card () {
 
     }
 
+    public String getValue () {
+        return this.value;
+    }
     public String getShape () {
         return this.shape;
     }
     public String getColour () {
         return this.colour;
     }
-    public int getValue () {
-        return this.value;
-    }
     public boolean equals (Card card) {
-        return (this.value == card.value) && this.colour.equals(card.colour) && this.shape.equals(card.shape);
-
+        return this.value.equals(card.value) && this.colour.equals(card.colour) && this.shape.equals(card.shape);
     }
-    public String toString () {
 
+    public String toString () {
+        return value + "/n" + shape + "/n" + colour + "/n";
     }
 
     //what I need to do
