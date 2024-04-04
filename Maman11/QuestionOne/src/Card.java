@@ -1,4 +1,4 @@
-
+import java.lang.String;
 public class Card {
     private String shape;
     private String colour;
@@ -11,7 +11,7 @@ public class Card {
 
     }
     public int getValue () {
-        
+
     }
     public boolean equals (Card card) {
 
