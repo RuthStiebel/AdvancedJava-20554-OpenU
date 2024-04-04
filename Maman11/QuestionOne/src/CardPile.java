@@ -4,7 +4,6 @@ public class CardPile {
     private ArrayList<Card> firstPile;
     private ArrayList<Card> secondPile;
 
-    public void Dealer 
 
     public Card removeCard () {
 
