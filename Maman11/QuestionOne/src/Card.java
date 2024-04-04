@@ -4,16 +4,21 @@ public class Card {
     private String colour;
     private int value;
 
-    public String getShape () {
+    public Card () {
 
+    }
+
+    public String getShape () {
+        return this.shape;
     }
     public String getColour () {
-
+        return this.colour;
     }
     public int getValue () {
-
+        return this.value;
     }
     public boolean equals (Card card) {
+        return (this.value == card.value) && this.colour.equals(card.colour) && this.shape.equals(card.shape);
 
     }
     public String toString () {
