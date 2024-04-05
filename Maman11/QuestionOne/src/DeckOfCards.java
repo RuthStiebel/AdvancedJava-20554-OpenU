@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class CardPile {
+public class DeckOfCards {
     private ArrayList<Card> cardPile;
     private final int WAR_TIME = 3;
 

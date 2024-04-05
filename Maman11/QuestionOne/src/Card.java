@@ -1,30 +1,28 @@
 import java.lang.String;
 public class Card {
-    private String value;
-    private String shape;
-    private String colour;
+    private final String value;
+    private final String suit;
 
-    public Card () {
-
-    }
-
+ // two-argument constructor initializes card's face and suit
+ public Card(String cardFace, String cardSuit) {
+    this.value = cardFace; // initialize face of card
+    this.suit = cardSuit; // initialize suit of card
+ }
     public String getValue () {
         return this.value;
     }
-    public String getShape () {
-        return this.shape;
+    public String getSuit () {
+        return this.suit;
     }
-    public String getColour () {
-        return this.colour;
-    }
+
     public boolean equals (Card card) {
-        return this.value.equals(card.value) && this.colour.equals(card.colour) && this.shape.equals(card.shape);
+        return this.value.equals(card.value) && this.suit.equals(card.suit);
     }
 
-    public String toString () {
-        return value + "/n" + shape + "/n" + colour + "/n";
-    }
-
+// return String representation of Card
+public String toString() {
+    return value + " of " + suit;
+   } 
     //what I need to do
     /*
      * Use arrayList
