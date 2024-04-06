@@ -20,6 +20,15 @@ public class DeckOfCards {
         }
     }
 
+    /** This constructor creates a new deck from a given deck.  */
+    public DeckOfCards (int sizeOfDeck, DeckOfCards deck) {
+        Card card = new Card();
+        while (sizeOfDeck > 0) {
+            if ()
+            cardDeck.add(deck.dealCard());
+        }
+    }
+
     // shuffle cardDeck of Cards with one-pass algorithm
     public void shuffle() {
         // for each Card, pick another random Card (0-51) and swap them
@@ -54,7 +63,8 @@ public class DeckOfCards {
     }
 
     /**
-     * This method returns the third card from the top. It is called in the instance that both players play the same value card.
+     * This method returns the third card from the top. 
+     * It is called in the instance that both players play the same value card.
      * @return Third card from the top.
      */
     public Card removeThreeCards() {
@@ -83,11 +93,4 @@ public class DeckOfCards {
     private int numOfCardsLeft() {
         return cardDeck.size();
     }
-    /*
-     * Class Pile
-     * ArrayList from type of card
-     * Contructor, Shuffler, isEmpty, NumOfCardsLeft, Dealer, removing card (top),
-     * adding card (bottom), remove three,
-     */
-
 }
