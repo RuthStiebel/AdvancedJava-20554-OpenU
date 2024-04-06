@@ -28,15 +28,15 @@ private Card[] deck = new Card[NUMBER_OF_CARDS]; // Card references
    
     // for each Card, pick another random Card (0-51) and swap them
     for (int first = 0; first < deck.length; first++) {
-    // select a random number between 0 and 51
-    int second = randomNumbers.nextInt(NUMBER_OF_CARDS);
-   
-    // swap current Card with randomly selected Card
-   Card temp = deck[first];
-   deck[first] = deck[second];
-   deck[second] = temp; 
+        // select a random number between 0 and 51
+        int second = randomNumbers.nextInt(NUMBER_OF_CARDS);
+    
+        // swap current Card with randomly selected Card
+        Card temp = deck[first];
+        deck[first] = deck[second];
+        deck[second] = temp; 
     }
-    }
+}
 
     /**
      * This method removes the top card from the pile.
