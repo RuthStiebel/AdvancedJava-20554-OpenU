@@ -5,28 +5,34 @@ public class DeckOfCards {
     private ArrayList<Card> cardDeck;
     private final int WAR_TIME = 3;
     private static final SecureRandom randomNumbers = new SecureRandom();
-    private static final int NUMBER_OF_CARDS = 52; 
+    private static final int NUM_OF_CARDS = 52; 
+    private static final int NUM_OF_CARDS_IN_SUIT = 13;
 
     /**
      * Constructor for objects of class CardDeck. It fills the cardDeck with cards.
      */
      public DeckOfCards() {
-        ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Deuce", "Three", "Four", "Five", "Six",
+        cardDeck = new ArrayList<Card>(); // Initialize cardDeck
+        Card newCard = new Card();
+        ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Two", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
         ArrayList<String> suits = new ArrayList<String>(Arrays.asList("Hearts", "Diamonds", "Clubs", "Spades"));
         // populate cardDeck with Card objects
-        for (int count = 0; count < NUMBER_OF_CARDS; count++) {
-            cardDeck.add(new Card(values.get(count % 13), suits.get(count / 13)));
+        for (int count = 0; count < NUM_OF_CARDS; count++) {
+            newCard = new Card(values.get(count % NUM_OF_CARDS_IN_SUIT), suits.get(count / NUM_OF_CARDS_IN_SUIT));
+            cardDeck.add(newCard);
         }
     }
 
     /** This constructor creates a new deck from a given deck.  */
-    public DeckOfCards (int sizeOfDeck, DeckOfCards deck) {
+    public DeckOfCards (int start, int sizeOfDeck, DeckOfCards deck) {
+        cardDeck = new ArrayList<Card>(); // Initialize cardDeck
         Card card = new Card();
-        while (sizeOfDeck > 0) {
-            card = deck.dealCard();
+
+        for (int i = 0; i<sizeOfDeck; i++){
+            card = deck.seeCard(i+start);
             if (card==null)
-                sizeOfDeck = 0;
+                break;
             else 
                 cardDeck.add(card);
         }
@@ -35,9 +41,9 @@ public class DeckOfCards {
     // shuffle cardDeck of Cards with one-pass algorithm
     public void shuffle() {
         // for each Card, pick another random Card (0-51) and swap them
-        for (int first = 0; first < NUMBER_OF_CARDS; first++) {
+        for (int first = 0; first < NUM_OF_CARDS; first++) {
             // select a random number between 0 and 51
-            int second = randomNumbers.nextInt(NUMBER_OF_CARDS);
+            int second = randomNumbers.nextInt(NUM_OF_CARDS);
 
             // swap current Card with randomly selected Card
             Card temp = cardDeck.get(first);
@@ -55,6 +61,17 @@ public class DeckOfCards {
         if (isEmpty())
             return null;
         return cardDeck.remove(0);
+    }
+
+    /**
+     * This method shows the top card of the pile but does not remove it from deck.
+     * @return Top card
+     */
+    public Card seeCard(int index) {
+        // determine whether Cards remain to be dealt
+        if (isEmpty())
+            return null;
+        return cardDeck.get(index);
     }
 
     /**
@@ -84,10 +101,8 @@ public class DeckOfCards {
      * @return True if card pile has less then three cards left and False otherwise
      */
     private boolean isEmpty() {
-        if (numOfCardsLeft() < WAR_TIME)
-            return true;
-        return false;
-    }
+        return numOfCardsLeft() < WAR_TIME;
+   }
 
     /**
      * This method returns how many cards are left in the pile.
