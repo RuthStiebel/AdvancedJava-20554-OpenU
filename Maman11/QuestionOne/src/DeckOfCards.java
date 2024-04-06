@@ -96,8 +96,8 @@ public class DeckOfCards {
      * 
      * @return True if card pile has less then three cards left and False otherwise
      */
-    private boolean isEmpty() {
-        return numOfCardsLeft() <= 0;
+    public boolean isEmpty() {
+        return sizeOfDeck() <= 0;
     }
 
     /**
@@ -105,7 +105,7 @@ public class DeckOfCards {
      * 
      * @return Number of cards left in the pile
      */
-    public int numOfCardsLeft() {
+    public int sizeOfDeck() {
         return cardDeck.size();
     }
 }

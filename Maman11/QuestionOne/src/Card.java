@@ -29,11 +29,11 @@ public class Card {
         return this.value.equals(card.value) && this.suit.equals(card.suit);
     }
 
-    public int cardNumber(String value) {
+    public int cardNumber() {
         ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Deuce", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
         for(int i=0;i<values.size();i++) {
-            if(value.equals(values.get(i)))
+            if(this.value.equals(values.get(i)))
                 return i+1;
         }
         return 0;

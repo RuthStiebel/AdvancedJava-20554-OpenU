@@ -7,7 +7,7 @@ public class LogicClass {
       DeckOfCards secondPlayer= new DeckOfCards(HALF_A_DECK, HALF_A_DECK, deckOfCards);
         
         System.out.println("\n\n____________________Second deck_____________________\n");
-       System.out.println(secondPlayer.numOfCardsLeft());
+       System.out.println(secondPlayer.sizeOfDeck());
         for (int i = 0; i < 26; i++) {
             // deal and display a Card
            System.out.printf("%-19s", secondPlayer.dealCard());
@@ -18,7 +18,7 @@ public class LogicClass {
         }
         
         System.out.println("\n\n__________________First Deck______________________________\n");
-       System.out.println(firstPlayer.numOfCardsLeft());
+       System.out.println(firstPlayer.sizeOfDeck());
         for (int i = 0; i < 26; i++) {
             // deal and display a Card
            System.out.printf("%-19s", firstPlayer.dealCard());
