@@ -40,16 +40,7 @@ public class DeckOfCards {
 
     // shuffle cardDeck of Cards with one-pass algorithm
     public void shuffle() {
-        // for each Card, pick another random Card (0-51) and swap them
-        for (int first = 0; first < NUM_OF_CARDS; first++) {
-            // select a random number between 0 and 51
-            int second = randomNumbers.nextInt(NUM_OF_CARDS);
-
-            // swap current Card with randomly selected Card
-            Card temp = cardDeck.get(first);
-            cardDeck.set(first, cardDeck.get(second));
-            cardDeck.set(second, temp);
-        }
+        Collections.shuffle(cardDeck, randomNumbers);
     }
 
     /**
@@ -101,7 +92,7 @@ public class DeckOfCards {
      * @return True if card pile has less then three cards left and False otherwise
      */
     private boolean isEmpty() {
-        return numOfCardsLeft() < WAR_TIME;
+        return numOfCardsLeft() <= 0;
    }
 
     /**

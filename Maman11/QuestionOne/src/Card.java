@@ -1,5 +1,5 @@
 import java.lang.String;
-
+import java.util.*;
 public class Card {
     private final String value;
     private final String suit;
@@ -29,15 +29,18 @@ public class Card {
         return this.value.equals(card.value) && this.suit.equals(card.suit);
     }
 
+    public int cardNumber(String value) {
+        ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Deuce", "Three", "Four", "Five", "Six",
+                "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
+        for(int i=0;i<values.size();i++) {
+            if(value.equals(values.get(i)))
+                return i+1;
+        }
+        return 0;
+    }
+
     // return String representation of Card
     public String toString() {
         return value + " of " + suit;
     }
-    // what I need to do
-    /*
-     * Use arrayList
-     * Class Card:
-     * Number, Colour, Shape
-     * Contructors, getters, equals, toString
-     */
 }

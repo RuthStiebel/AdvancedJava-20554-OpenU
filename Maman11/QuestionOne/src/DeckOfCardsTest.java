@@ -2,7 +2,7 @@ public class DeckOfCardsTest {
     // execute application
     public static void main(String[] args) {
         DeckOfCards myDeckOfCards = new DeckOfCards();
-        int num = myDeckOfCards.numOfCardsLeft();
+        int num = 52;
         System.out.println("___________________"+num+"______________________");
         // print all 52 Cards in the order in which they are dealt
         for (int i = 0; i < num; i++) {
