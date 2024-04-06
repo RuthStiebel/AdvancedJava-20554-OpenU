@@ -5,10 +5,12 @@ public class DeckOfCards {
     private ArrayList<Card> cardDeck;
     private final int WAR_TIME = 3;
     private static final SecureRandom randomNumbers = new SecureRandom();
-    private static final int NUMBER_OF_CARDS = 52; // constant # of Cards
+    private static final int NUMBER_OF_CARDS = 52; 
 
-    // constructor fills cardDeck of Cards
-    public DeckOfCards() {
+    /**
+     * Constructor for objects of class CardDeck. It fills the cardDeck with cards.
+     */
+     public DeckOfCards() {
         ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Deuce", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
         ArrayList<String> suits = new ArrayList<String>(Arrays.asList("Hearts", "Diamonds", "Clubs", "Spades"));
@@ -34,7 +36,6 @@ public class DeckOfCards {
 
     /**
      * This method deals the top card from the pile.
-     * 
      * @return Top card
      */
     public Card dealCard() {
@@ -46,7 +47,6 @@ public class DeckOfCards {
 
     /**
      * This method adds a card to the bottom of the card pile.
-     * 
      * @param card The card to be added to the pile
      */
     public void addCard(Card card) {
@@ -54,9 +54,7 @@ public class DeckOfCards {
     }
 
     /**
-     * This method returns the third card from the top. It is called in the instance
-     * that both players play the same value card.
-     * 
+     * This method returns the third card from the top. It is called in the instance that both players play the same value card.
      * @return Third card from the top.
      */
     public Card removeThreeCards() {
@@ -70,7 +68,6 @@ public class DeckOfCards {
 
     /**
      * This method checks if the pile is empty or not.
-     * 
      * @return True if card pile has less then three cards left and False otherwise
      */
     private boolean isEmpty() {
@@ -81,7 +78,6 @@ public class DeckOfCards {
 
     /**
      * This method returns how many cards are left in the pile.
-     * 
      * @return Number of cards left in the pile
      */
     private int numOfCardsLeft() {
