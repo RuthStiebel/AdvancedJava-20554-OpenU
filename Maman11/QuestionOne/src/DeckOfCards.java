@@ -6,7 +6,6 @@ public class DeckOfCards {
     private final int WAR_TIME = 3;
     private static final SecureRandom randomNumbers = new SecureRandom();
     private static final int NUMBER_OF_CARDS = 52; // constant # of Cards
-    private int currentCard = 0; // index of next Card to be dealt (0-51)
 
     // constructor fills cardDeck of Cards
     public DeckOfCards() {
@@ -21,9 +20,6 @@ public class DeckOfCards {
 
     // shuffle cardDeck of Cards with one-pass algorithm
     public void shuffle() {
-        // next call to method dealCard should start at cardDeck.get(0] again
-        currentCard = 0;
-
         // for each Card, pick another random Card (0-51) and swap them
         for (int first = 0; first < NUMBER_OF_CARDS; first++) {
             // select a random number between 0 and 51
@@ -37,23 +33,15 @@ public class DeckOfCards {
     }
 
     /**
-     * This method removes the top card from the pile.
+     * This method deals the top card from the pile.
      * 
      * @return Top card
      */
-    public Card removeCard() {
-        return cardDeck.remove(0);
-    }
-
-    // deal one Card
     public Card dealCard() {
         // determine whether Cards remain to be dealt
-        if (currentCard < NUMBER_OF_CARDS) {
-            currentCard++;
-            return cardDeck.get(currentCard - 1); // return current Card in array
-        } else {
-            return null; // return null to indicate that all Cards were dealt
-        }
+        if (isEmpty())
+            return null;
+        return cardDeck.remove(0);
     }
 
     /**
