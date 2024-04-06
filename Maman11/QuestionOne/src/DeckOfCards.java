@@ -8,31 +8,31 @@ public class DeckOfCards {
  private static final int NUMBER_OF_CARDS = 52; // constant # of Cards
  private int currentCard = 0; // index of next Card to be dealt (0-51)
 
- // constructor fills deck of Cards
+ // constructor fills cardDeck of Cards
  public DeckOfCards() {
     ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Deuce", "Three", "Four", "Five", "Six",
     "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
     ArrayList<String> suits = new ArrayList<String>(Arrays.asList("Hearts", "Diamonds", "Clubs", "Spades"));
-   // populate deck with Card objects
+   // populate cardDeck with Card objects
    for (int count = 0; count < NUMBER_OF_CARDS; count++) {
     cardDeck.add(new Card(values.get(count % 13), suits.get(count / 13)));
    }
  }
 
-  // shuffle deck of Cards with one-pass algorithm
+  // shuffle cardDeck of Cards with one-pass algorithm
   public void shuffle() {
-    // next call to method dealCard should start at deck[0] again
+    // next call to method dealCard should start at cardDeck.get(0] again
     currentCard = 0;
    
     // for each Card, pick another random Card (0-51) and swap them
-    for (int first = 0; first < deck.length; first++) {
+    for (int first = 0; first < NUMBER_OF_CARDS; first++) {
         // select a random number between 0 and 51
         int second = randomNumbers.nextInt(NUMBER_OF_CARDS);
     
         // swap current Card with randomly selected Card
-        Card temp = deck[first];
-        deck[first] = deck[second];
-        deck[second] = temp; 
+        Card temp = cardDeck.get(first);
+        cardDeck.set(first, cardDeck.get(second));
+        cardDeck.set(second, temp); 
     }
 }
 
@@ -41,14 +41,15 @@ public class DeckOfCards {
      * @return Top card 
      */
     public Card removeCard () {
-        return cardPile.remove(0);
+        return cardDeck.remove(0);
     }
 
      // deal one Card
  public Card dealCard() {
     // determine whether Cards remain to be dealt
-    if ( currentCard < deck.length) {
-    return deck[currentCard++]; // return current Card in array
+    if ( currentCard < NUMBER_OF_CARDS) {
+        currentCard++;
+        return cardDeck.get(currentCard-1); // return current Card in array
     }
     else {
     return null; // return null to indicate that all Cards were dealt
@@ -60,7 +61,7 @@ public class DeckOfCards {
      * @param card The card to be added to the pile
      */
     public void addCard (Card card) {
-        cardPile.add(cardPile.size(), card);
+        cardDeck.add(cardDeck.size(), card);
     }
 
     /**
@@ -71,9 +72,9 @@ public class DeckOfCards {
         if (isEmpty())
             return null; 
         for (int i = 1; i < WAR_TIME; i++) {
-            cardPile.remove(0);            
+            cardDeck.remove(0);            
         }
-        return cardPile.remove(0);
+        return cardDeck.remove(0);
     }
 
     /**
@@ -91,7 +92,7 @@ public class DeckOfCards {
      * @return Number of cards left in the pile
      */
     private int numOfCardsLeft () {
-        return cardPile.size();
+        return cardDeck.size();
     }
     /*
 Class Pile
