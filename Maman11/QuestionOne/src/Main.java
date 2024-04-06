@@ -20,12 +20,14 @@ public class Main {
             Card cardB = deckB.dealCard();
             msg = "Player A Card is: " + cardA + "\nPlayer B Card is: " + cardB;
             if (cardA.cardNumber() > cardB.cardNumber()) {
-                AddToDeck(cardA, cardB, deckA, deckMain);
+                deckA.addCard(cardB);
+                deckA.addCard(cardA);
                 msg += "\nPlayer A won!\nplayer A have: "+deckA.sizeOfDeck()+" cards\nplayer B have: "+deckB.sizeOfDeck()+" cards";
                 JOptionPane.showMessageDialog(null, msg);
             }
             else if (cardA.cardNumber() < cardB.cardNumber()) {
-                AddToDeck(cardB, cardA, deckB, deckMain);
+                deckB.addCard(cardB);
+                deckB.addCard(cardA);
                 msg += "\nPlayer B won!\nplayer A have: "+deckA.sizeOfDeck()+" cards\nplayer B have: "+deckB.sizeOfDeck()+" cards";
                 JOptionPane.showMessageDialog(null, msg);
             }
@@ -59,14 +61,6 @@ public class Main {
             JOptionPane.showMessageDialog(null, "Player A won the game!");
     }
 
-    // divide the cards from deck MainDeck to dackA and deckB
-    public static void dealDeck(DeckOfCards deckA,DeckOfCards deckB, DeckOfCards MainDeck) {
-        for(int i=0;i<52;i++) {
-            if(i%2==0)
-                deckA.addCard(MainDeck.dealCard());
-            else
-                deckB.addCard(MainDeck.dealCard());
-        }
-    }
+
 }// End class Main
 
