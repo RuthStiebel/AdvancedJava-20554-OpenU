@@ -2,22 +2,20 @@ import java.security.SecureRandom;
 import java.util.*;
 
 public class DeckOfCards {
-    private ArrayList<Card> cardPile;
+    private ArrayList<Card> cardDeck;
     private final int WAR_TIME = 3;
     private static final SecureRandom randomNumbers = new SecureRandom();
  private static final int NUMBER_OF_CARDS = 52; // constant # of Cards
-private Card[] deck = new Card[NUMBER_OF_CARDS]; // Card references
  private int currentCard = 0; // index of next Card to be dealt (0-51)
 
  // constructor fills deck of Cards
  public DeckOfCards() {
-    String[] faces = {"Ace", "Deuce", "Three", "Four", "Five", "Six",
-    "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"};
-   String[] suits = {"Hearts", "Diamonds", "Clubs", "Spades"};
+    ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Deuce", "Three", "Four", "Five", "Six",
+    "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
+    ArrayList<String> suits = new ArrayList<String>(Arrays.asList("Hearts", "Diamonds", "Clubs", "Spades"));
    // populate deck with Card objects
-   for (int count = 0; count < deck.length; count++) {
-    deck[count] =
-    new Card(faces[count % 13], suits[count / 13]);
+   for (int count = 0; count < NUMBER_OF_CARDS; count++) {
+    cardDeck.add(new Card(values.get(count % 13), suits.get(count / 13)));
    }
  }
 

@@ -3,9 +3,9 @@ public class Card {
     private final String value;
     private final String suit;
 
- // two-argument constructor initializes card's face and suit
- public Card(String cardFace, String cardSuit) {
-    this.value = cardFace; // initialize face of card
+ // two-argument constructor initializes card's value and suit
+ public Card(String cardValue, String cardSuit) {
+    this.value = cardValue; // initialize value of card
     this.suit = cardSuit; // initialize suit of card
  }
     public String getValue () {
