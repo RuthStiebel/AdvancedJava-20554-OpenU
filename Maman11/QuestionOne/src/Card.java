@@ -10,6 +10,7 @@ public class Card {
         this.suit = cardSuit; // initialize suit of card
     }
 
+    //default constructor
     public Card() {
         this.value = null; // initialize value of card
         this.suit = null; // initialize suit of card

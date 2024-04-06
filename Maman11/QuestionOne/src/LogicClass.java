@@ -3,10 +3,13 @@ import java.util.ArrayList;
 public class LogicClass {
     public static void main(String[] args) {
         int HALF_A_DECK = 26;
-        DeckOfCards firstPlayer= new DeckOfCards(HALF_A_DECK);
-        DeckOfCards secondPlayer= new DeckOfCards(HALF_A_DECK);
         DeckOfCards deckOfCards = new DeckOfCards();
         deckOfCards.shuffle(); // place Cards in random order
+        System.out.println(deckOfCards.numOfCardsLeft());
+        DeckOfCards firstPlayer= new DeckOfCards(HALF_A_DECK, deckOfCards);
+        System.out.println(deckOfCards.numOfCardsLeft());
+        DeckOfCards secondPlayer= new DeckOfCards(HALF_A_DECK, deckOfCards);
+        System.out.println(deckOfCards.numOfCardsLeft());
 
         //split the deck into two card pils
         

@@ -24,8 +24,11 @@ public class DeckOfCards {
     public DeckOfCards (int sizeOfDeck, DeckOfCards deck) {
         Card card = new Card();
         while (sizeOfDeck > 0) {
-            if ()
-            cardDeck.add(deck.dealCard());
+            card = deck.dealCard();
+            if (card==null)
+                sizeOfDeck = 0;
+            else 
+                cardDeck.add(card);
         }
     }
 
@@ -90,7 +93,7 @@ public class DeckOfCards {
      * This method returns how many cards are left in the pile.
      * @return Number of cards left in the pile
      */
-    private int numOfCardsLeft() {
+    public int numOfCardsLeft() {
         return cardDeck.size();
     }
 }
