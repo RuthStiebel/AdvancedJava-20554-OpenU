@@ -25,11 +25,19 @@ public class Card {
         return this.suit;
     }
 
-    public boolean equals(Card card) {
-        return this.value.equals(card.value) && this.suit.equals(card.suit);
+    // returns 0 if equal
+    // -1 if the card given is bigger than this
+    // 1 else
+    public int compare(Card card) {
+        if (this.cardNumber() == card.cardNumber())
+            return 0;
+        else if (this.cardNumber() > card.cardNumber())
+            return 1;
+        else
+            return -1;
     }
 
-    public int cardNumber() {
+    private int cardNumber() {
         ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Deuce", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
         for(int i=0;i<values.size();i++) {

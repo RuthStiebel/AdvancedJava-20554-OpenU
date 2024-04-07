@@ -3,7 +3,6 @@ import java.util.*;
 
 public class DeckOfCards {
     private ArrayList<Card> cardDeck;
-    private final int WAR_TIME = 3;
     private static final SecureRandom randomNumbers = new SecureRandom();
     private static final int NUM_OF_CARDS = 52;
     private static final int NUM_OF_CARDS_IN_SUIT = 13;
@@ -38,6 +37,14 @@ public class DeckOfCards {
         }
     }
 
+    public void mergeDecks(DeckOfCards smallDeck) {
+        Card card = new Card();
+        while (!smallDeck.isEmpty()) {
+            card = smallDeck.dealCard();
+            this.cardDeck.add(card);
+        }
+    }
+
     // shuffle cardDeck of Cards with one-pass algorithm
     public void shuffle() {
         Collections.shuffle(cardDeck, randomNumbers);
@@ -56,11 +63,11 @@ public class DeckOfCards {
     }
 
     /**
-     * This method shows the top card of the pile but does not remove it from deck.
-     * 
-     * @return Top card
+     * This method shows the card at the given index but does not remove it from deck.
+     * @param index The index of the card wished to be seen
+     * @return Card at given index
      */
-    public Card seeCard(int index) {
+    private Card seeCard(int index) {
         // determine whether Cards remain to be dealt
         if (isEmpty())
             return null;
@@ -69,26 +76,14 @@ public class DeckOfCards {
 
     /**
      * This method adds a card to the bottom of the card pile.
-     * 
      * @param card The card to be added to the pile
+     * @return True if card was added successfully, false if the card given is null
      */
-    public void addCard(Card card) {
+    public boolean addCard(Card card) {
+        if (card == null)
+            return false;
         cardDeck.add(cardDeck.size(), card);
-    }
-
-    /**
-     * This method returns the third card from the top.
-     * It is called in the instance that both players play the same value card.
-     * 
-     * @return Third card from the top.
-     */
-    public Card removeThreeCards() {
-        int i = 1;
-        while (!isEmpty() && i < WAR_TIME)
-            cardDeck.remove(0);
-        if (isEmpty())
-            return null;
-        return cardDeck.remove(0);
+        return true;
     }
 
     /**

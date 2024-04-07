@@ -1,4 +1,5 @@
 public class LogicClass {
+    
     // divide the cards from deck MainDeck to dackA and deckB
     public static void dealDeck(DeckOfCards deckA, DeckOfCards deckB, DeckOfCards MainDeck) {
         for (int i = 0; i < 52; i++) {
@@ -10,43 +11,50 @@ public class LogicClass {
     }
 
     public static void main(String[] args) {
-        int HALF_A_DECK = 26;
+        final int HALF_A_DECK = 26;
+        final int WAR_TIME = 3;
+        boolean flag = true;
         DeckOfCards deckOfCards = new DeckOfCards();
-        deckOfCards.shuffle(); // place Cards in random order
+        deckOfCards.shuffle(); //shuffles
+        //deals
         DeckOfCards firstPlayer = new DeckOfCards(0, HALF_A_DECK, deckOfCards);
         DeckOfCards secondPlayer = new DeckOfCards(HALF_A_DECK, HALF_A_DECK, deckOfCards);
+        DeckOfCards helperDeck = new DeckOfCards(0, 0, deckOfCards); //initialize an empty deck
+        Card firstCard = new Card();
+        Card secondCard = new Card();
 
-        System.out.println("\n\n____________________Second deck_____________________\n");
-        System.out.println(secondPlayer.sizeOfDeck());
-        for (int i = 0; i < 26; i++) {
-            // deal and display a Card
-            System.out.printf("%-19s", secondPlayer.dealCard());
+        while (!firstPlayer.isEmpty() && !secondPlayer.isEmpty() && flag) {
+            //need to clear helper deck each iteration
+            firstCard = firstPlayer.dealCard();
+            secondCard = secondPlayer.dealCard();
+            helperDeck.addCard(firstCard);
+            helperDeck.addCard(secondCard);
+            if (firstCard.compare(secondCard) == 1) { // this means that the first card is bigger
+                firstPlayer.mergeDecks(helperDeck);
+            } else if (firstCard.compare(secondCard) == -1) {
+                secondPlayer.mergeDecks(helperDeck);
+            } else { //means they are equal
+                for (int i = 1; i < WAR_TIME; i++) { //remove the first two 
+                    if (!helperDeck.addCard(firstPlayer.dealCard()) || !helperDeck.addCard(secondPlayer.dealCard())) {
+                        flag = false;
+                        break;
+                    }
+                }
 
-            if (i % 4 == 0) { // output a newline after every fourth card
-                System.out.println();
             }
+
         }
-
-        System.out.println("\n\n__________________First Deck______________________________\n");
-        System.out.println(firstPlayer.sizeOfDeck());
-        for (int i = 0; i < 26; i++) {
-            // deal and display a Card
-            System.out.printf("%-19s", firstPlayer.dealCard());
-
-            if (i % 4 == 0) { // output a newline after every fourth card
-                System.out.println();
-            }
-        }
-
+        //need a while that goes on until one of them is empty
+        //then I need to have each one deal a caard and compare them
+        //if the first one wins the put both cards in the first deck
+        //if the second one wins then put both cards in the second deck
+        //should I have a method for adding? such as merge?
+        //if is wartime then compare 
+        //if one has not cards left then print correct message
         // need to initialize two piles
         // need to start game (divide the deck in half and shuffle)
         // need to prompt the prnting on the screen
         // need to end game
-        /*
-         * * Logic class
-         * initializes pile, shuffles and etc
-         * 
-         * close game with System.exit
-         */
+
     }
 }
