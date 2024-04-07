@@ -2,11 +2,14 @@ public class LogicClass {
 
     private static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
+        GraphicsClass objGraphics = new GraphicsClass();
         if (firstCard.compare(secondCard) == 1) { // this means that the first card is bigger
             firstPlayer.mergeDecks(helperDeck);
+            objGraphics.playerTurn("first player", firstCard, secondCard);
             //need to send correct messages
         } else if (firstCard.compare(secondCard) == -1) {
             secondPlayer.mergeDecks(helperDeck);
+            objGraphics.playerTurn("second player", firstCard, secondCard);
             //need to send correct messages
         }
     }
@@ -21,7 +24,7 @@ public class LogicClass {
      * @return True if both decks are not empty
      */
     private static boolean warTime (DeckOfCards firstPlayer, DeckOfCards secondPlayer,
-    DeckOfCards helperDeck, Card firstCard, Card secondCard) {
+            DeckOfCards helperDeck, Card firstCard, Card secondCard) {
         final int WAR_TIME = 3;
         boolean flag = true;
         for (int i = 1; i < WAR_TIME; i++) { //remove the first two 
