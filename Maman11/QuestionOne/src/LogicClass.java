@@ -1,21 +1,22 @@
 public class LogicClass {
 
-    // divide the cards from deck MainDeck to dackA and deckB
-    public static void dealDeck(DeckOfCards deckA, DeckOfCards deckB, DeckOfCards MainDeck) {
-        for (int i = 0; i < 52; i++) {
-            if (i % 2 == 0)
-                deckA.addCard(MainDeck.dealCard());
-            else
-                deckB.addCard(MainDeck.dealCard());
+    private void warWinner (DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
+        if (firstPlayer.isEmpty()) //print that the second one won
+        {
+
+        } else {//print that the first one won 
+
         }
     }
 
-    public static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
+    private static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
         if (firstCard.compare(secondCard) == 1) { // this means that the first card is bigger
             firstPlayer.mergeDecks(helperDeck);
+            //need to send correct messages
         } else if (firstCard.compare(secondCard) == -1) {
             secondPlayer.mergeDecks(helperDeck);
+            //need to send correct messages
         }
     }
 
@@ -28,7 +29,7 @@ public class LogicClass {
      * @param secondCard
      * @return True if both decks are not empty
      */
-    public static boolean warTime (DeckOfCards firstPlayer, DeckOfCards secondPlayer,
+    private static boolean warTime (DeckOfCards firstPlayer, DeckOfCards secondPlayer,
     DeckOfCards helperDeck, Card firstCard, Card secondCard) {
         final int WAR_TIME = 3;
         boolean flag = true;
@@ -45,6 +46,8 @@ public class LogicClass {
         if (firstCard.compare(secondCard) == 1 || firstCard.compare(secondCard) == -1) { // this means that one of the cards is bigger
             compareCardsAndUpdateDecks (firstPlayer, secondPlayer, helperDeck, firstCard, secondCard);
         } else { //again war
+            //need to send correct messages
+            //need to send correct messages
             flag = warTime(firstPlayer, secondPlayer, helperDeck, null, null);
         }
         return flag;
@@ -70,20 +73,22 @@ public class LogicClass {
             if (firstCard.compare(secondCard) == 1 || firstCard.compare(secondCard) == -1) { // this means that one of the cards is bigger
                 compareCardsAndUpdateDecks (firstPlayer, secondPlayer, helperDeck, firstCard, secondCard);
             } else { //means they are equal
+                //need to send correct messages
                 flag = warTime(firstPlayer, secondPlayer, helperDeck, null, null);
             }
-        //need a while that goes on until one of them is empty
-        //then I need to have each one deal a caard and compare them
-        //if the first one wins the put both cards in the first deck
-        //if the second one wins then put both cards in the second deck
-        //should I have a method for adding? such as merge?
-        //if is wartime then compare 
-        //if one has not cards left then print correct message
-        // need to initialize two piles
-        // need to start game (divide the deck in half and shuffle)
-        // need to prompt the prnting on the screen
-        // need to end game
-
         }
+        warWinner (firstPlayer, secondPlayer);
+        // need to end game
     }
 }
+
+//need a while that goes on until one of them is empty
+//then I need to have each one deal a caard and compare them
+//if the first one wins the put both cards in the first deck
+//if the second one wins then put both cards in the second deck
+//should I have a method for adding? such as merge?
+//if is wartime then compare 
+//if one has not cards left then print correct message
+// need to initialize two piles
+// need to start game (divide the deck in half and shuffle)
+// need to prompt the prnting on the screen
