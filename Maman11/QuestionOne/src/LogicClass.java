@@ -1,14 +1,5 @@
 public class LogicClass {
 
-    private void warWinner (DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
-        if (firstPlayer.isEmpty()) //print that the second one won
-        {
-
-        } else {//print that the first one won 
-
-        }
-    }
-
     private static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
         if (firstCard.compare(secondCard) == 1) { // this means that the first card is bigger
@@ -21,12 +12,12 @@ public class LogicClass {
     }
 
     /**
-     * 
-     * @param firstPlayer
-     * @param secondPlayer
-     * @param helperDeck
-     * @param firstCard
-     * @param secondCard
+     * This method is called when both cards are equal.
+     * @param firstPlayer The card deck of the first player
+     * @param secondPlayer The card deck of the second player
+     * @param helperDeck The deck that stores the extra cards and adds them to the right pile
+     * @param firstCard The relevant card of the first player
+     * @param secondCard The relevant card of the second player
      * @return True if both decks are not empty
      */
     private static boolean warTime (DeckOfCards firstPlayer, DeckOfCards secondPlayer,
@@ -55,6 +46,7 @@ public class LogicClass {
     public static void main(String[] args) {
         final int HALF_A_DECK = 26;
         boolean flag = true;
+        GraphicsClass objGraphics = new GraphicsClass();
         DeckOfCards deckOfCards = new DeckOfCards();
         deckOfCards.shuffle(); //shuffles
         //deals
@@ -65,7 +57,7 @@ public class LogicClass {
         Card secondCard = new Card();
 
         while (!firstPlayer.isEmpty() && !secondPlayer.isEmpty() && flag) {
-            //need to clear helper deck each iteration
+            helperDeck.clearDeck();
             firstCard = firstPlayer.dealCard();
             secondCard = secondPlayer.dealCard();
             helperDeck.addCard(firstCard);
@@ -77,8 +69,7 @@ public class LogicClass {
                 flag = warTime(firstPlayer, secondPlayer, helperDeck, null, null);
             }
         }
-        warWinner (firstPlayer, secondPlayer);
-        // need to end game
+        objGraphics.warWinner (firstPlayer, secondPlayer);
     }
 }
 

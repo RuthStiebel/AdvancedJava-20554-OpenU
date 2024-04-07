@@ -37,6 +37,10 @@ public class DeckOfCards {
         }
     }
 
+    public void clearDeck () {
+        cardDeck.clear();
+    }
+
     public void mergeDecks(DeckOfCards smallDeck) {
         Card card = new Card();
         while (!smallDeck.isEmpty()) {
