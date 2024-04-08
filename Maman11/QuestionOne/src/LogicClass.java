@@ -2,7 +2,7 @@ public class LogicClass {
 
     private static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
-        GraphicsClass objGraphics = new GraphicsClass();
+                ControllerClass objGraphics = new ControllerClass();
         if (firstCard.compare(secondCard) == 1) { // this means that the first card is bigger
             firstPlayer.mergeDecks(helperDeck);
             objGraphics.playerTurn("first player", firstCard, secondCard);
@@ -49,7 +49,7 @@ public class LogicClass {
     public static void main(String[] args) {
         final int HALF_A_DECK = 26;
         boolean flag = true;
-        GraphicsClass objGraphics = new GraphicsClass();
+        ControllerClass objGraphics = new ControllerClass();
         DeckOfCards deckOfCards = new DeckOfCards();
         deckOfCards.shuffle(); //shuffles
         //deals

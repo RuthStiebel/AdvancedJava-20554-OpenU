@@ -3,7 +3,7 @@ import javax.swing.*;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
-public class GraphicsClass {
+public class ControllerClass {
     public void warWinner (DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
     //    Alert alert = new Alert(AlertType.ERROR);
      //   alert.setTitle("---GAME OVER---");
