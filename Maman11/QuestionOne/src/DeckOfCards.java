@@ -25,9 +25,12 @@ public class DeckOfCards {
 
     /**
      * This constructor creates a new deck from a given deck.
-     * @param start The index of the first card to be moved from the old deck to the new one
-     * @param sizeOfDeck The number of cards to be moved from the old deck to the new one
-     * @param deck The old deck
+     * 
+     * @param start      The index of the first card to be moved from the old deck
+     *                   to the new one
+     * @param sizeOfDeck The number of cards to be moved from the old deck to the
+     *                   new one
+     * @param deck       The old deck
      */
     public DeckOfCards(int start, int sizeOfDeck, DeckOfCards deck) {
         cardDeck = new ArrayList<Card>(); // initializes cardDeck
@@ -45,12 +48,13 @@ public class DeckOfCards {
     /**
      * This method removes all cards from given deck.
      */
-    public void clearDeck () {
+    public void clearDeck() {
         cardDeck.clear();
     }
 
     /**
      * This method merges the smaller deck into this deck.
+     * 
      * @param smallDeck The deck to be merged into this deck
      */
     public void mergeDecks(DeckOfCards smallDeck) {
@@ -70,6 +74,7 @@ public class DeckOfCards {
 
     /**
      * This method deals the top card from the pile.
+     * 
      * @return Top card
      */
     public Card dealCard() {
@@ -80,7 +85,9 @@ public class DeckOfCards {
     }
 
     /**
-     * This method shows the card at the given index but does not remove it from deck.
+     * This method shows the card at the given index but does not remove it from
+     * deck.
+     * 
      * @param index The index of the card wished to be seen
      * @return Card at given index
      */
@@ -93,6 +100,7 @@ public class DeckOfCards {
 
     /**
      * This method adds a card to the bottom of the card pile.
+     * 
      * @param card The card to be added to the pile
      * @return True if card was added successfully, false if the card given is null
      */
@@ -105,6 +113,7 @@ public class DeckOfCards {
 
     /**
      * This method checks if the pile is empty or not.
+     * 
      * @return True if card pile has less then three cards left and False otherwise
      */
     public boolean isEmpty() {
@@ -113,6 +122,7 @@ public class DeckOfCards {
 
     /**
      * This method returns how many cards are left in the pile.
+     * 
      * @return Number of cards left in the pile
      */
     public int sizeOfDeck() {

@@ -5,20 +5,23 @@ public class LogicClass {
     }
 
     /**
-     * This method recieves two cards and places them in the deck from which the card with the higher value originated from.
-     * @param firstPlayer The first card deck
+     * This method recieves two cards and places them in the deck from which the
+     * card with the higher value originated from.
+     * 
+     * @param firstPlayer  The first card deck
      * @param secondPlayer The second card deck
-     * @param helperDeck A deck that stores the cards that need to move the one of the given decks
-     * @param firstCard The card from the first card deck
-     * @param secondCard The card from the second card deck
+     * @param helperDeck   A deck that stores the cards that need to move the one of
+     *                     the given decks
+     * @param firstCard    The card from the first card deck
+     * @param secondCard   The card from the second card deck
      */
     private static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
         ControllerClass objGraphics = new ControllerClass();
-        if (firstCard.compare(secondCard) == 1) { //the first card's value is bigger
+        if (firstCard.compare(secondCard) == 1) { // the first card's value is bigger
             firstPlayer.mergeDecks(helperDeck);
             objGraphics.playerTurn("first player", firstCard, secondCard);
-        } else if (firstCard.compare(secondCard) == -1) { //the second card's value is bigger
+        } else if (firstCard.compare(secondCard) == -1) { // the second card's value is bigger
             secondPlayer.mergeDecks(helperDeck);
             objGraphics.playerTurn("second player", firstCard, secondCard);
         }
@@ -63,33 +66,46 @@ public class LogicClass {
      * This method implents the war game.
      */
     public static void warGame() {
-        final int HALF_A_DECK = 1;
         boolean flag = true;
-        ControllerClass objGraphics = new ControllerClass();
+        final int HALF_A_DECK = 1;
         DeckOfCards deckOfCards = new DeckOfCards();
         deckOfCards.shuffle(); // shuffles
         // deals
         DeckOfCards firstPlayer = new DeckOfCards(0, HALF_A_DECK, deckOfCards);
         DeckOfCards secondPlayer = new DeckOfCards(HALF_A_DECK, HALF_A_DECK, deckOfCards);
-        DeckOfCards helperDeck = new DeckOfCards(0, 0, deckOfCards); // initialize an empty deck
+        ControllerClass objGraphics = new ControllerClass();
+
+        // plays the game
+        while (warTurn(firstPlayer, secondPlayer))
+            ;
+
+        // if game finished then one of the decks must be empty
+        objGraphics.warWinner(firstPlayer, secondPlayer);
+    }
+
+    /**
+     * This method illustrates a turn in the game.
+     * 
+     * @param firstPlayer  THe first deck
+     * @param secondPlayer The second deck
+     * @return True if both decks are not empty
+     */
+    public static boolean warTurn(DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
+        DeckOfCards helperDeck = new DeckOfCards(); // initialize an empty deck
         Card firstCard = new Card();
         Card secondCard = new Card();
-
-        // starts the war game
-        while (!firstPlayer.isEmpty() && !secondPlayer.isEmpty() && flag) {
-            helperDeck.clearDeck(); // clears the helper deck so that cards from previous turns will not pop up
-                                    // unexpectedly
-            firstCard = firstPlayer.dealCard();
-            secondCard = secondPlayer.dealCard();
-            helperDeck.addCard(firstCard);
-            helperDeck.addCard(secondCard);
-            if (firstCard.compare(secondCard) == 1 || firstCard.compare(secondCard) == -1) { // this means that one of
-                                                                                             // the cards is bigger
-                compareCardsAndUpdateDecks(firstPlayer, secondPlayer, helperDeck, firstCard, secondCard);
-            } else { // means they are equal
-                flag = warTime(firstPlayer, secondPlayer, helperDeck, null, null);
-            }
+        helperDeck.clearDeck(); // clears the helper deck so that cards from previous turns will not pop up
+                                // unexpectedly
+        firstCard = firstPlayer.dealCard();
+        secondCard = secondPlayer.dealCard();
+        helperDeck.addCard(firstCard);
+        helperDeck.addCard(secondCard);
+        if (firstCard.compare(secondCard) == 1 || firstCard.compare(secondCard) == -1) { // this means that one of
+                                                                                         // the cards is bigger
+            compareCardsAndUpdateDecks(firstPlayer, secondPlayer, helperDeck, firstCard, secondCard);
+        } else { // means they are equal
+            return warTime(firstPlayer, secondPlayer, helperDeck, null, null);
         }
-        objGraphics.warWinner(firstPlayer, secondPlayer); // if the while loop finished then one of the decks must be empty
+        return !firstPlayer.isEmpty() && !secondPlayer.isEmpty();
     }
 }

@@ -23,7 +23,7 @@ public class ControllerClass {
             System.out.println("Game closed.");
             System.exit();
         } else if(result.get() == ButtonType.OK){
-            System.out.println("OK!");
+//move on to next turn
         } else if(result.get() == ButtonType.CANCEL){
             System.out.println("Game closed.");
             System.exit();
