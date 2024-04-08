@@ -4,30 +4,32 @@ public class Card {
     private final String value;
     private final String suit;
 
-    // two-argument constructor initializes card's value and suit
-    public Card(String cardValue, String cardSuit) {
-        this.value = cardValue; // initialize value of card
-        this.suit = cardSuit; // initialize suit of card
-    }
-
-    //default constructor
+    /**
+     * This constructor is the default construct and initailizes both the value and the suit to "null".
+     * @return Card object
+     */
     public Card() {
         this.value = null; // initialize value of card
         this.suit = null; // initialize suit of card
 
     }
 
-    public String getValue() {
-        return this.value;
+    /**
+     * This constructor is a wo-argument constructor initializes card's value and suit.
+     * @param cardValue The card's value
+     * @param cardSuit The card's suit
+     * @return Card object
+     */
+    public Card(String cardValue, String cardSuit) {
+        this.value = cardValue; // initialize value of card
+        this.suit = cardSuit; // initialize suit of card
     }
 
-    public String getSuit() {
-        return this.suit;
-    }
-
-    // returns 0 if equal
-    // -1 if the card given is bigger than this
-    // 1 else
+    /**
+     * This method compares the values of two cards and returns 0, 1 or -1 accordingly.
+     * @param card The card to be compared with
+     * @return 0 if both cards are equal in value, 1 if this card's value is larger than the given card's value and -1 otherwise
+     */
     public int compare(Card card) {
         if (this.cardNumber() == card.cardNumber())
             return 0;
@@ -37,6 +39,7 @@ public class Card {
             return -1;
     }
 
+    //this method convert the string represtation of the card's value into a number
     private int cardNumber() {
         ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Deuce", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
@@ -46,8 +49,11 @@ public class Card {
         }
         return 0;
     }
-
-    // return String representation of Card
+ 
+    /**
+     * This method returns a string representation of the object card.
+     * @return A string representation of the object card
+     */
     public String toString() {
         return value + " of " + suit;
     }

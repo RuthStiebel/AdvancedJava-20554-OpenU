@@ -8,10 +8,10 @@ public class DeckOfCards {
     private static final int NUM_OF_CARDS_IN_SUIT = 13;
 
     /**
-     * Constructor for objects of class CardDeck. It fills the cardDeck with cards.
+     * This constructor fills the cardDeck with cards.
      */
     public DeckOfCards() {
-        cardDeck = new ArrayList<Card>(); // Initialize cardDeck
+        cardDeck = new ArrayList<Card>(); // initializes cardDeck
         Card newCard = new Card();
         ArrayList<String> values = new ArrayList<String>(Arrays.asList("Ace", "Two", "Three", "Four", "Five", "Six",
                 "Seven", "Eight", "Nine", "Ten", "Jack", "Queen", "King"));
@@ -23,9 +23,14 @@ public class DeckOfCards {
         }
     }
 
-    /** This constructor creates a new deck from a given deck. */
+    /**
+     * This constructor creates a new deck from a given deck.
+     * @param start The index of the first card to be moved from the old deck to the new one
+     * @param sizeOfDeck The number of cards to be moved from the old deck to the new one
+     * @param deck The old deck
+     */
     public DeckOfCards(int start, int sizeOfDeck, DeckOfCards deck) {
-        cardDeck = new ArrayList<Card>(); // Initialize cardDeck
+        cardDeck = new ArrayList<Card>(); // initializes cardDeck
         Card card = new Card();
 
         for (int i = 0; i < sizeOfDeck; i++) {
@@ -37,10 +42,17 @@ public class DeckOfCards {
         }
     }
 
+    /**
+     * This method removes all cards from given deck.
+     */
     public void clearDeck () {
         cardDeck.clear();
     }
 
+    /**
+     * This method merges the smaller deck into this deck.
+     * @param smallDeck The deck to be merged into this deck
+     */
     public void mergeDecks(DeckOfCards smallDeck) {
         Card card = new Card();
         while (!smallDeck.isEmpty()) {
@@ -49,14 +61,15 @@ public class DeckOfCards {
         }
     }
 
-    // shuffle cardDeck of Cards with one-pass algorithm
+    /**
+     * This method shuffles the deck with a one-pass algorithm.
+     */
     public void shuffle() {
         Collections.shuffle(cardDeck, randomNumbers);
     }
 
     /**
      * This method deals the top card from the pile.
-     * 
      * @return Top card
      */
     public Card dealCard() {
@@ -92,7 +105,6 @@ public class DeckOfCards {
 
     /**
      * This method checks if the pile is empty or not.
-     * 
      * @return True if card pile has less then three cards left and False otherwise
      */
     public boolean isEmpty() {
@@ -101,7 +113,6 @@ public class DeckOfCards {
 
     /**
      * This method returns how many cards are left in the pile.
-     * 
      * @return Number of cards left in the pile
      */
     public int sizeOfDeck() {

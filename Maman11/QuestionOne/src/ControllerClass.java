@@ -10,7 +10,27 @@ public class ControllerClass {
 /*
     @FXML
     void newTurnOnPressed(ActionEvent event) {
-    
+
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("---TURN OVER---");
+        alert.setHeaderText("The " + player + "won the turn!");
+        alert.setContentText("The first player's card is " + 
+        firstCard + ". \n The second player's card is " + secondCard +". \n"
+        Optional<ButtonType> result = alert.showAndWait();
+
+
+        if(result.isEmpty()){
+            System.out.println("Game closed.");
+            System.exit();
+        } else if(result.get() == ButtonType.OK){
+            System.out.println("OK!");
+        } else if(result.get() == ButtonType.CANCEL){
+            System.out.println("Game closed.");
+            System.exit();
+        }
+
+    }
+}
     }
     */
     public void warWinner (DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
@@ -30,7 +50,7 @@ public class ControllerClass {
     public void playerTurn(String player, Card firstCard, Card secondCard) {
         /*
         Alert alert = new Alert(AlertType.ERROR);
-        alert.setTitle("---GAME OVER---");
+        alert.setTitle("---TURN OVER---");
         alert.setHeaderText("The " + player + "won the turn!");
         alert.setContentText("The first player's card is " + 
         firstCard + ". \n The second player's card is " + secondCard +". \n");
