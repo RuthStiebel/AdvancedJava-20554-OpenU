@@ -26,7 +26,7 @@ public class GraphicsClass {
         alert.setContentText("The first player's card is " + 
         firstCard + ". \n The second player's card is " + secondCard +". \n");
         */
-        JOptionPane.showMessageDialog(null, "The " + player + " player won the turn!\nThe first player's card is " + 
+        JOptionPane.showMessageDialog(null, "The " + player + " won this round!\nThe first player's card is " + 
         firstCard + ". \n The second player's card is " + secondCard +". \n");
     }
 
