@@ -1,4 +1,8 @@
 public class LogicClass {
+    
+    public static void main (String[]args) {
+        warGame();   
+    }
 
     private static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
@@ -46,8 +50,8 @@ public class LogicClass {
         }
         return flag;
     }
-    public static void main(String[] args) {
-        final int HALF_A_DECK = 26;
+    public static void warGame() {
+        final int HALF_A_DECK = 1;
         boolean flag = true;
         ControllerClass objGraphics = new ControllerClass();
         DeckOfCards deckOfCards = new DeckOfCards();
@@ -75,14 +79,3 @@ public class LogicClass {
         objGraphics.warWinner (firstPlayer, secondPlayer);
     }
 }
-
-//need a while that goes on until one of them is empty
-//then I need to have each one deal a caard and compare them
-//if the first one wins the put both cards in the first deck
-//if the second one wins then put both cards in the second deck
-//should I have a method for adding? such as merge?
-//if is wartime then compare 
-//if one has not cards left then print correct message
-// need to initialize two piles
-// need to start game (divide the deck in half and shuffle)
-// need to prompt the prnting on the screen

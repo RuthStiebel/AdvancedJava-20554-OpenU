@@ -1,9 +1,18 @@
+import javafx.event.ActionEvent;
+import javafx.fxml.*;
+
 import javax.swing.*;
 
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class ControllerClass {
+/*
+    @FXML
+    void newTurnOnPressed(ActionEvent event) {
+    
+    }
+    */
     public void warWinner (DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
     //    Alert alert = new Alert(AlertType.ERROR);
      //   alert.setTitle("---GAME OVER---");
