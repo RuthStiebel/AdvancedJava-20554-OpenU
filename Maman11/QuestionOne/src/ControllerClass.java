@@ -23,7 +23,7 @@ public class ControllerClass {
     /**
      * Displays a game over message indicating the winner of the game.
      * 
-     * @param firstPlayer The deck of cards belonging to the first player.
+     * @param firstPlayer  The deck of cards belonging to the first player.
      * @param secondPlayer The deck of cards belonging to the second player.
      */
     public void gameOver(DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
@@ -43,11 +43,11 @@ public class ControllerClass {
     /**
      * Displays the result of a turn, including the winner and the cards played.
      * 
-     * @param player The name of the winning player.
-     * @param firstPlayer The deck of cards belonging to the first player.
+     * @param player       The name of the winning player.
+     * @param firstPlayer  The deck of cards belonging to the first player.
      * @param secondPlayer The deck of cards belonging to the second player.
-     * @param firstCard The card played by the first player.
-     * @param secondCard The card played by the second player.
+     * @param firstCard    The card played by the first player.
+     * @param secondCard   The card played by the second player.
      */
     public void turnResult(String player, DeckOfCards firstPlayer, DeckOfCards secondPlayer, Card firstCard,
             Card secondCard) {
@@ -61,16 +61,9 @@ public class ControllerClass {
                         + secondPlayer.sizeOfDeck() + " cards left in their deck. \n");
 
         Optional<ButtonType> result = alert.showAndWait();
-        if (!result.isPresent() || result.get() == ButtonType.CANCEL) {
-            closeGame();
+        if (!result.isPresent() || result.get() == ButtonType.CANCEL) { //closes game
+            System.out.println("Game closed.");
+            System.exit(0);
         }
-    }
-
-    /**
-     * Closes the game by exiting the application.
-     */
-    public void closeGame() {
-        System.out.println("Game closed.");
-        System.exit(0);
     }
 }
