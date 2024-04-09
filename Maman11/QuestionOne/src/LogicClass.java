@@ -18,6 +18,7 @@ public class LogicClass {
     private static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
         ControllerClass objGraphics = new ControllerClass();
+
         if (firstCard.compare(secondCard) == 1) { // the first card's value is bigger
             firstPlayer.mergeDecks(helperDeck);
             objGraphics.playerTurn("first player", firstCard, secondCard);
@@ -41,46 +42,45 @@ public class LogicClass {
     private static boolean warTime(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
         final int WAR_TIME = 3;
-        boolean flag = true;
+
         for (int i = 1; i < WAR_TIME; i++) { // removes the first two cards in each deck and places them in the helper
                                              // deck
             if (!helperDeck.addCard(firstPlayer.dealCard()) || !helperDeck.addCard(secondPlayer.dealCard())) {
-                flag = false;
-                break;
+                return false;
             }
         }
+
         firstCard = firstPlayer.dealCard();
         secondCard = secondPlayer.dealCard();
         helperDeck.addCard(firstCard);
         helperDeck.addCard(secondCard);
+
         if (firstCard.compare(secondCard) == 1 || firstCard.compare(secondCard) == -1) { // this means that one of the
                                                                                          // cards is bigger
             compareCardsAndUpdateDecks(firstPlayer, secondPlayer, helperDeck, firstCard, secondCard);
         } else { // again war
-            flag = warTime(firstPlayer, secondPlayer, helperDeck, null, null);
+            return warTime(firstPlayer, secondPlayer, helperDeck, null, null);
         }
-        return flag;
+        return true;
     }
 
     /**
      * This method implents the war game.
      */
     public static void warGame() {
-        boolean flag = true;
         final int HALF_A_DECK = 1;
         DeckOfCards deckOfCards = new DeckOfCards();
         deckOfCards.shuffle(); // shuffles
         // deals
         DeckOfCards firstPlayer = new DeckOfCards(0, HALF_A_DECK, deckOfCards);
         DeckOfCards secondPlayer = new DeckOfCards(HALF_A_DECK, HALF_A_DECK, deckOfCards);
-        ControllerClass objGraphics = new ControllerClass();
-
+        
         // plays the game
-        while (warTurn(firstPlayer, secondPlayer))
-            ;
-
+        while (warTurn(firstPlayer, secondPlayer));
+        
+        ControllerClass controller = new ControllerClass();
         // if game finished then one of the decks must be empty
-        objGraphics.warWinner(firstPlayer, secondPlayer);
+        controller.warWinner(firstPlayer, secondPlayer);
     }
 
     /**
