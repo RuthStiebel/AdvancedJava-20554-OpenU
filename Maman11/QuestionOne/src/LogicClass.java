@@ -1,19 +1,47 @@
-public class LogicClass {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
+/**
+ * LogicClass represents the logic of the card game application.
+ * It manages game flow and interactions between players.
+ */
+public class LogicClass extends Application {
+
+    /**
+     * The main method to launch the application.
+     */
     public static void main(String[] args) {
-        warGame();
+        launch(args);
+        System.out.println();
     }
 
     /**
-     * This method recieves two cards and places them in the deck from which the
-     * card with the higher value originated from.
+     * Starts the JavaFX application by loading the FXML file and setting up the
+     * stage.
      * 
-     * @param firstPlayer  The first card deck
-     * @param secondPlayer The second card deck
-     * @param helperDeck   A deck that stores the cards that need to move the one of
-     *                     the given decks
-     * @param firstCard    The card from the first card deck
-     * @param secondCard   The card from the second card deck
+     * @param stage The primary stage of the application.
+     * @throws Exception If an error occurs while loading the FXML file.
+     */
+    public void start(Stage stage) throws Exception {
+        Parent root = (Parent) FXMLLoader.load(getClass().getResource("LogicClass.fxml"));
+        Scene scene = new Scene(root);
+        stage.setTitle("LogicClass");
+        stage.setScene(scene);
+        stage.show();
+    }
+
+    /**
+     * Compares two cards and updates the respective player's deck based on the
+     * comparison.
+     * 
+     * @param firstPlayer  The deck of cards belonging to the first player.
+     * @param secondPlayer The deck of cards belonging to the second player.
+     * @param helperDeck   A deck that temporarily stores cards during comparison.
+     * @param firstCard    The card drawn from the first player's deck.
+     * @param secondCard   The card drawn from the second player's deck.
      */
     private static void compareCardsAndUpdateDecks(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
@@ -21,23 +49,23 @@ public class LogicClass {
 
         if (firstCard.compare(secondCard) == 1) { // the first card's value is bigger
             firstPlayer.mergeDecks(helperDeck);
-            objGraphics.playerTurn("first player", firstCard, secondCard);
+            objGraphics.turnResult("first player", firstPlayer, secondPlayer, firstCard, secondCard);
         } else if (firstCard.compare(secondCard) == -1) { // the second card's value is bigger
             secondPlayer.mergeDecks(helperDeck);
-            objGraphics.playerTurn("second player", firstCard, secondCard);
+            objGraphics.turnResult("second player", firstPlayer, secondPlayer, firstCard, secondCard);
         }
     }
 
     /**
-     * This method is called when both cards are equal.
+     * Conducts a "war" in the game when both players draw cards of equal rank.
      * 
-     * @param firstPlayer  The card deck of the first player
-     * @param secondPlayer The card deck of the second player
-     * @param helperDeck   The deck that stores the extra cards and adds them to the
-     *                     right pile
-     * @param firstCard    The relevant card of the first player
-     * @param secondCard   The relevant card of the second player
-     * @return True if both decks are not empty
+     * @param firstPlayer  The deck of cards belonging to the first player.
+     * @param secondPlayer The deck of cards belonging to the second player.
+     * @param helperDeck   A deck that temporarily stores cards during the war.
+     * @param firstCard    The card drawn from the first player's deck.
+     * @param secondCard   The card drawn from the second player's deck.
+     * @return True if both players still have cards in their deck after the war,
+     *         false otherwise.
      */
     private static boolean warTime(DeckOfCards firstPlayer, DeckOfCards secondPlayer,
             DeckOfCards helperDeck, Card firstCard, Card secondCard) {
@@ -65,7 +93,7 @@ public class LogicClass {
     }
 
     /**
-     * This method implents the war game.
+     * Initiates and controls the game flow.
      */
     public static void warGame() {
         final int HALF_A_DECK = 1;
@@ -74,21 +102,23 @@ public class LogicClass {
         // deals
         DeckOfCards firstPlayer = new DeckOfCards(0, HALF_A_DECK, deckOfCards);
         DeckOfCards secondPlayer = new DeckOfCards(HALF_A_DECK, HALF_A_DECK, deckOfCards);
-        
+
         // plays the game
-        while (warTurn(firstPlayer, secondPlayer));
-        
+        while (warTurn(firstPlayer, secondPlayer))
+            ;
+
         ControllerClass controller = new ControllerClass();
         // if game finished then one of the decks must be empty
-        controller.warWinner(firstPlayer, secondPlayer);
+        controller.gameOver(firstPlayer, secondPlayer);
     }
 
     /**
-     * This method illustrates a turn in the game.
+     * Conducts a single turn in the game.
      * 
-     * @param firstPlayer  THe first deck
-     * @param secondPlayer The second deck
-     * @return True if both decks are not empty
+     * @param firstPlayer  The deck of cards belonging to the first player.
+     * @param secondPlayer The deck of cards belonging to the second player.
+     * @return True if both players still have cards in their deck after the turn,
+     *         false otherwise.
      */
     public static boolean warTurn(DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
         DeckOfCards helperDeck = new DeckOfCards(); // initialize an empty deck

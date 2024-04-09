@@ -1,41 +1,33 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.*;
-
 import java.util.Optional;
-
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.ButtonType;
 
+/**
+ * Controller class responsible for managing user interface.
+ */
 public class ControllerClass {
 
+    /**
+     * Event handler method invoked when a new turn button is pressed.
+     * It initiates a new turn in the game.
+     * 
+     * @param event The ActionEvent triggered by pressing the new turn button.
+     */
     @FXML
     void newTurnOnPressed(ActionEvent event) {
-         LogicClass.warGame();
-/*
-        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("---TURN OVER---");
-        alert.setHeaderText("The " + player + "won the turn!");
-        alert.setContentText("The first player's card is " + 
-        firstCard + ". \n The second player's card is " + secondCard +". \n"
-        Optional<ButtonType> result = alert.showAndWait();
-
-
-        if(result.isEmpty()){
-            System.out.println("Game closed.");
-            System.exit();
-        } else if(result.get() == ButtonType.OK){
-//move on to next turn
-        } else if(result.get() == ButtonType.CANCEL){
-            System.out.println("Game closed.");
-            System.exit();
-        }
-
+        LogicClass.warGame();
     }
-} */
-    }
-    
-    public void warWinner (DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
+
+    /**
+     * Displays a game over message indicating the winner of the game.
+     * 
+     * @param firstPlayer The deck of cards belonging to the first player.
+     * @param secondPlayer The deck of cards belonging to the second player.
+     */
+    public void gameOver(DeckOfCards firstPlayer, DeckOfCards secondPlayer) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         alert.setTitle("---GAME OVER---");
         alert.setHeaderText("Congratulations!");
@@ -48,21 +40,38 @@ public class ControllerClass {
 
         alert.showAndWait();
     }
-    
-    public void playerTurn(String player, Card firstCard, Card secondCard) {
-        
+
+    /**
+     * Displays the result of a turn, including the winner and the cards played.
+     * 
+     * @param player The name of the winning player.
+     * @param firstPlayer The deck of cards belonging to the first player.
+     * @param secondPlayer The deck of cards belonging to the second player.
+     * @param firstCard The card played by the first player.
+     * @param secondCard The card played by the second player.
+     */
+    public void turnResult(String player, DeckOfCards firstPlayer, DeckOfCards secondPlayer, Card firstCard,
+            Card secondCard) {
+
         Alert alert = new Alert(AlertType.INFORMATION);
         alert.setTitle("---TURN OVER---");
         alert.setHeaderText("The " + player + " won the turn!");
-        alert.setContentText("The first player's card is " + firstCard + ". \n The second player's card is " + secondCard + ". \n");
+        alert.setContentText(
+                "The first player's card is " + firstCard + " and they have " + firstPlayer.sizeOfDeck()
+                        + " cards left in their deck. \nThe second player's card is " + secondCard + " and they have "
+                        + secondPlayer.sizeOfDeck() + " cards left in their deck. \n");
 
         Optional<ButtonType> result = alert.showAndWait();
         if (!result.isPresent() || result.get() == ButtonType.CANCEL) {
-            System.out.println("Game closed.");
-            System.exit(0);
+            closeGame();
         }
     }
-        
-       // JOptionPane.showMessageDialog(null, "The " + player + " won this round!\nThe first player's card is " + 
-       // firstCard + ". \n The second player's card is " + secondCard +". \n");
+
+    /**
+     * Closes the game by exiting the application.
+     */
+    public void closeGame() {
+        System.out.println("Game closed.");
+        System.exit(0);
     }
+}
