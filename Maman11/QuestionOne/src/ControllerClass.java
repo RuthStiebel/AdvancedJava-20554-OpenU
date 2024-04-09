@@ -11,8 +11,7 @@ import javafx.scene.control.ButtonType;
 public class ControllerClass {
 
     /**
-     * Event handler method invoked when a new turn button is pressed.
-     * It initiates a new turn in the game.
+     * Initiates a new turn in the game.
      * 
      * @param event The ActionEvent triggered by pressing the new turn button.
      */
