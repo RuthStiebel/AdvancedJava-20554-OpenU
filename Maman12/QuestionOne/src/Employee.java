@@ -5,13 +5,15 @@ public abstract class Employee {
    private final String firstName;
    private final String lastName;
    private final String socialSecurityNumber;
+   private final DateOfBirth dateOfBirth;
 
    // constructor
    public Employee(String firstName, String lastName, 
-      String socialSecurityNumber) {
+      String socialSecurityNumber, DateOfBirth dateOfBirth) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.socialSecurityNumber = socialSecurityNumber;
+      this.dateOfBirth = dateOfBirth;
    } 
 
    // return first name
@@ -22,7 +24,10 @@ public abstract class Employee {
 
    // return social security number
    public String getSocialSecurityNumber() {return socialSecurityNumber;}
-
+   
+   // return the date of birth
+   public DateOfBirth getDateOfBirth() {return dateOfBirth;}
+   
    // return String representation of Employee object
    @Override
    public String toString() {
