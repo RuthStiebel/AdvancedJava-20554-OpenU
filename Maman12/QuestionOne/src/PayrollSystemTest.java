@@ -14,8 +14,8 @@ public class PayrollSystemTest {
       BasePlusCommissionEmployee basePlusCommissionEmployee =             
          new BasePlusCommissionEmployee(                                  
          "Bob", "Lewis", "444-44-4444", 5000, .04, 300);                  
-
-      System.out.println("Employees processed individually:");
+ 
+        System.out.println("Employees processed individually:");
 
       System.out.printf("%n%s%n%s: $%,.2f%n%n", 
          salariedEmployee, "earned", salariedEmployee.earnings());
