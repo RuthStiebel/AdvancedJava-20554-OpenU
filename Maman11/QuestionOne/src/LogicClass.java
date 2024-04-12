@@ -34,8 +34,7 @@ public class LogicClass extends Application {
     }
 
     /**
-     * Compares two cards and updates the respective player's deck based on the
-     * comparison.
+     * Compares two cards and updates the respective player's deck based on the comparison.
      * 
      * @param firstPlayer  The deck of cards belonging to the first player.
      * @param secondPlayer The deck of cards belonging to the second player.
