@@ -6,11 +6,11 @@ public abstract class Employee {
 
    // constructor
    public Employee(String firstName, String lastName, 
-      String socialSecurityNumber, DateOfBirth dateOfBirth) {
+      String socialSecurityNumber, String dateOfBirth) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.socialSecurityNumber = socialSecurityNumber;
-      this.dateOfBirth = dateOfBirth;
+      this.dateOfBirth = new DateOfBirth(dateOfBirth);
    } 
 
    // return first name

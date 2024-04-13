@@ -5,7 +5,7 @@ public class PayrollSystemTest {
    public static void main(String[] args) {
       // create subclass objects                                          
       SalariedEmployee salariedEmployee =                                 
-         new SalariedEmployee("John", "Smith", "111-11-1111", 800.00);    
+         new SalariedEmployee("John", "Smith", "111-11-1111", 800.00, );    
       HourlyEmployee hourlyEmployee =                                     
          new HourlyEmployee("Karen", "Price", "222-22-2222", 16.75, 40);  
       CommissionEmployee commissionEmployee =                             

@@ -4,7 +4,7 @@ public class HourlyEmployee extends Employee {
 
    // constructor
    public HourlyEmployee(String firstName, String lastName,
-      String socialSecurityNumber, DateOfBirth dateOfBirth, double wage, double hours) {
+      String socialSecurityNumber, String dateOfBirth, double wage, double hours) {
       super(firstName, lastName, socialSecurityNumber, dateOfBirth);
 
       if (wage < 0.0) { // validate wage
