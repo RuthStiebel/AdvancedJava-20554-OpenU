@@ -15,10 +15,10 @@ public class DateOfBirth {
         this.day = Integer.parseInt(date.substring(0, index));
         date = date.substring(index);
         index = date.indexOf(".");
-        this.month = Integer.parseInt(date.substring(0, index));;
+        this.month = Integer.parseInt(date.substring(0, index));
         date = date.substring(index);
         index = date.indexOf(".");
-        this.year = Integer.parseInt(date.substring(0, index));;
+        this.year = Integer.parseInt(date.substring(0, index));
     }
 
     //getters
