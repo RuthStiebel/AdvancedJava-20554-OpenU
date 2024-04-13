@@ -7,7 +7,7 @@ public class CommissionEmployee extends Employee {
 
    // constructor
    public CommissionEmployee(String firstName, String lastName, 
-      String socialSecurityNumber, DateOfBirth dateOfBirth, double grossSales, 
+      String socialSecurityNumber, String dateOfBirth, double grossSales, 
       double commissionRate) {
       super(firstName, lastName, socialSecurityNumber, dateOfBirth);
 
