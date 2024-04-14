@@ -28,8 +28,8 @@ public abstract class Employee {
    // return String representation of Employee object
    @Override
    public String toString() {
-      return String.format("%s %s%nsocial security number: %s", 
-         getFirstName(), getLastName(), getSocialSecurityNumber());
+      return String.format("%s %s%nSocial security number: %s%nDate of birth: %s", 
+         getFirstName(), getLastName(), getSocialSecurityNumber(), getDateOfBirth().toString());
    }
 
    // abstract method must be overridden by concrete subclasses
