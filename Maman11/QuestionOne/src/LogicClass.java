@@ -95,7 +95,7 @@ public class LogicClass extends Application {
      * Initiates and controls the game flow.
      */
     public static void warGame() {
-        final int HALF_A_DECK = 26;
+        final int HALF_A_DECK = 4;
         DeckOfCards deckOfCards = new DeckOfCards();
         deckOfCards.shuffle(); // shuffles
         // deals
