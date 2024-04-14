@@ -8,7 +8,7 @@ public class PayrollSystemTest {
       CommissionEmployee commissionEmployee =                             
          new CommissionEmployee("Sue", "Jones", "333-33-3333", "31.6.1885", 10000, .06);                      
       BasePlusCommissionEmployee basePlusCommissionEmployee =             
-         new BasePlusCommissionEmployee("Bob", "Lewis", "444-44-4444", "10.101910", 5000, .04, 300);                  
+         new BasePlusCommissionEmployee("Bob", "Lewis", "444-44-4444", "10.10.1910", 5000, .04, 300);                  
  
         System.out.println("Employees processed individually:");
 
