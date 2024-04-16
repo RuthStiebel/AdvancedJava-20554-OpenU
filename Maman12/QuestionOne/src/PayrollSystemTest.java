@@ -22,6 +22,8 @@ public class PayrollSystemTest {
          basePlusCommissionEmployee, 
          "earned", basePlusCommissionEmployee.earnings());
 
+         //receive from user number of employees and inistialize an employee array
+         //initialize the right number 
       // create four-element Employee array
       Employee[] employees = new Employee[4]; 
 
