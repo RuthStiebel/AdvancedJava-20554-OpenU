@@ -24,6 +24,10 @@ public abstract class Employee {
    
    // return the date of birth
    public DateOfBirth getDateOfBirth() {return dateOfBirth;}
+
+   public boolean isBirthMonth (int month) {
+      return dateOfBirth.getMonth() == month;
+   }
    
    // return String representation of Employee object
    @Override
