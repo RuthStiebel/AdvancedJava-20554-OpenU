@@ -50,9 +50,8 @@ public class PayrollSystemTest {
                "new base salary with 10%% increase is: $%,.2f%n",
                employee.getBaseSalary());
          } 
-
          System.out.printf(
-            "earned $%,.2f%n%n", currentEmployee.earnings());
+            "earned $%,.2f%n%n", currentEmployee.earnings()+currentEmployee.isBirthMonth(4));
       } 
 
       // get type name of each object in employees array

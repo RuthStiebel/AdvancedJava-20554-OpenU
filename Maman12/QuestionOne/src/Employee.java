@@ -5,37 +5,48 @@ public abstract class Employee {
    private final DateOfBirth dateOfBirth;
 
    // constructor
-   public Employee(String firstName, String lastName, 
-      String socialSecurityNumber, String dateOfBirth) {
+   public Employee(String firstName, String lastName,
+         String socialSecurityNumber, String dateOfBirth) {
       this.firstName = firstName;
       this.lastName = lastName;
       this.socialSecurityNumber = socialSecurityNumber;
       this.dateOfBirth = new DateOfBirth(dateOfBirth);
-   } 
+   }
 
    // return first name
-   public String getFirstName() {return firstName;}
+   public String getFirstName() {
+      return firstName;
+   }
 
    // return last name
-   public String getLastName() {return lastName;}
+   public String getLastName() {
+      return lastName;
+   }
 
    // return social security number
-   public String getSocialSecurityNumber() {return socialSecurityNumber;}
-   
-   // return the date of birth
-   public DateOfBirth getDateOfBirth() {return dateOfBirth;}
-
-   public boolean isBirthMonth (int month) {
-      return dateOfBirth.getMonth() == month;
+   public String getSocialSecurityNumber() {
+      return socialSecurityNumber;
    }
-   
+
+   // return the date of birth
+   public DateOfBirth getDateOfBirth() {
+      return dateOfBirth;
+   }
+
+   // returns 200 if true
+   public int isBirthMonth(int month) {
+      if (dateOfBirth.getMonth() == month)
+         return 200;
+      return 0;
+   }
+
    // return String representation of Employee object
    @Override
    public String toString() {
-      return String.format("%s %s%nSocial security number: %s%nDate of birth: %s", 
-         getFirstName(), getLastName(), getSocialSecurityNumber(), getDateOfBirth().toString());
+      return String.format("%s %s%nSocial security number: %s%nDate of birth: %s",
+            getFirstName(), getLastName(), getSocialSecurityNumber(), getDateOfBirth().toString());
    }
 
    // abstract method must be overridden by concrete subclasses
    public abstract double earnings(); // no implementation here
-} 
+}
