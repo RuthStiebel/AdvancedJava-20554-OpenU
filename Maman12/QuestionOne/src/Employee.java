@@ -1,3 +1,5 @@
+import java.util.Calendar;
+
 public abstract class Employee {
    private final String firstName;
    private final String lastName;
@@ -34,8 +36,8 @@ public abstract class Employee {
    }
 
    // returns 200 if true
-   public int isBirthMonth(int month) {
-      if (dateOfBirth.getMonth() == month)
+   public int isBirthMonth() {
+      if (dateOfBirth.getMonth() == Calendar.getInstance().get(Calendar.MONTH)+1)
          return 200;
       return 0;
    }
