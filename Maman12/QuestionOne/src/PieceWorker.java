@@ -13,7 +13,7 @@ public class PieceWorker extends Employee {
 
         if (pieces < 0.0) { // validate pieces
             throw new IllegalArgumentException(
-                    "Pieces made must be >= 0.0");
+                    "Pieces made must be >= 0");
         }
 
         this.wage = wage;
@@ -23,7 +23,7 @@ public class PieceWorker extends Employee {
     // set wage
     public void setWage(double wage) {
         if (wage < 0.0) { // validate wage
-            throw new IllegalArgumentException("Piece wage must be >= 0.0");
+            throw new IllegalArgumentException("Piece wage must be >= 0");
         }
 
         this.wage = wage;
@@ -38,7 +38,7 @@ public class PieceWorker extends Employee {
     public void setPieces(int pieces) {
         if (pieces < 0.0) { // validate pieces
             throw new IllegalArgumentException(
-                    "Pieces made must be >= 0.0");
+                    "Pieces made must be >= 0");
         }
         this.pieces = pieces;
     }
