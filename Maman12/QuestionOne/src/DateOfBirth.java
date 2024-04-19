@@ -10,12 +10,9 @@ public class DateOfBirth {
         if (!isValidDate(day, month, year)) {
             throw new IllegalArgumentException("Invalid date");
         }
-
         this.month = month;
         this.day = day;
         this.year = year;
-
-        System.out.printf("Date object constructor for date %s%n", this);
     }
 
     public DateOfBirth(String date) {
@@ -32,8 +29,6 @@ public class DateOfBirth {
                 this.month = month;
                 this.day = day;
                 this.year = year;
-
-                System.out.printf("Date object constructor for date %s%n", this);
             }
         }
     }

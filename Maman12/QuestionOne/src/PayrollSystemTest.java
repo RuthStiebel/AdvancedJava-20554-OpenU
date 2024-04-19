@@ -9,18 +9,6 @@ public class PayrollSystemTest {
             "444-44-4444", "10.10.1910", 5000, .04, 300);
       PieceWorker pieceWorker = new PieceWorker("Lewis", "Mayhem", "444-44-4444", "10.4.1910", 1, 500);
 
-      System.out.println("Employees processed individually:");
-
-      System.out.printf("%n%s%n%s: $%,.2f%n%n",
-            salariedEmployee, "earned", salariedEmployee.earnings());
-      System.out.printf("%s%n%s: $%,.2f%n%n",
-            hourlyEmployee, "earned", hourlyEmployee.earnings());
-      System.out.printf("%s%n%s: $%,.2f%n%n",
-            commissionEmployee, "earned", commissionEmployee.earnings());
-      System.out.printf("%s%n%s: $%,.2f%n%n",
-            basePlusCommissionEmployee,
-            "earned", basePlusCommissionEmployee.earnings());
-      System.out.println(pieceWorker);
 
       // create four-element Employee array
       Employee[] employees = new Employee[5];
