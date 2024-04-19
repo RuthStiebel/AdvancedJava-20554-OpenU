@@ -11,7 +11,7 @@ public class PieceWorker extends Employee {
             throw new IllegalArgumentException("Hourly wage must be >= 0.0");
         }
 
-        if (pieces < 0.0) { // validate pieces
+        if (pieces < 0) { // validate pieces
             throw new IllegalArgumentException(
                     "Pieces made must be >= 0");
         }

@@ -6,8 +6,8 @@ public class DateOfBirth {
     private final int LEAP_YEAR_DAY = 29;
     private static final int[] daysPerMonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
-    public DateOfBirth(int month, int day, int year) {
-        if (!isValidDate(month, day, year)) {
+    public DateOfBirth(int day, int month, int year) {
+        if (!isValidDate(day, month, year)) {
             throw new IllegalArgumentException("Invalid date");
         }
 
@@ -38,7 +38,7 @@ public class DateOfBirth {
         }
     }
 
-    private boolean isValidDate(int month, int day, int year) {
+    private boolean isValidDate(int day, int month, int year) {
         // check if month in range
         if (month <= 0 || month > 12) {
             throw new IllegalArgumentException(
