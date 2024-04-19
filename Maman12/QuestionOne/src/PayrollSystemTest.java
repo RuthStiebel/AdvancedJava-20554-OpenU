@@ -34,16 +34,16 @@ public class PayrollSystemTest {
             employee.setBaseSalary(1.10 * employee.getBaseSalary());
 
             System.out.printf(
-                  "new base salary with 10%% increase is: $%,.2f%n",
+                  "New base salary with 10%% increase is: $%,.2f%n",
                   employee.getBaseSalary());
          }
          
          if (200 == currentEmployee.isBirthMonth()) {
             System.out.printf(
-                  "received birthday bonus of $200%n");
+                  "Received birthday bonus of $200%n");
          }
          System.out.printf(
-               "earned $%,.2f%n%n", currentEmployee.earnings() + currentEmployee.isBirthMonth());
+               "Earned $%,.2f%n%n", currentEmployee.earnings() + currentEmployee.isBirthMonth());
       }
 
       // get type name of each object in employees array

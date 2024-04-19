@@ -59,8 +59,8 @@ public class HourlyEmployee extends Employee {
    // return String representation of HourlyEmployee object              
    @Override                                                             
    public String toString() {                                            
-      return String.format("hourly employee: %s%n%s: $%,.2f; %s: %,.2f", 
-         super.toString(), "hourly wage", getWage(),                     
-         "hours worked", getHours());                                    
+      return String.format("Hourly employee: %s%n%s: $%,.2f; %s: %,.2f", 
+         super.toString(), "Hourly wage", getWage(),                     
+         "Hours worked", getHours());                                    
    }                                                                     
 } 
