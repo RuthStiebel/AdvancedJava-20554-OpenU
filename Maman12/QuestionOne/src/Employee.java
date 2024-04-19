@@ -70,8 +70,10 @@ public abstract class Employee {
     * @return 200 if the birth month matches the current month, otherwise 0
     */
    public int isBirthMonth() {
-      if (dateOfBirth.getMonth() == Calendar.getInstance().get(Calendar.MONTH) + 1)
+      if (dateOfBirth.getMonth() == Calendar.getInstance().get(Calendar.MONTH) + 1) {
+         System.out.printf("%s%n%s%n", "DOB", dateOfBirth.getMonth(), "CM", (Calendar.getInstance().get(Calendar.MONTH) + 1));
          return 200;
+      }
       return 0;
    }
 

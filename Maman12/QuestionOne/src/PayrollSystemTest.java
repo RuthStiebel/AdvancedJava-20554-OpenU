@@ -9,7 +9,6 @@ public class PayrollSystemTest {
             "444-44-4444", "10.10.1910", 5000, .04, 300);
       PieceWorker pieceWorker = new PieceWorker("Lewis", "Mayhem", "444-44-4444", "10.4.1910", 1, 500);
 
-
       // create four-element Employee array
       Employee[] employees = new Employee[5];
 
