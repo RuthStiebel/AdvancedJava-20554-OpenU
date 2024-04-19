@@ -84,7 +84,7 @@ public abstract class Employee {
    @Override
    public String toString() {
       return String.format("%s %s%nSocial security number: %s%nDate of birth: %s",
-            getFirstName(), getLastName(), getSocialSecurityNumber(), getDateOfBirth().toString());
+            getFirstName(), getLastName(), getSocialSecurityNumber(), getDateOfBirth());
    }
 
    /**

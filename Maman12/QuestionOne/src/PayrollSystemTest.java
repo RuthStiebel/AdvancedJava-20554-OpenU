@@ -20,9 +20,7 @@ public class PayrollSystemTest {
       System.out.printf("%s%n%s: $%,.2f%n%n",
             basePlusCommissionEmployee,
             "earned", basePlusCommissionEmployee.earnings());
-      System.out.printf("%s%n%s: $%,.2f%n%n",
-            pieceWorker.toString(),
-            "earned", pieceWorker.earnings());
+      System.out.println(pieceWorker);
 
       // create four-element Employee array
       Employee[] employees = new Employee[5];
