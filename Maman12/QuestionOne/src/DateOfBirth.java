@@ -10,8 +10,8 @@ public class DateOfBirth {
         if (!isValidDate(day, month, year)) {
             throw new IllegalArgumentException("Invalid date");
         }
-        this.month = month;
         this.day = day;
+        this.month = month;
         this.year = year;
     }
 
@@ -20,14 +20,14 @@ public class DateOfBirth {
         if (dates.length != 3) {
             throw new IllegalArgumentException("Wrong number of arguments in date");
         } else {
-            int month = Integer.parseInt(dates[0]);
-            int day = Integer.parseInt(dates[1]);
+            int day = Integer.parseInt(dates[0]);
+            int month = Integer.parseInt(dates[1]);
             int year = Integer.parseInt(dates[2]);
-            if (!isValidDate(month, day, year)) {
+            if (!isValidDate(day, month, year)) {
                 throw new IllegalArgumentException("Invalid date");
             } else {
-                this.month = month;
                 this.day = day;
+                this.month = month;
                 this.year = year;
             }
         }
@@ -42,7 +42,7 @@ public class DateOfBirth {
 
         // check if day in range for month
         if (day <= 0 ||
-                (day > daysPerMonth[month] && !(month == 2 && day == 29))) {
+                (day > daysPerMonth[month] && !(month == LEAP_YEAR_MONTH && day == LEAP_YEAR_DAY))) {
             throw new IllegalArgumentException("day (" + day +
                     ") out-of-range for the specified month and year");
         }
@@ -74,6 +74,6 @@ public class DateOfBirth {
 
     // return a String of the form month/day/year
     public String toString() {
-        return String.format("%d/%d/%d", month, day, year);
+        return String.format("%d/%d/%d", day, month, year);
     }
 }

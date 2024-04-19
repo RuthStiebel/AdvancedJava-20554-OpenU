@@ -37,6 +37,7 @@ public class PayrollSystemTest {
                   "new base salary with 10%% increase is: $%,.2f%n",
                   employee.getBaseSalary());
          }
+         
          if (200 == currentEmployee.isBirthMonth()) {
             System.out.printf(
                   "received birthday bonus of $200%n");
