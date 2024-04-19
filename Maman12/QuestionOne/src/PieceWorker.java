@@ -1,10 +1,10 @@
 public class PieceWorker extends Employee {
     private double wage; // wage per hour
-    private double pieces; // hours worked for week
+    private int pieces; // hours worked for week
 
     // constructor
     public PieceWorker(String firstName, String lastName,
-            String socialSecurityNumber, String dateOfBirth, double wage, double pieces) {
+            String socialSecurityNumber, String dateOfBirth, double wage, int pieces) {
         super(firstName, lastName, socialSecurityNumber, dateOfBirth);
 
         if (wage < 0.0) { // validate wage
@@ -35,7 +35,7 @@ public class PieceWorker extends Employee {
     }
 
     // set hours worked
-    public void setPieces(double pieces) {
+    public void setPieces(int pieces) {
         if (pieces < 0.0) { // validate pieces
             throw new IllegalArgumentException(
                     "Pieces made must be >= 0");
@@ -44,7 +44,7 @@ public class PieceWorker extends Employee {
     }
 
     // return pieces made
-    public double getPieces() {
+    public int getPieces() {
         return pieces;
     }
 
@@ -57,7 +57,7 @@ public class PieceWorker extends Employee {
     // return String representation of HourlyEmployee object
     @Override
     public String toString() {
-        return String.format("piece worker: %s%n%s: %,.2f; %s: %,.2f",
+        return String.format("piece worker: %s%n%s: %,.2f; %s: %d",
                 super.toString(), "piece wage", getWage(),
                 "pieces made", getPieces());
     }
