@@ -11,5 +11,13 @@ public class Rational {
         this.denominator = denominator;
         this.numerator = numerator;
     }
-    
+
+    public boolean equals(Object obj) {
+        boolean flag = false;
+        if (obj instanceof Rational) {
+
+        } else
+            throw new IllegalArgumentException("The object entered must be of type 'Rational'.");
+        return flag;
+    }
 }
