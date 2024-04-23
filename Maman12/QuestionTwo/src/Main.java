@@ -10,10 +10,10 @@ public class Main {
         String rationalNum = scan.nextLine();
 
         try {
-            rationalNum.split("/");
+            rationalNum.split("//");
         }
-        catch (Exception e) {
-             
+        catch (Exception IllegalArgumentException) {
+            System.out.println("Error with input.");             
         }
         //check if there is a slash
         //check if there are only two numbers - one on either side of the slash
