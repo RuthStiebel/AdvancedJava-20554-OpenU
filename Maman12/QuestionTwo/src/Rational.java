@@ -11,10 +11,10 @@ public class Rational {
      *                                  or if the numerator is not a whole number
      */
     public Rational(double numerator, double denominator) {
-        if (denominator <= 0) // checking that the denominator is a positive number
-            throw new IllegalArgumentException("The denominator must be a positive number.");
         if ((numerator % 1) == 0) // checking that the numberator is a whole number
             throw new IllegalArgumentException("The numerator ust be a whole number.");
+        if (denominator <= 0) // checking that the denominator is a positive number
+            throw new IllegalArgumentException("The denominator must be a positive number.");
         this.denominator = denominator;
         this.numerator = numerator;
     }
@@ -48,7 +48,6 @@ public class Rational {
         return (this.denominator * number.numerator > this.numerator * number.denominator);
     }
 
-    @Override
     /**
      * Checks if this rational number is equal to another object.
      *
@@ -57,6 +56,7 @@ public class Rational {
      *         denominator, otherwise false
      * @throws IllegalArgumentException if the specified object is not a Rational
      */
+    @Override
     public boolean equals(Object obj) {
         if (obj instanceof Rational) {
             if (((Rational) obj).numerator == this.numerator
@@ -111,7 +111,7 @@ public class Rational {
      *                             of zero
      */
     public Rational divide(Rational number) {
-        if (number.numerator == 0)
+        if (number.numerator == 0 || this.numerator == 0)
             throw new ArithmeticException("Cannot divide by zero.");
 
         return new Rational((number.denominator * this.numerator),
@@ -149,13 +149,13 @@ public class Rational {
             return gcd(b, a % b);
     }
 
-    @Override
     /**
      * Returns a string representation of this rational number.
      * 
      * @return a string representation of the rational number in the form
      *         "numerator/denominator"
      */
+    @Override
     public String toString() {
         return (numerator + "/" + denominator);
     }

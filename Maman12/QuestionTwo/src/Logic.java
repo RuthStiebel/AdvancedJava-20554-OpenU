@@ -40,7 +40,7 @@ public class Logic {
                 firstRationalNumber.multiply(secondRationalNumber));
         // testing divide
         System.out.printf("The first number divided by the second number is %s.%n",
-                firstRationalNumber.divide(secondRationalNumber));
+                firstRationalNumber.divide(secondRationalNumber)); //need to send exception if one of exception is returned
     }
 
 }
