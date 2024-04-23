@@ -10,8 +10,8 @@ public class Controller {
         String rationalNum = scan.nextLine();
         Rational firstRational = new Rational(0, 0);
         Rational secondRational = new Rational(0, 0);
+        Logic.saveNumbers(rationalNum, firstRational, secondRational);
         Logic.testAllFunctions(firstRational, secondRational);
-
         scan.close();
     }
 }
