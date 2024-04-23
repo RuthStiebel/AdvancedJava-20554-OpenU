@@ -75,7 +75,7 @@ public class Rational {
      */
     public Rational plus(Rational number) {
         return new Rational((number.denominator * this.numerator) + (number.numerator * this.denominator),
-                number.denominator * this.denominator);
+                number.denominator * this.denominator).reduce();
     }
 
     /**
@@ -87,7 +87,7 @@ public class Rational {
      */
     public Rational minus(Rational number) {
         return new Rational((number.denominator * this.numerator) - (number.numerator * this.denominator),
-                number.denominator * this.denominator);
+                number.denominator * this.denominator).reduce();
     }
 
     /**
@@ -98,7 +98,7 @@ public class Rational {
      */
     public Rational multiply(Rational number) {
         return new Rational((number.numerator * this.numerator),
-                number.denominator * this.denominator);
+                number.denominator * this.denominator).reduce();
     }
 
     /**
@@ -115,7 +115,7 @@ public class Rational {
             throw new ArithmeticException("Cannot divide by zero.");
 
         return new Rational((number.denominator * this.numerator),
-                number.numerator * this.denominator);
+                number.numerator * this.denominator).reduce();
     }
 
     /**
