@@ -12,7 +12,7 @@ public class Rational {
      */
     public Rational(double numerator, double denominator) {
         if ((numerator % 1) != 0) // checking that the numberator is a whole number
-            throw new IllegalArgumentException("The numerator ust be a whole number.");
+            throw new IllegalArgumentException("The numerator must be a whole number.");
         if (denominator <= 0) // checking that the denominator is a positive number
             throw new IllegalArgumentException("The denominator must be a positive number.");
         this.denominator = denominator;
@@ -35,6 +35,20 @@ public class Rational {
      */
     public double getNumerator() {
         return numerator;
+    }
+
+    public void setDenominator(double d) {
+        if (denominator <= 0) // checking that the denominator is a positive number
+            throw new IllegalArgumentException("The denominator must be a positive number.");
+        this.denominator = d;
+
+    }
+
+    public void setNumerator(double n) {
+        if ((n % 1) != 0) // checking that the numberator is a whole number
+            throw new IllegalArgumentException("The numerator must be a whole number.");
+        this.numerator = n;
+
     }
 
     /**

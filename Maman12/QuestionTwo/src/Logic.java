@@ -7,10 +7,13 @@ public class Logic {
     public static void saveNumbers(String rationalNum, Rational firstRationalNumber, Rational secondRationalNumber) {
         try {
             String[] rational = rationalNum.split(",");
-            String[] rationalOne = rational[0].split("//");
-            String[] rationalTwo = rational[1].split("//");
-            firstRationalNumber = new Rational(Double.parseDouble(rationalOne[0]), Double.parseDouble(rationalOne[1]));
-            secondRationalNumber = new Rational(Double.parseDouble(rationalTwo[2]), Double.parseDouble(rationalTwo[3]));
+            String[] rationalOne = rational[0].split("/");
+            String[] rationalTwo = rational[1].split("/");
+            firstRationalNumber.setNumerator(Double.parseDouble(rationalOne[0]));
+            firstRationalNumber.setDenominator(Double.parseDouble(rationalOne[1]));
+            secondRationalNumber.setNumerator(Double.parseDouble(rationalTwo[0]));
+            secondRationalNumber.setDenominator(Double.parseDouble(rationalTwo[1]));
+            System.out.println(firstRationalNumber + " and the seond is " + secondRationalNumber);
         } catch (Exception IllegalArgumentException) {
             System.out.println("Error with input.");
         }
@@ -27,7 +30,7 @@ public class Logic {
                 firstRationalNumber.reduce(), secondRationalNumber.reduce());
         // testing greaterThan
         System.out.printf("The first number is %s than the second number.%n",
-                firstRationalNumber.greaterThan(secondRationalNumber) ? "larger" : "smaller");
+                firstRationalNumber.greaterThan(secondRationalNumber) ? "larger" : "not larger");
         // testing equals
         System.out.printf("The first number is %s to the second number.%n",
                 firstRationalNumber.equals(secondRationalNumber) ? "equal" : "not equal");
