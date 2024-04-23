@@ -5,12 +5,12 @@ public class Controller {
 
         Scanner scan = new Scanner(System.in);
         System.out.println(
-                "Enter two rational numbers, where the numerator and denminator are seperated by a //, "
-                        + "the numerator is a whole number and the denomantor is a positive number.");
+                "Enter two rational numbers seperated by a comma, where the numerator and denminator are seperated by a /, "
+                        + "the numerator is a whole number and the denomantor is a positive number.\n For example, a correct input would be 1/2,1/3.");
         String rationalNum = scan.nextLine();
         Rational firstRational = new Rational(0, 0);
         Rational secondRational = new Rational(0, 0);
-        testAllFunctions(firstRational, secondRational);
+        Logic.testAllFunctions(firstRational, secondRational);
 
         scan.close();
     }

@@ -11,7 +11,7 @@ public class Rational {
      *                                  or if the numerator is not a whole number
      */
     public Rational(double numerator, double denominator) {
-        if ((numerator % 1) == 0) // checking that the numberator is a whole number
+        if ((numerator % 1) != 0) // checking that the numberator is a whole number
             throw new IllegalArgumentException("The numerator ust be a whole number.");
         if (denominator <= 0) // checking that the denominator is a positive number
             throw new IllegalArgumentException("The denominator must be a positive number.");

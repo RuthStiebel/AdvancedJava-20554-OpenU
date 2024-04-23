@@ -4,11 +4,13 @@ public class Logic {
     // check if there are only two numbers - one on either side of the slash
     // send to Rational constructor
     // check if Rational number was created
-    public void saveNumbers(String rationalNum, Rational firstRationalNumber, Rational secondRationalNumber) {
+    public static void saveNumbers(String rationalNum, Rational firstRationalNumber, Rational secondRationalNumber) {
         try {
-            String[] rational = rationalNum.split("//");
-            firstRationalNumber = new Rational(Double.parseDouble(rational[0]), Double.parseDouble(rational[1]));
-            secondRationalNumber = new Rational(Double.parseDouble(rational[2]), Double.parseDouble(rational[3]));
+            String[] rational = rationalNum.split(",");
+            String[] rationalOne = rational[0].split("//");
+            String[] rationalTwo = rational[1].split("//");
+            firstRationalNumber = new Rational(Double.parseDouble(rationalOne[0]), Double.parseDouble(rationalOne[1]));
+            secondRationalNumber = new Rational(Double.parseDouble(rationalTwo[2]), Double.parseDouble(rationalTwo[3]));
         } catch (Exception IllegalArgumentException) {
             System.out.println("Error with input.");
         }
