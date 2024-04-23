@@ -1,6 +1,6 @@
 public class Rational {
-    private double numerator;
-    private double denominator;
+    private int numerator;
+    private int denominator;
 
     /**
      * Constructs a Rational object with the specified numerator and denominator.
@@ -10,7 +10,7 @@ public class Rational {
      * @throws IllegalArgumentException if the denominator is not a positive number
      *                                  or if the numerator is not a whole number
      */
-    public Rational(double numerator, double denominator) {
+    public Rational(int numerator, int denominator) {
         if ((numerator % 1) != 0) // checking that the numberator is a whole number
             throw new IllegalArgumentException("The numerator must be a whole number.");
         if (denominator <= 0) // checking that the denominator is a positive number
@@ -24,7 +24,7 @@ public class Rational {
      *
      * @return the denominator
      */
-    public double getDenominator() {
+    public int getDenominator() {
         return denominator;
     }
 
@@ -33,18 +33,18 @@ public class Rational {
      *
      * @return the numerator
      */
-    public double getNumerator() {
+    public int getNumerator() {
         return numerator;
     }
 
-    public void setDenominator(double d) {
+    public void setDenominator(int d) {
         if (denominator <= 0) // checking that the denominator is a positive number
             throw new IllegalArgumentException("The denominator must be a positive number.");
         this.denominator = d;
 
     }
 
-    public void setNumerator(double n) {
+    public void setNumerator(int n) {
         if ((n % 1) != 0) // checking that the numberator is a whole number
             throw new IllegalArgumentException("The numerator must be a whole number.");
         this.numerator = n;
@@ -138,7 +138,7 @@ public class Rational {
      * @return the reduced form of this rational number
      */
     public Rational reduce() {
-        double GCD;
+        int GCD;
         if (numerator > denominator)
             GCD = gcd(numerator, denominator);
         else
@@ -153,7 +153,7 @@ public class Rational {
      * The GCD of two numbers is the largest number that divides both of them
      * without leaving a remainder.
      */
-    private double gcd(double a, double b) {
+    private int gcd(int a, int b) {
         // If b is 0, then a is the GCD
         if (b == 0)
             return a;

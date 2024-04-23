@@ -11,7 +11,7 @@ public class Controller {
         Rational firstRational = new Rational(0, 1);
         Rational secondRational = new Rational(0, 1);
         Logic.saveNumbers(rationalNum, firstRational, secondRational);
-        Logic.testAllFunctions(firstRational, secondRational);
+        System.out.println(Logic.testAllFunctions(firstRational, secondRational));
         scan.close();
     }
 }
