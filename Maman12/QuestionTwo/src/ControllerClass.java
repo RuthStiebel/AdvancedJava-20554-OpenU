@@ -1,4 +1,3 @@
-import java.util.Scanner;
 import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
@@ -7,8 +6,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 
-public class Controller extends Application {
+public class ControllerClass extends Application {
     public static void main(String[] args) {
         launch(args);
     }
@@ -27,9 +28,21 @@ public class Controller extends Application {
      * System.out.println(Logic.testAllFunctions(firstRational, secondRational));
      * scan.close();
      * }
+     * 
+     * public class ControllerClass {
+     * 
+     * 
+     * 
+     * }
      */
+    @FXML
+    void startPressed(ActionEvent event) {
+
+    }
+
     @Override
     public void start(Stage primaryStage) {
+
         // Create an alert dialog
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle(null); // Set the title of the alert
@@ -46,11 +59,12 @@ public class Controller extends Application {
         Label[] labels = new Label[4]; // Array to store labels
         TextField[] textFields = new TextField[4]; // Array to store text fields
 
-        String[] names = { "First number:", "Second number:" , "First number:", "Second number:"}; // Names for the numbers
+        String[] names = { "First number:", "Second number:", "First number:", "Second number:" }; // Names for the
+                                                                                                   // numbers
 
         for (int i = 0; i < 4; i++) {
             // Create labels for each number
-                labels[i] = new Label(names[i]);
+            labels[i] = new Label(names[i]);
             // Create text fields for user input
             textFields[i] = new TextField();
             // Add labels and text fields to the grid pane
@@ -58,7 +72,6 @@ public class Controller extends Application {
             gridPane.add(textFields[i], i % 2 == 0 ? 1 : 3, i / 2);
         }
 
-        
         // Set the content of the alert dialog to the grid pane
         alert.getDialogPane().setContent(gridPane);
 
