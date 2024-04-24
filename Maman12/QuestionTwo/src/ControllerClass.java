@@ -1,8 +1,6 @@
-import javafx.application.Application;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 import javafx.event.ActionEvent;
@@ -10,35 +8,8 @@ import javafx.fxml.FXML;
 
 public class ControllerClass {
 
-    /*
-     * public static void main(String[] args) {
-     * 
-     * Scanner scan = new Scanner(System.in);
-     * System.out.println(
-     * "Enter two rational numbers seperated by a comma, where the numerator and denminator are seperated by a /, "
-     * + " For example, a correct input would be 1/2,1/3.");
-     * String rationalNum = scan.nextLine();
-     * Rational firstRational = new Rational(0, 1);
-     * Rational secondRational = new Rational(0, 1);
-     * Logic.saveNumbers(rationalNum, firstRational, secondRational);
-     * System.out.println(Logic.testAllFunctions(firstRational, secondRational));
-     * scan.close();
-     * }
-     * 
-     * public class ControllerClass {
-     * 
-     * 
-     * 
-     * }
-     */
     @FXML
     private void startPressed(ActionEvent event) {
-
-    }
-
-    @Override
-    public void start(Stage primaryStage) {
-
         // Create an alert dialog
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle(null); // Set the title of the alert
