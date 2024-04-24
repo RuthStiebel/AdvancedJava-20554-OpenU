@@ -50,7 +50,6 @@ public class Controller extends Application {
 
         for (int i = 0; i < 4; i++) {
             // Create labels for each number
-      
                 labels[i] = new Label(names[i]);
             // Create text fields for user input
             textFields[i] = new TextField();
