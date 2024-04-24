@@ -9,7 +9,7 @@ import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class ControllerClass extends Application {
+public class GraphicsClass extends Application {
     public static void main(String[] args) {
         launch(args);
     }
@@ -36,7 +36,7 @@ public class ControllerClass extends Application {
      * }
      */
     @FXML
-    void startPressed(ActionEvent event) {
+    private void startPressed(ActionEvent event) {
 
     }
 
