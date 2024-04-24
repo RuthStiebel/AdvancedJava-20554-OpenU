@@ -5,14 +5,10 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 
-public class GraphicsClass extends Application {
-    public static void main(String[] args) {
-        launch(args);
-    }
+public class ControllerClass {
 
     /*
      * public static void main(String[] args) {
