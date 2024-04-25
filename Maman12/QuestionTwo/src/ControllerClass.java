@@ -60,8 +60,15 @@ public class ControllerClass {
                             throw new NumberFormatException(); // Empty input is considered invalid
                         }
                     }
-                    // Process the numbers here
-                    // For example, you can print them
+                    Rational firstRationalNumber = new Rational(numbers[0], numbers[1]);
+                    Rational secondRationalNumber = new Rational(numbers[2], numbers[3]);
+                    String message = LogicClass.testAllFunctions (firstRationalNumber, secondRationalNumber);
+                    Alert inform = new Alert(Alert.AlertType.NONE);
+                    inform.setTitle(null); // Set the title of the alert
+                    inform.setHeaderText(message);
+                    inform.showAndWait();
+
+
                 } catch (NumberFormatException e) {
                     e.printStackTrace();
                     // Handle invalid input

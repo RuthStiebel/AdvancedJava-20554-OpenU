@@ -47,6 +47,7 @@ public class LogicClass extends Application {
             System.out.println("Error with input.");
         }
     }
+    
     public static String testAllFunctions(Rational firstRationalNumber, Rational secondRationalNumber) {
         StringBuilder str = new StringBuilder();
     
