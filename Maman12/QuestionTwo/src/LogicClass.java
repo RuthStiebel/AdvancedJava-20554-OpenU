@@ -29,25 +29,6 @@ public class LogicClass extends Application {
         stage.show();
     }
 
-    // check if there is a slash
-    // check if there are only two numbers - one on either side of the slash
-    // send to Rational constructor
-    // check if Rational number was created
-    public static void saveNumbers(String rationalNum, Rational firstRationalNumber, Rational secondRationalNumber) {
-        try {
-            String[] rational = rationalNum.split(",");
-            String[] rationalOne = rational[0].split("/");
-            String[] rationalTwo = rational[1].split("/");
-            firstRationalNumber.setNumerator(Integer.parseInt(rationalOne[0]));
-            firstRationalNumber.setDenominator(Integer.parseInt(rationalOne[1]));
-            secondRationalNumber.setNumerator(Integer.parseInt(rationalTwo[0]));
-            secondRationalNumber.setDenominator(Integer.parseInt(rationalTwo[1]));
-            System.out.println(firstRationalNumber + " and the seond is " + secondRationalNumber);
-        } catch (Exception IllegalArgumentException) {
-            System.out.println("Error with input.");
-        }
-    }
-    
     public static String testAllFunctions(Rational firstRationalNumber, Rational secondRationalNumber) {
         StringBuilder str = new StringBuilder();
     
