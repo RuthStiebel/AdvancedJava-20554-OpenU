@@ -66,6 +66,7 @@ public class ControllerClass {
                     Alert inform = new Alert(Alert.AlertType.NONE);
                     inform.setTitle(null); // Set the title of the alert
                     inform.setHeaderText(message);
+                    inform.getButtonTypes().add(ButtonType.OK);
                     inform.showAndWait();
 
 
