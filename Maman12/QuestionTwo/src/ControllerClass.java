@@ -14,8 +14,8 @@ public class ControllerClass {
         Alert alert = new Alert(Alert.AlertType.NONE);
         alert.setTitle(null); // Set the title of the alert
         alert.setHeaderText("Each column represents a rational number, "
-                + " where the numerator is the number on top and the denominator is the lower number.\n "
-                + "The numerator is a whole number and the denomantor is a positive number.\n");
+                + " where the numerator is the number on top and the denominator is the lower number.\n"
+                + "The numerator is a whole number and the denomantor is a positive number.\n\n");
 
         // Create a GridPane to organize the layout
         GridPane gridPane = new GridPane();
@@ -26,8 +26,8 @@ public class ControllerClass {
         Label[] labels = new Label[4]; // Array to store labels
         TextField[] textFields = new TextField[4]; // Array to store text fields
 
-        String[] names = { "First number:", "Second number:", "First number:", "Second number:" }; // Names for the
-                                                                                                   // numbers
+        String[] names = { "First number numerator:", "Second number numerator:", "First number denominator:",
+                "Second number denominator:" }; // Names for the// numbers
 
         for (int i = 0; i < 4; i++) {
             // Create labels for each number
