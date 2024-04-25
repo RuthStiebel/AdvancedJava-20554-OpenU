@@ -1,3 +1,11 @@
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.scene.layout.GridPane;
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+
 public class PayrollSystemTest {
    public static void main(String[] args) {
       // create subclass objects
@@ -19,37 +27,40 @@ public class PayrollSystemTest {
       employees[3] = basePlusCommissionEmployee;
       employees[4] = pieceWorker;
 
-      System.out.printf("Employees processed polymorphically:%n%n");
+      StringBuilder str = new StringBuilder();
+     
+         str.append("Employees processed polymorphically:\n\n");
 
       // generically process each element in array employees
       for (Employee currentEmployee : employees) {
-         System.out.println(currentEmployee); // invokes toString
+         str.append(currentEmployee).append("\n"); // invokes toString
 
          // determine whether element is a BasePlusCommissionEmployee
          if (currentEmployee instanceof BasePlusCommissionEmployee) {
-            // downcast Employee reference to
-            // BasePlusCommissionEmployee reference
+            // downcast Employee reference to BasePlusCommissionEmployee reference
             BasePlusCommissionEmployee employee = (BasePlusCommissionEmployee) currentEmployee;
 
             employee.setBaseSalary(1.10 * employee.getBaseSalary());
 
-            System.out.printf(
-                  "New base salary with 10%% increase is: $%,.2f%n",
-                  employee.getBaseSalary());
+            str.append("New base salary with 10% increase is: ").append(employee.getBaseSalary()).append("\n");
          }
          
          if (200 == currentEmployee.isBirthMonth()) {
-            System.out.printf(
-                  "Received birthday bonus of $200%n");
+            str.append("Received birthday bonus of $200.").append("\n");
          }
-         System.out.printf(
-               "Earned $%,.2f%n%n", currentEmployee.earnings() + currentEmployee.isBirthMonth());
+         str.append("Earned ").append(currentEmployee.earnings() + currentEmployee.isBirthMonth()).append("\n");
       }
 
       // get type name of each object in employees array
       for (int j = 0; j < employees.length; j++) {
-         System.out.printf("Employee %d is a %s%n", j,
-               employees[j].getClass().getName());
+         str.append("Employee ").append(j).append(" is a ").append(employees[j].getClass().getName());
       }
+
+      //cast stringbuilder to string
+      Alert inform = new Alert(Alert.AlertType.NONE);
+      inform.setTitle(null); // Set the title of the alert
+      inform.setHeaderText("hey");
+      inform.getButtonTypes().add(ButtonType.OK);
+      inform.showAndWait();
    }
 }
