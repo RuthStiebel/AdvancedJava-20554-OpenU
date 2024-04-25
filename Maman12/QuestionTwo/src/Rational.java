@@ -73,8 +73,10 @@ public class Rational {
     @Override
     public boolean equals(Object obj) {
         if (obj instanceof Rational) {
-            this.reduce();
-            ((Rational) obj).reduce();
+            Rational tmp = this.reduce();
+            this.numerator = tmp.numerator;
+            this.denominator = tmp.denominator;
+            obj = ((Rational) obj).reduce();
             System.out.println(this);
             System.out.println((Rational) obj);
             if (((Rational) obj).numerator == this.numerator

@@ -60,8 +60,8 @@ public class ControllerClass {
                             throw new NumberFormatException(); // Empty input is considered invalid
                         }
                     }
-                    Rational firstRationalNumber = new Rational(numbers[0], numbers[1]);
-                    Rational secondRationalNumber = new Rational(numbers[2], numbers[3]);
+                    Rational firstRationalNumber = new Rational(numbers[0], numbers[2]);
+                    Rational secondRationalNumber = new Rational(numbers[1], numbers[3]);
                     String message = LogicClass.testAllFunctions (firstRationalNumber, secondRationalNumber);
                     Alert inform = new Alert(Alert.AlertType.NONE);
                     inform.setTitle(null); // Set the title of the alert
