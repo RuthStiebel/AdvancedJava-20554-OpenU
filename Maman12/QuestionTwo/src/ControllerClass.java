@@ -72,16 +72,16 @@ public class ControllerClass {
                     } catch (IllegalArgumentException e) {
                         // Handle invalid input
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                        errorAlert.setTitle("Error");
-                        errorAlert.setHeaderText("INVALID INPUT");
+                        errorAlert.setTitle("ERROR");
+                        errorAlert.setHeaderText("Invalid input!");
                         errorAlert.setContentText("Both numbers have to be whole and the denominator cannot be zero.");
                         errorAlert.showAndWait();
                     }
                 } catch (NumberFormatException e) {
                     // Handle invalid input
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-                    errorAlert.setTitle("Error");
-                    errorAlert.setHeaderText("INVALID INPUT");
+                    errorAlert.setTitle("ERROR");
+                    errorAlert.setHeaderText("Invalid input!");
                     errorAlert.setContentText("Please enter valid numbers.");
                     errorAlert.showAndWait();
                 }

@@ -70,7 +70,7 @@ public class LogicClass extends Application {
                     .append(firstRationalNumber.divide(secondRationalNumber)).append(".\n");
         } catch (ArithmeticException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-            errorAlert.setTitle("Error");
+            errorAlert.setTitle("ERROR");
             errorAlert.setHeaderText(null);
             errorAlert.setContentText("Cannot divide by zero.");
             errorAlert.showAndWait();
