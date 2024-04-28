@@ -4,7 +4,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
-public class PayrollSystemTest extends Application{
+public class PayrollSystemTest extends Application {
       /**
        * The main method to launch the application.
        */
@@ -37,8 +37,8 @@ public class PayrollSystemTest extends Application{
                         10000,
                         .06);
             BasePlusCommissionEmployee basePlusCommissionEmployee = new BasePlusCommissionEmployee("Bob", "Lewis",
-                        "444-44-4444", "10.10.1910", 5000, .04, 300);
-            PieceWorker pieceWorker = new PieceWorker("Lewis", "Mayhem", "444-44-4444", "10.4.1910", 1, 500);
+                        "444-44-4444", "27.5.1995", 5000, .04, 300);
+            PieceWorker pieceWorker = new PieceWorker("Lewis", "Mayhem", "555-55-5555", "10.4.1910", 1, 500);
 
             // create four-element Employee array
             Employee[] employees = new Employee[5];
@@ -56,7 +56,7 @@ public class PayrollSystemTest extends Application{
 
             // generically process each element in array employees
             for (Employee currentEmployee : employees) {
-                  str.append(currentEmployee).append("\n"); // invokes toString
+                  str.append("\n").append(currentEmployee).append("\n");// invokes toString
 
                   // determine whether element is a BasePlusCommissionEmployee
                   if (currentEmployee instanceof BasePlusCommissionEmployee) {
@@ -72,13 +72,8 @@ public class PayrollSystemTest extends Application{
                   if (200 == currentEmployee.isBirthMonth()) {
                         str.append("Received birthday bonus of $200.").append("\n");
                   }
-                  str.append("Earned ").append(currentEmployee.earnings() + currentEmployee.isBirthMonth())
+                  str.append("Earned $").append(currentEmployee.earnings() + currentEmployee.isBirthMonth())
                               .append("\n");
-            }
-
-            // get type name of each object in employees array
-            for (int j = 0; j < employees.length; j++) {
-                  str.append("Employee ").append(j).append(" is a ").append(employees[j].getClass().getName());
             }
             return str.toString();
       }

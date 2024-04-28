@@ -5,14 +5,14 @@ import javafx.fxml.FXML;
 
 public class ControllerClass {
 
-    @FXML
-    void startProgramPressed(ActionEvent event) {
-      Alert inform = new Alert(Alert.AlertType.NONE);
-      inform.setTitle(null); // Set the title of the alert
-      inform.setHeaderText("hey");
-      inform.getButtonTypes().add(ButtonType.OK);
-      inform.showAndWait();
-    }
+  @FXML
+  void startProgramPressed(ActionEvent event) {
+    String message = PayrollSystemTest.Tester();
+    Alert inform = new Alert(Alert.AlertType.NONE);
+    inform.setTitle(null); // Set the title of the alert
+    inform.setHeaderText(message);
+    inform.getButtonTypes().add(ButtonType.OK);
+    inform.showAndWait();
+  }
 
 }
-
