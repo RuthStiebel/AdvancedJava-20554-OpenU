@@ -11,7 +11,6 @@ public class Rational {
      *                                  or if the numerator is not a whole number
      */
     public Rational(int numerator, int denominator) {
-        System.out.println("N" + numerator + "D" + denominator);
         if ((numerator % 1) != 0) // checking that the numberator is a whole number
             throw new IllegalArgumentException("The numerator must be a whole number.");
         if (denominator <= 0) // checking that the denominator is a positive number
