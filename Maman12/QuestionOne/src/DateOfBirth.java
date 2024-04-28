@@ -40,20 +40,20 @@ public class DateOfBirth {
      * @throws IllegalArgumentException if the date is invalid
      */
     private boolean isValidDate(int day, int month, int year) {
-        // check if month in range
+        // checks if month in range
         if (month <= 0 || month > 12) {
             throw new IllegalArgumentException(
                     "Month (" + month + ") must be 1-12");
         }
 
-        // check if day in range for month
+        // checks if day in range for month
         if (day <= 0 ||
                 (day > daysPerMonth[month] && !(month == LEAP_YEAR_MONTH && day == LEAP_YEAR_DAY))) {
             throw new IllegalArgumentException("Day (" + day +
                     ") out-of-range for the specified month and year");
         }
 
-        // check for leap year if month is 2 and day is 29
+        // checks for leap year if month is 2 and day is 29
         if (month == LEAP_YEAR_MONTH && day == LEAP_YEAR_DAY && !isLeapYear(year)) {
             throw new IllegalArgumentException("Day (" + day +
                     ") out-of-range for the specified month and year");
