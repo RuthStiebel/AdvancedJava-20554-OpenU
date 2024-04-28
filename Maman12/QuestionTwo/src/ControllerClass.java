@@ -60,18 +60,24 @@ public class ControllerClass {
                             throw new NumberFormatException(); // Empty input is considered invalid
                         }
                     }
-                    Rational firstRationalNumber = new Rational(numbers[0], numbers[2]);
-                    Rational secondRationalNumber = new Rational(numbers[1], numbers[3]);
-                    String message = LogicClass.testAllFunctions (firstRationalNumber, secondRationalNumber);
-                    Alert inform = new Alert(Alert.AlertType.NONE);
-                    inform.setTitle(null); // Set the title of the alert
-                    inform.setHeaderText(message);
-                    inform.getButtonTypes().add(ButtonType.OK);
-                    inform.showAndWait();
-
-
+                    try {
+                        Rational firstRationalNumber = new Rational(numbers[0], numbers[2]);
+                        Rational secondRationalNumber = new Rational(numbers[1], numbers[3]);
+                        String message = LogicClass.testAllFunctions(firstRationalNumber, secondRationalNumber);
+                        Alert inform = new Alert(Alert.AlertType.NONE);
+                        inform.setTitle(null); // Set the title of the alert
+                        inform.setHeaderText(message);
+                        inform.getButtonTypes().add(ButtonType.OK);
+                        inform.showAndWait();
+                    } catch (IllegalArgumentException e) {
+                        // Handle invalid input
+                        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+                        errorAlert.setTitle("Error");
+                        errorAlert.setHeaderText(null);
+                        errorAlert.setContentText("Please enter valid numbers - both numbers have to be whole and the denominator cannot be zero.");
+                        errorAlert.showAndWait();
+                    }
                 } catch (NumberFormatException e) {
-                    e.printStackTrace();
                     // Handle invalid input
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setTitle("Error");
