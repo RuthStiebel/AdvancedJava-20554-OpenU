@@ -6,12 +6,13 @@ import javafx.fxml.FXML;
 public class ControllerClass {
 
     @FXML
-    public static void startProgramPressed(ActionEvent event) {
-      //cast stringbuilder to string
+    void startProgramPressed(ActionEvent event) {
       Alert inform = new Alert(Alert.AlertType.NONE);
       inform.setTitle(null); // Set the title of the alert
       inform.setHeaderText("hey");
       inform.getButtonTypes().add(ButtonType.OK);
       inform.showAndWait();
     }
+
 }
+
