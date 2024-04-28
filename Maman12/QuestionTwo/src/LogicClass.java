@@ -65,9 +65,10 @@ public class LogicClass extends Application {
         str.append("Both numbers multiplied together equal ").append(firstRationalNumber.multiply(secondRationalNumber))
                 .append(".\n");
         try {
+            Rational tmp = firstRationalNumber.divide(secondRationalNumber);
             // testing divide
             str.append("The first number divided by the second number is ")
-                    .append(firstRationalNumber.divide(secondRationalNumber)).append(".\n");
+                    .append(tmp).append(".\n");
         } catch (ArithmeticException e) {
             Alert errorAlert = new Alert(Alert.AlertType.ERROR);
             errorAlert.setTitle("ERROR");
