@@ -77,8 +77,6 @@ public class Rational {
             this.numerator = tmp.numerator;
             this.denominator = tmp.denominator;
             obj = ((Rational) obj).reduce();
-            System.out.println(this);
-            System.out.println((Rational) obj);
             if (((Rational) obj).numerator == this.numerator
                     && ((Rational) obj).denominator == this.denominator)
                 return true;
@@ -132,8 +130,7 @@ public class Rational {
      */
     public Rational divide(Rational number) {
         if (number.numerator == 0 || this.numerator == 0)
-            throw new ArithmeticException("Cannot divide by zero.");
-
+            throw new ArithmeticException();
         return new Rational((number.denominator * this.numerator),
                 number.numerator * this.denominator).reduce();
     }
