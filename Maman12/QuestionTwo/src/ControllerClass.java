@@ -74,7 +74,7 @@ public class ControllerClass {
                         Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                         errorAlert.setTitle("ERROR");
                         errorAlert.setHeaderText("Invalid input!");
-                        errorAlert.setContentText("Both numbers have to be whole and the denominator cannot be zero.");
+                        errorAlert.setContentText("The denominator cannot be zero.");
                         errorAlert.showAndWait();
                     }
                 } catch (NumberFormatException e) {
@@ -82,7 +82,7 @@ public class ControllerClass {
                     Alert errorAlert = new Alert(Alert.AlertType.ERROR);
                     errorAlert.setTitle("ERROR");
                     errorAlert.setHeaderText("Invalid input!");
-                    errorAlert.setContentText("Please enter valid numbers.");
+                    errorAlert.setContentText("Please enter only whole numbers.");
                     errorAlert.showAndWait();
                 }
             }
