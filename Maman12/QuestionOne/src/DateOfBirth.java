@@ -7,23 +7,6 @@ public class DateOfBirth {
     private static final int[] daysPerMonth = { 0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31 };
 
     /**
-     * Constructs a DateOfBirth object with the specified day, month, and year.
-     * 
-     * @param day   the day of the month
-     * @param month the month (1-12)
-     * @param year  the year
-     * @throws IllegalArgumentException if the date is invalid
-     */
-    public DateOfBirth(int day, int month, int year) {
-        if (!isValidDate(day, month, year)) {
-            throw new IllegalArgumentException("Invalid date");
-        }
-        this.day = day;
-        this.month = month;
-        this.year = year;
-    }
-
-    /**
      * Constructs a DateOfBirth object from a string representation of the date.
      * 
      * @param date a string representing the date in the format "day.month.year"
