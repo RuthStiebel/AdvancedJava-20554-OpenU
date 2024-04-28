@@ -58,15 +58,25 @@ public class LogicClass extends Application {
                 .append(".\n");
 
         // testing minus
-        str.append("The first number minus the second number is ")
-                .append(firstRationalNumber.minus(secondRationalNumber)).append(".\n");
+        try {
+            Rational tmp = firstRationalNumber.minus(secondRationalNumber);
+            str.append("The first number minus the second number is ")
+                    .append(tmp).append(".\n");
+        } catch (ArithmeticException e) {
+            Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+            errorAlert.setTitle("ERROR");
+            errorAlert.setHeaderText(null);
+            errorAlert.setContentText("The substraction of both numbers must equal a non negative number.");
+            errorAlert.showAndWait();
+        }
 
         // testing multiply
         str.append("Both numbers multiplied together equal ").append(firstRationalNumber.multiply(secondRationalNumber))
                 .append(".\n");
+                
+        // testing divide
         try {
             Rational tmp = firstRationalNumber.divide(secondRationalNumber);
-            // testing divide
             str.append("The first number divided by the second number is ")
                     .append(tmp).append(".\n");
         } catch (ArithmeticException e) {

@@ -11,6 +11,7 @@ public class Rational {
      *                                  or if the numerator is not a whole number
      */
     public Rational(int numerator, int denominator) {
+        System.out.println("N" + numerator + "D" + denominator);
         if ((numerator % 1) != 0) // checking that the numberator is a whole number
             throw new IllegalArgumentException("The numerator must be a whole number.");
         if (denominator <= 0) // checking that the denominator is a positive number
@@ -104,6 +105,8 @@ public class Rational {
      *         rational number
      */
     public Rational minus(Rational number) {
+        if ((number.denominator * this.numerator) - (number.numerator * this.denominator) < 0)
+            throw new ArithmeticException();
         return new Rational((number.denominator * this.numerator) - (number.numerator * this.denominator),
                 number.denominator * this.denominator).reduce();
     }
