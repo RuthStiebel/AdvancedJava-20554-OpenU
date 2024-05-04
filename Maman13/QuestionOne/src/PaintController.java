@@ -17,9 +17,11 @@ public class PaintController {
     GraphicsContext gc = canv.getGraphicsContext2D();
     private Button[] buttons;
     private final int NUM_OF_SHAPES = 8;
+    private final int SIZE = 5;
 
     private void createButtons () {
-        
+        buttons = new Button[SIZE*SIZE];
+
     }
     @FXML
     void mouseClicked(MouseEvent event) {
