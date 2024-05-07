@@ -1,30 +1,22 @@
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
-import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Pane;
 
 public class PaintController {
 
     @FXML
-    private Canvas canv;
-
-    GraphicsContext gc = canv.getGraphicsContext2D();
-
+    private Pane pane;
 
     @FXML
     void clearAction(ActionEvent event) {
-        gc.clearRect(0, 0, canv.getWidth(), canv.getHeight());
+
     }
 
     @FXML
     void drawAction(ActionEvent event) {
-
-        
         // the idea is that when "draw" is clicked then a screen pops up and the user
         // chooses the shape(radio button), color (raio button) and fill
+
     }
 
     @FXML
