@@ -34,7 +34,7 @@ public class PaintController {
             grid.add(buttons[i], i % SIZE, i / SIZE);
         }
     }
-    
+
     private void handleButton(ActionEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handleButton'");
@@ -44,5 +44,8 @@ public class PaintController {
     void mouseClicked(MouseEvent event) {
 
     }
+
+    
+    //the idea is that when "draw" is clicked then a screen pops up and the user chooses the shape(radio button), color (raio button) and fill
 
 }
