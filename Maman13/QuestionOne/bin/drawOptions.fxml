@@ -1,19 +1,127 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<VBox spacing="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="DrawOptionsController">
-    <RadioButton text="Circle" fx:id="circleRadioButton"/>
-    <RadioButton text="Rectangle" fx:id="rectangleRadioButton"/>
-    <ToggleGroup fx:id="shapeToggleGroup"/>
-    <RadioButton text="Red" fx:id="redRadioButton"/>
-    <RadioButton text="Blue" fx:id="blueRadioButton"/>
-    <ToggleGroup fx:id="colorToggleGroup"/>
-    <RadioButton text="Fill" fx:id="fillRadioButton"/>
-    <ToggleGroup fx:id="fillToggleGroup"/>
-    <Button text="Draw" onAction="#drawAction"/>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="DrawOptionsController">
+   <children>
+      <GridPane prefHeight="401.0" prefWidth="600.0">
+        <columnConstraints>
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+        </columnConstraints>
+        <rowConstraints>
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+          <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+        </rowConstraints>
+         <children>
+            <RadioButton fx:id="circleShape" mnemonicParsing="false" text="Circle" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="Shape" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="lineShape" mnemonicParsing="false" text="Line" toggleGroup="$Shape" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="squareShape" mnemonicParsing="false" text="Square" toggleGroup="$Shape" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="triangleShape" mnemonicParsing="false" text="Triangle" toggleGroup="$Shape" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shape" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Colour" underline="true" wrappingWidth="68.3291015625" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="redColour" mnemonicParsing="false" text="Red" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="Colour" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="blueColour" mnemonicParsing="false" text="Blue" toggleGroup="$Colour" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="greenColour" mnemonicParsing="false" text="Green" toggleGroup="$Colour" GridPane.columnIndex="1" GridPane.rowIndex="3">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="yellowColour" mnemonicParsing="false" text="Yellow" toggleGroup="$Colour" GridPane.columnIndex="1" GridPane.rowIndex="4">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="emptyFill" mnemonicParsing="false" text="Empty" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+               <toggleGroup>
+                  <ToggleGroup fx:id="Fill" />
+               </toggleGroup>
+            </RadioButton>
+            <RadioButton fx:id="fullFill" mnemonicParsing="false" text="Full" toggleGroup="$Fill" GridPane.columnIndex="2" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Fill" underline="true" wrappingWidth="68.3291015625" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+               <font>
+                  <Font size="22.0" />
+               </font>
+            </Text>
+            <RadioButton fx:id="blackColour" mnemonicParsing="false" text="Black" toggleGroup="$Colour" GridPane.columnIndex="1" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <RadioButton fx:id="starShape" mnemonicParsing="false" text="Star" toggleGroup="$Shape" GridPane.rowIndex="5">
+               <GridPane.margin>
+                  <Insets left="30.0" />
+               </GridPane.margin>
+            </RadioButton>
+            <ButtonBar nodeOrientation="RIGHT_TO_LEFT" prefHeight="40.0" prefWidth="200.0" GridPane.columnIndex="2" GridPane.rowIndex="6">
+              <buttons>
+                <Button mnemonicParsing="false" onAction="#cancelPressed" text="Cancel" />
+                  <Button mnemonicParsing="false" onAction="#confirmPressed" text="Confirm" />
+              </buttons>
+            </ButtonBar>
+         </children>
+      </GridPane>
+   </children>
 </VBox>

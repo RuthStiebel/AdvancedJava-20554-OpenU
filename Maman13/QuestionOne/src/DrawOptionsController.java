@@ -7,51 +7,78 @@ import javafx.stage.Stage;
 public class DrawOptionsController {
 
     @FXML
-    private RadioButton circleRadioButton;
+    private ToggleGroup Colour;
 
     @FXML
-    private RadioButton rectangleRadioButton;
+    private ToggleGroup Fill;
 
     @FXML
-    private ToggleGroup shapeToggleGroup;
+    private ToggleGroup Shape;
 
     @FXML
-    private RadioButton redRadioButton;
+    private RadioButton blackColour;
 
     @FXML
-    private RadioButton blueRadioButton;
+    private RadioButton blueColour;
 
     @FXML
-    private ToggleGroup colorToggleGroup;
+    private RadioButton circleShape;
 
     @FXML
-    private RadioButton fillRadioButton;
+    private RadioButton emptyFill;
 
     @FXML
-    private ToggleGroup fillToggleGroup;
+    private RadioButton fullFill;
 
-    private boolean drawRequested = false;
+    @FXML
+    private RadioButton greenColour;
+
+    @FXML
+    private RadioButton lineShape;
+
+    @FXML
+    private RadioButton redColour;
+
+    @FXML
+    private RadioButton squareShape;
+
+    @FXML
+    private RadioButton starShape;
+
+    @FXML
+    private RadioButton triangleShape;
+
+    @FXML
+    private RadioButton yellowColour;
+
+    private boolean confirmPressed = false;
     private String selectedShape;
     private String selectedColor;
     private boolean isFilled;
 
     @FXML
-    void drawAction(ActionEvent event) {
-        // Set selected options
-        selectedShape = ((RadioButton) shapeToggleGroup.getSelectedToggle()).getText();
-        selectedColor = ((RadioButton) colorToggleGroup.getSelectedToggle()).getText();
-        isFilled = fillToggleGroup.getSelectedToggle() == fillRadioButton;
+    void confirmPressed(ActionEvent event) {
+        // Get selected shape
+        RadioButton selectedShapeRadioButton = (RadioButton) Shape.getSelectedToggle();
+        selectedShape = selectedShapeRadioButton.getText();
 
-        // Indicate that draw is requested
-        drawRequested = true;
+        // Get selected color
+        RadioButton selectedColorRadioButton = (RadioButton) Colour.getSelectedToggle();
+        selectedColor = selectedColorRadioButton.getText();
 
-        // Close the pop-up window
-        Stage stage = (Stage) circleRadioButton.getScene().getWindow();
+        // Get selected fill option
+        isFilled = Fill.getSelectedToggle() == fullFill;
+
+        // Set confirmPressed flag to true
+        confirmPressed = true;
+
+        // Close the window
+        Stage stage = (Stage) circleShape.getScene().getWindow();
         stage.close();
     }
 
     public boolean isDrawRequested() {
-        return drawRequested;
+        return confirmPressed;
     }
 
     public String getSelectedShape() {
