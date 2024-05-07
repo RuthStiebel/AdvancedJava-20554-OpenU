@@ -5,11 +5,36 @@ import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 
 public class PaintController {
 
     @FXML
+    private Canvas canv;
+
+    GraphicsContext gc = canv.getGraphicsContext2D();
+
+
+    @FXML
+    void clearAction(ActionEvent event) {
+        gc.clearRect(0, 0, canv.getWidth(), canv.getHeight());
+    }
+
+    @FXML
+    void drawAction(ActionEvent event) {
+
+        
+        // the idea is that when "draw" is clicked then a screen pops up and the user
+        // chooses the shape(radio button), color (raio button) and fill
+    }
+
+    @FXML
+    void undoAction(ActionEvent event) {
+
+    }
+
+}
+/*
+ *   @FXML
     private Canvas canv;
 
     @FXML
@@ -38,14 +63,5 @@ public class PaintController {
     private void handleButton(ActionEvent e) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'handleButton'");
-    }
 
-    @FXML
-    void mouseClicked(MouseEvent event) {
-
-    }
-
-    
-    //the idea is that when "draw" is clicked then a screen pops up and the user chooses the shape(radio button), color (raio button) and fill
-
-}
+ */
