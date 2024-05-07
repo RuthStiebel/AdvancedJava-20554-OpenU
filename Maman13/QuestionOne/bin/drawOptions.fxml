@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox spacing="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="DrawOptionsController">
+    <RadioButton text="Circle" fx:id="circleRadioButton"/>
+    <RadioButton text="Rectangle" fx:id="rectangleRadioButton"/>
+    <ToggleGroup fx:id="shapeToggleGroup"/>
+    <RadioButton text="Red" fx:id="redRadioButton"/>
+    <RadioButton text="Blue" fx:id="blueRadioButton"/>
+    <ToggleGroup fx:id="colorToggleGroup"/>
+    <RadioButton text="Fill" fx:id="fillRadioButton"/>
+    <ToggleGroup fx:id="fillToggleGroup"/>
+    <Button text="Draw" onAction="#drawAction"/>
+</VBox>
