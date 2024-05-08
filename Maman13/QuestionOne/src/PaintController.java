@@ -16,11 +16,11 @@ public class PaintController {
     void drawAction(ActionEvent event) {
       try {
             // Load the draw options pop-up window
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("drawOptions.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DrawOptions.fxml"));
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("Draw Options");
+            stage.setTitle("DrawOptions");
             stage.showAndWait();
             
             // Get the controller instance
