@@ -21,9 +21,9 @@ public class PaintController {
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Draw");
             stage.showAndWait(); 
-/*
+
             // Get the controller instance
-            DrawOptionsController controller = loader.getController();
+            DrawController controller = loader.getController();
 
             // Check if draw is requested and get selected options
             if (controller.isDrawRequested()) {
@@ -42,7 +42,7 @@ public class PaintController {
                     System.out.println("Color: " + selectedColor);
                     System.out.println("Filled: " + isFilled);
                 });
-            } */
+            } 
         } catch (Exception e) {
             e.printStackTrace();
         }
