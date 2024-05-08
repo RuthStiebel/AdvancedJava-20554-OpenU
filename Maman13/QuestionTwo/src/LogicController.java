@@ -16,21 +16,28 @@ public class LogicController {
     public void initialize() {
         buttons = new Button[SIZE * SIZE];
 
-        for (int i = 0; i < SIZE * (SIZE - 1); i++) {
-            if (i < 42 || i == 46) {
-                if (i == 46) // the center of the bottom line is the clear button
+        for (int i = 0; i < SIZE * SIZE; i++) {
+            if (i < 35 || i == 45) {
+                if (i == 45) // the center of the bottom line is the clear button
+                {
                     buttons[i] = new Button("Clear");
+                    System.out.println("HERE");
+                }
                 else
                     buttons[i] = new Button();
                 buttons[i].setPrefSize(grid.getPrefWidth() / SIZE,
                         grid.getPrefHeight() / SIZE);
                 grid.add(buttons[i], i % SIZE, i / SIZE);
-                buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+              /*  buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+                    
                     @Override
                     public void handle (ActionEvent event) {
 
                     }
-                });
+                }); */
+            }
+            if (i>35 && i <43) {
+                //new to add numbers not buttons
             }
         }
 
