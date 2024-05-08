@@ -8,6 +8,7 @@ public class LogicController {
 
     @FXML
     private GridPane grid;
+    
     private final int SIZE = 7;
 
     private Button buttons[];
