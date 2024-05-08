@@ -21,9 +21,9 @@ public class Paint extends Application {
        * @throws Exception If an error occurs while loading the FXML file.
        */
       public void start(Stage stage) throws Exception {
-            Parent root = (Parent) FXMLLoader.load(getClass().getResource("PaintController.fxml"));
+            Parent root = (Parent) FXMLLoader.load(getClass().getResource("Paint.fxml"));
             Scene scene = new Scene(root);
-            stage.setTitle("PaintController");
+            stage.setTitle("Paint");
             stage.setScene(scene);
             stage.show();
       }

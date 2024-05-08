@@ -14,7 +14,7 @@ public class PaintController {
     
     @FXML
     void drawAction(ActionEvent event) {
-        try {
+      try {
             // Load the draw options pop-up window
             FXMLLoader loader = new FXMLLoader(getClass().getResource("drawOptions.fxml"));
             Stage stage = new Stage();
@@ -47,7 +47,7 @@ public class PaintController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        } 
     }
     
     @FXML
