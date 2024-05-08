@@ -4,7 +4,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
-public class PaintController {
+public class DrawController {
 
     @FXML
     private ToggleGroup Colour;

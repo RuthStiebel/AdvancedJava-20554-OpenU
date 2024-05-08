@@ -1,9 +1,6 @@
-import java.io.IOException;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -12,33 +9,17 @@ public class PaintController {
 
     @FXML
     private Pane pane;
-    private Parent root;
+
     @FXML
     void drawAction(ActionEvent event) {
-        try {
-              try {
-            System.out.print("1st line Inside 'try' block of 'openNewUserWindow' in LoginController");
-            //System.out.println("\nJust after FXMLLoader Inside 'try' block of 'openNewUserWindow' in LoginController");
-            root = FXMLLoader.<Parent>load(DrawOptionsController.class.getResource("DrawOptions.fxml"));
-            //System.out.print("last line Inside 'try' block of 'openNewUserWindow' in LoginController");
-        }
-        catch(IOException e){
-            System.out.println("Problem getting 'DrawOptions.fxml'");
-        }
-        
-        
-        Stage drawOptionsStage = new Stage();
-        Scene drawOptionsScene = new Scene(root, 400, 400);
-        drawOptionsStage.setScene(drawOptionsScene);
-        drawOptionsStage.setTitle("DrawOptions");
-        drawOptionsStage.show();
-        
-            /*
+   
+        try{
+            
             // Load the draw options pop-up window
             Stage stage = new Stage();
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("DrawOptions.fxml"));
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Draw.fxml"));
             stage.setScene(new Scene(loader.load()));
-            stage.setTitle("DrawOptions");
+            stage.setTitle("Draw");
             stage.showAndWait(); 
 /*
             // Get the controller instance
