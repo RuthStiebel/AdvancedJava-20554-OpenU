@@ -4,7 +4,7 @@ import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.stage.Stage;
 
-public class DrawOptionsController {
+public class PaintController {
 
     @FXML
     private ToggleGroup Colour;
@@ -92,4 +92,11 @@ public class DrawOptionsController {
     public boolean isFilled() {
         return isFilled;
     }
+
+
+    @FXML
+    void cancelPressed(ActionEvent event) {
+
+    }
 }
+
