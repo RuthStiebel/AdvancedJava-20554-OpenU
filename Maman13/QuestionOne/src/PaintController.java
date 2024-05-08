@@ -18,8 +18,8 @@ public class PaintController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("DrawOptions.fxml"));
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("DrawOptions");
-            stage.showAndWait();
-
+            stage.showAndWait(); 
+/*
             // Get the controller instance
             DrawOptionsController controller = loader.getController();
 
@@ -40,7 +40,7 @@ public class PaintController {
                     System.out.println("Color: " + selectedColor);
                     System.out.println("Filled: " + isFilled);
                 });
-            }
+            } */
         } catch (Exception e) {
             e.printStackTrace();
         }
