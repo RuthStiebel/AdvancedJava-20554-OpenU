@@ -21,9 +21,9 @@ public class Logic extends Application {
      * @throws Exception If an error occurs while loading the FXML file.
      */
     public void start(Stage stage) throws Exception {
-        Parent root = (Parent) FXMLLoader.load(getClass().getResource("Paint.fxml"));
+        Parent root = (Parent) FXMLLoader.load(getClass().getResource("Logic.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Paint");
+        stage.setTitle("Logic");
         stage.setScene(scene);
         stage.show();
     }

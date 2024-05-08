@@ -17,7 +17,8 @@ public class LogicController {
             if (i < 42 || i == 46) {
                 if (i == 46) // the center of the bottom line is the clear button
                     buttons[i] = new Button("Clear");
-                buttons[i] = new Button();
+                else
+                    buttons[i] = new Button();
                 buttons[i].setPrefSize(grid.getPrefWidth() / SIZE,
                         grid.getPrefHeight() / SIZE);
                 grid.add(buttons[i], i % SIZE, i / SIZE);
