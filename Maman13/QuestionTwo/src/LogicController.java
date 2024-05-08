@@ -1,3 +1,6 @@
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
@@ -22,6 +25,12 @@ public class LogicController {
                 buttons[i].setPrefSize(grid.getPrefWidth() / SIZE,
                         grid.getPrefHeight() / SIZE);
                 grid.add(buttons[i], i % SIZE, i / SIZE);
+                buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle (ActionEvent event) {
+
+                    }
+                });
             }
         }
 
