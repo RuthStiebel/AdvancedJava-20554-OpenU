@@ -3,7 +3,6 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
-import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 public class PaintController {
@@ -11,21 +10,19 @@ public class PaintController {
     @FXML
     private Pane pane;
 
-    
     @FXML
     void drawAction(ActionEvent event) {
-      try {
+        try {
             // Load the draw options pop-up window
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("DrawOptions.fxml"));
             Stage stage = new Stage();
-            stage.initModality(Modality.APPLICATION_MODAL);
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("DrawOptions.fxml"));
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("DrawOptions");
             stage.showAndWait();
-            
+
             // Get the controller instance
             DrawOptionsController controller = loader.getController();
-            
+
             // Check if draw is requested and get selected options
             if (controller.isDrawRequested()) {
                 String selectedShape = controller.getSelectedShape();
@@ -38,7 +35,6 @@ public class PaintController {
                     double startY = e.getY();
 
                     // Draw shape according to selected options
-                    // You can implement this part based on the selected options
                     // For demonstration, let's just print the shape and its properties
                     System.out.println("Drawing " + selectedShape + " at (" + startX + ", " + startY + ")");
                     System.out.println("Color: " + selectedColor);
@@ -47,14 +43,14 @@ public class PaintController {
             }
         } catch (Exception e) {
             e.printStackTrace();
-        } 
+        }
     }
-    
+
     @FXML
     void undoAction(ActionEvent event) {
-        
+
     }
-    
+
     @FXML
     void clearAction(ActionEvent event) {
 
