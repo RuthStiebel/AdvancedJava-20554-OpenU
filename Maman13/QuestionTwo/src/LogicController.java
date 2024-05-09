@@ -3,48 +3,58 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-
-
+import javafx.scene.canvas.Canvas;
 public class LogicController {
 
     @FXML
-    private GridPane topGrid;
+    private Canvas canv;
+
+    @FXML
+    private GridPane grid;
 
     private final int SIZE = 7;
 
     private Button buttons[];
+    private Button clearButton;
 
     public void initialize() {
-        buttons = new Button[SIZE * SIZE];
+        buttons = new Button[SIZE];
+        clearButton = new Button("Clear");
+        addButtonToGrid(grid, clearButton, 1, SIZE/2);
 
-        for (int i = 0; i < SIZE * SIZE; i++) {
-            if (i < 35 ) {
-                    buttons[i] = new Button();
-                    addButtonToGrid(topGrid, buttons[i], i);
+        for (int i = 0; i < SIZE; i++) {
+                buttons[i] = new Button(i+"");
+                addButtonToGrid(grid, buttons[i], 0, i);
 
-                
-                 buttons[i].setOnAction(new EventHandler<ActionEvent>() {
-                 
-                 @Override
-                 public void handle (ActionEvent event) {
-                 
-                 }
-                 });
-                
-            }
-            //TODO need to add numbers under the columns
-            if (i == 45) // the center of the bottom line is the clear button
-            {
-                buttons[i] = new Button("Clear");
-                addButtonToGrid(topGrid, buttons[i], i);
+                buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+
+                    @Override
+                    public void handle(ActionEvent event) {
+
+                    }
+                });
+
             }
         }
-    }
 
-    private void addButtonToGrid(GridPane grid, Button btn, int place) {
+    private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
         btn.setPrefSize(grid.getPrefWidth() / SIZE,
                 grid.getPrefHeight() / SIZE);
-        grid.add(btn, place % SIZE, place / SIZE);
+        grid.add(btn, row, column);
+    }
+
+    private static void handleButtonClicked (int row, int column) {
+
+    }
+
+    private static void handleClearButtonClicked () {
+        //clear grid
+        showAlert("Board cleared", null, "You may begin another game or exit the consule.");
+
+    }
+
+    private static void showAlert (String title, String header, String content) {
+
     }
 }
 

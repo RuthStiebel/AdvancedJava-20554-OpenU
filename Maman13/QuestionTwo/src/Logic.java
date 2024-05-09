@@ -30,3 +30,18 @@ public class Logic extends Application {
     // here we check whos turn is it, did they win and if the board is full
 
 }
+/*
+ * Logic Class:
+ * 
+ * isCircleDrawn(Button button): Checks if a circle is drawn in the specified
+ * button.
+ * isButtonsBelowHaveCircles(Button button, Button[][] board, int column):
+ * Checks if all buttons below the specified button in the same column have
+ * circles.
+ * isFourInARow(Button[][] board, int row, int column): Checks if the placement
+ * of a circle at the specified row and column results in four circles of the
+ * same type (either horizontally, vertically, or diagonally) in a row,
+ * indicating a win condition.
+ * 
+ * 
+ */
