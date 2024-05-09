@@ -3,12 +3,13 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 public class LogicController {
 
     @FXML
     private GridPane grid;
-    
+
     private final int SIZE = 7;
 
     private Button buttons[];
@@ -22,25 +23,28 @@ public class LogicController {
                 {
                     buttons[i] = new Button("Clear");
                     System.out.println("HERE");
-                }
-                else
+                } else
                     buttons[i] = new Button();
                 buttons[i].setPrefSize(grid.getPrefWidth() / SIZE,
                         grid.getPrefHeight() / SIZE);
                 grid.add(buttons[i], i % SIZE, i / SIZE);
-              /*  buttons[i].setOnAction(new EventHandler<ActionEvent>() {
-                    
-                    @Override
-                    public void handle (ActionEvent event) {
-
-                    }
-                }); */
+                /*
+                 * buttons[i].setOnAction(new EventHandler<ActionEvent>() {
+                 * 
+                 * @Override
+                 * public void handle (ActionEvent event) {
+                 * 
+                 * }
+                 * });
+                 */
             }
-            if (i>35 && i <43) {
-                //new to add numbers not buttons
+            if (i > 35 && i < 43) {
+                int number = i - 35; // Numbers 1 to 7
+                Text text = new Text(Integer.toString(number));
+                text.setStyle("-fx-font-size: 20;"); // Set font size
+                grid.add(text, number % SIZE, number / SIZE);
             }
         }
-
     }
 
 }
