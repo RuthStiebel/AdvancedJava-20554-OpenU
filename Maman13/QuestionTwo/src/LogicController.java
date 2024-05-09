@@ -8,7 +8,10 @@ import javafx.scene.text.Text;
 public class LogicController {
 
     @FXML
-    private GridPane grid;
+    private GridPane topGrid;
+
+    @FXML
+    private GridPane buttonGrid;
 
     private final int SIZE = 7;
 
@@ -42,7 +45,7 @@ public class LogicController {
                 int number = i - 35; // Numbers 1 to 7
                 Text text = new Text(Integer.toString(number));
                 text.setStyle("-fx-font-size: 20;"); // Set font size
-                grid.add(text, number % SIZE, number / SIZE);
+                grid.add(text, (i - 36) % SIZE, SIZE);            
             }
         }
     }
