@@ -22,22 +22,36 @@ public class LogicController {
 
     private Button buttons[];
     private int column;
+    private int squares[]; //each index hold the index of the last mark in that column
 
     /**
      * Initializes the controller class.
      */
     public void initialize() {
         gc = canv.getGraphicsContext2D();
-        // Drawing black lines for the grid
-		for (int i = 0; i < SIZE; i++) {
-			for (int j = 0; j < SIZE; j++) {
-				gc.strokeRect(i * grid.getPrefWidth(), j * grid.getPrefHeight(), grid.getPrefWidth(), grid.getPrefHeight());
-			}
-		}
-
+        drawTable();
+        initializeButtons();
     }
-
-    public void initializeButtons() {
+    
+    private void drawTable() {
+        // Drawing black lines for the grid
+        int rows = 5; // Number of rows
+        int columns = 7; // Number of columns
+        double cellWidth = canv.getWidth() / columns;
+        double cellHeight = canv.getHeight() / rows;
+    
+        for (int i = 0; i <= columns; i++) {
+            double x = i * cellWidth;
+            gc.strokeLine(x, 0, x, canv.getHeight()); // Vertical lines
+        }
+    
+        for (int i = 0; i <= rows; i++) {
+            double y = i * cellHeight;
+            gc.strokeLine(0, y, canv.getWidth(), y); // Horizontal lines
+        }
+    }
+    
+    private void initializeButtons() {
         buttons = new Button[SIZE + 1];
 
         for (int i = 0; i < SIZE + 1; i++) {
@@ -80,7 +94,7 @@ public class LogicController {
 
     private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
         btn.setPrefSize(grid.getPrefWidth() / SIZE,
-                grid.getPrefHeight() / SIZE);
+                grid.getPrefHeight() / SIZE*1.5);
         grid.add(btn, row, column);
     }
 
