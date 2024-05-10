@@ -1,16 +1,12 @@
-import java.util.Optional;
-
 import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.ButtonBar.ButtonData;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.GridPane;
 import javafx.scene.canvas.Canvas;
+import javafx.scene.canvas.GraphicsContext;
 
 public class LogicController {
 
@@ -20,12 +16,28 @@ public class LogicController {
     @FXML
     private GridPane grid;
 
+    private GraphicsContext gc; // Graphics context for drawing on the canvas
+
     private final int SIZE = 7;
 
     private Button buttons[];
     private int column;
 
+    /**
+     * Initializes the controller class.
+     */
     public void initialize() {
+        gc = canv.getGraphicsContext2D();
+        // Drawing black lines for the grid
+		for (int i = 0; i < SIZE; i++) {
+			for (int j = 0; j < SIZE; j++) {
+				gc.strokeRect(i * grid.getPrefWidth(), j * grid.getPrefHeight(), grid.getPrefWidth(), grid.getPrefHeight());
+			}
+		}
+
+    }
+
+    public void initializeButtons() {
         buttons = new Button[SIZE + 1];
 
         for (int i = 0; i < SIZE + 1; i++) {
