@@ -18,17 +18,19 @@ public class LogicController {
 
     private GraphicsContext gc; // Graphics context for drawing on the canvas
 
-    private final int SIZE = 7;
+    private final int CLMN = 7;
+    private final int ROW = 5;
 
     private Button buttons[];
     private int column;
-    private int squares[]; //each index hold the index of the last mark in that column
+    private int clmns[]; //each index hold the index of the last mark in that column
 
     /**
      * Initializes the controller class.
      */
     public void initialize() {
         gc = canv.getGraphicsContext2D();
+        clmns = new int[CLMN];
         drawTable();
         initializeButtons();
     }
@@ -52,12 +54,12 @@ public class LogicController {
     }
     
     private void initializeButtons() {
-        buttons = new Button[SIZE + 1];
+        buttons = new Button[CLMN + 1];
 
-        for (int i = 0; i < SIZE + 1; i++) {
-            if (i == SIZE) {
+        for (int i = 0; i < CLMN + 1; i++) {
+            if (i == CLMN) {
                 buttons[i] = new Button("Clear");
-                addButtonToGrid(grid, buttons[i], SIZE / 2, 1);
+                addButtonToGrid(grid, buttons[i], CLMN / 2, 1);
             } else {
                 buttons[i] = new Button((i + 1) + "");
                 addButtonToGrid(grid, buttons[i], i, 0);
@@ -93,8 +95,8 @@ public class LogicController {
     }
 
     private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
-        btn.setPrefSize(grid.getPrefWidth() / SIZE,
-                grid.getPrefHeight() / SIZE*1.5);
+        btn.setPrefSize(grid.getPrefWidth() / CLMN,
+                (grid.getPrefHeight() / CLMN)*3);
         grid.add(btn, row, column);
     }
 
