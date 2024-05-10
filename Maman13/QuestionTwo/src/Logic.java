@@ -46,10 +46,16 @@ public class Logic extends Application {
 
     public void buttonLogic(Button clickedButton) {
         column = Integer.parseInt(clickedButton.getText()) - 1;
+        System.out.println("HERE1");
         if (clmns[column] < ROW - 1) {
+            System.out.println("HERE2");
             // then draw correct circle
             logicController.drawCircle(clmns[column], column, blueRed); // row, column, colour
+            System.out.println("HERE3");
             endGame = checkWinner(blueRed);
+            if (endGame) { //meaning the game finished
+                LogicController.showAlert("Game Over", "X", "WON", true);
+            }
             if (blueRed) //switch turn
                 blueRed = false;
             else
@@ -59,7 +65,6 @@ public class Logic extends Application {
         }
     }
     private boolean checkWinner (boolean blueRed) {
-
         return false;
     }
 }

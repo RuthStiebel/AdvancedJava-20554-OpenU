@@ -92,21 +92,32 @@ public class LogicController {
         grid.add(btn, row, column);
     }
 
-    public void drawCircle(int row, int column, Color color) {
-        double radius = canv.getWidth() / CLMN / 2; // Calculate radius based on canvas size and number of columns
-        double x = clmns[column] - radius; // Calculate x-coordinate
-        double y = rows[row] - radius; // Calculate y-coordinate
-
-        Circle circle = new Circle(x, y, radius, color); // Create a new circle with specified color
-        canv.getChildren().add(circle); // Add the circle to the canvas
-    }
-
     private static void handleClearButtonClicked() {
         // clear grid
         LogicController.showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
                 true);
 
     }
+
+    public void drawCircle(int row, int column, Boolean player) {
+        Color color;
+        if (player) {
+            color = new Color(256, 0, 0, 0);
+        }
+        else {
+            color = new Color(0, 0, 256, 0);
+        }
+        double cellWidth = canv.getWidth() / CLMN;
+        double cellHeight = canv.getHeight() / 5;
+        double radius = Math.min(cellWidth, cellHeight) / 2 * 0.8; // Adjust the radius to fit within the cell
+    
+        double centerX = (column + 0.5) * cellWidth; // Calculate the x-coordinate of the center of the cell
+        double centerY = (row + 0.5) * cellHeight; // Calculate the y-coordinate of the center of the cell
+    
+        gc.setFill(color); // Set the fill color
+        gc.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius); // Draw the circle
+    }
+    
 
     protected static void showAlert(String title, String header, String content, boolean flag) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
