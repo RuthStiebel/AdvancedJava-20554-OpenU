@@ -30,7 +30,7 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <RadioButton fx:id="circleShape" mnemonicParsing="false" text="Circle" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
+            <RadioButton fx:id="circleShape" mnemonicParsing="false" text="Circle" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="4" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
@@ -38,32 +38,32 @@
                   <ToggleGroup fx:id="Shape" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="lineShape" mnemonicParsing="false" text="Line" toggleGroup="$Shape" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
+            <RadioButton fx:id="lineShape" mnemonicParsing="false" text="Line" toggleGroup="$Shape" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
             </RadioButton>
-            <RadioButton fx:id="rectangleShape" mnemonicParsing="false" text="Rectangle" toggleGroup="$Shape" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+            <RadioButton fx:id="rectangleShape" mnemonicParsing="false" text="Rectangle" toggleGroup="$Shape" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
             </RadioButton>
-            <RadioButton fx:id="triangleShape" mnemonicParsing="false" text="Triangle" toggleGroup="$Shape" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+            <RadioButton fx:id="triangleShape" mnemonicParsing="false" text="Triangle" toggleGroup="$Shape" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
             </RadioButton>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shape" underline="true" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Shape" underline="true" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Colour" underline="true" wrappingWidth="68.3291015625" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Colour" underline="true" wrappingWidth="68.3291015625" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                <font>
                   <Font size="22.0" />
                </font>
             </Text>
-            <RadioButton fx:id="redColour" mnemonicParsing="false" text="Red" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="1">
+            <RadioButton fx:id="redColour" mnemonicParsing="false" text="Red" GridPane.halignment="LEFT" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
@@ -71,17 +71,17 @@
                   <ToggleGroup fx:id="Colour" />
                </toggleGroup>
             </RadioButton>
-            <RadioButton fx:id="blueColour" mnemonicParsing="false" text="Blue" toggleGroup="$Colour" GridPane.columnIndex="1" GridPane.halignment="LEFT" GridPane.rowIndex="2">
+            <RadioButton fx:id="blueColour" mnemonicParsing="false" text="Blue" toggleGroup="$Colour" GridPane.halignment="LEFT" GridPane.rowIndex="2">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
             </RadioButton>
-            <RadioButton fx:id="greenColour" mnemonicParsing="false" text="Green" toggleGroup="$Colour" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <RadioButton fx:id="greenColour" mnemonicParsing="false" text="Green" toggleGroup="$Colour" GridPane.rowIndex="3">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
             </RadioButton>
-            <RadioButton fx:id="yellowColour" mnemonicParsing="false" text="Yellow" toggleGroup="$Colour" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <RadioButton fx:id="yellowColour" mnemonicParsing="false" text="Yellow" toggleGroup="$Colour" GridPane.rowIndex="4">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
@@ -104,12 +104,7 @@
                   <Font size="22.0" />
                </font>
             </Text>
-            <RadioButton fx:id="blackColour" mnemonicParsing="false" text="Black" toggleGroup="$Colour" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <GridPane.margin>
-                  <Insets left="30.0" />
-               </GridPane.margin>
-            </RadioButton>
-            <RadioButton fx:id="starShape" mnemonicParsing="false" text="Star" toggleGroup="$Shape" GridPane.rowIndex="5">
+            <RadioButton fx:id="blackColour" mnemonicParsing="false" text="Black" toggleGroup="$Colour" GridPane.rowIndex="5">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>

@@ -49,14 +49,29 @@ public class PaintController {
                         shape = new Rectangle(startX, startY, endX - startX, endY - startY);
                         break;
                     case "Triangle":
-                        shape = new Circle(startX, startY,
-                                Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
+                        // Calculate the midpoint between the start and end points
+                        double midX = (startX + endX) / 2;
+                        double midY = (startY + endY) / 2;
+
+                        // Calculate the height of the triangle (distance from midpoint to end point)
+                        double height = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
+
+                        // Calculate the distance from the midpoint to each vertex of the triangle (use
+                        // trigonometry)
+                        double angle = Math.atan2(endY - startY, endX - startX); // Angle of the line from start to end
+                        double angle1 = angle + Math.toRadians(150); // Angle for the first vertex
+                        double angle2 = angle + Math.toRadians(210); // Angle for the second vertex
+
+                        // Calculate the coordinates of the vertices based on the angles and height
+                        double x1 = midX + height * Math.cos(angle1);
+                        double y1 = midY + height * Math.sin(angle1);
+                        double x2 = midX + height * Math.cos(angle2);
+                        double y2 = midY + height * Math.sin(angle2);
+
+                        // Create the triangle shape
+                        shape = new Polygon(startX, startY, x1, y1, x2, y2);
                         break;
                     case "Circle":
-                        shape = new Circle(startX, startY,
-                                Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
-                        break;
-                    case "Star":
                         shape = new Circle(startX, startY,
                                 Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
                         break;

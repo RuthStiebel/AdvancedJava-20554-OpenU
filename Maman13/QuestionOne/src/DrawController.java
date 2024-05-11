@@ -46,9 +46,6 @@ public class DrawController {
     private RadioButton rectangleShape;
 
     @FXML
-    private RadioButton starShape;
-
-    @FXML
     private RadioButton triangleShape;
 
     @FXML
