@@ -34,6 +34,7 @@ public class LogicController {
     }
 
     private void drawTable() {
+        clear();
         // Drawing black lines for the grid
         int rows = 5; // Number of rows
         int columns = 7; // Number of columns
@@ -70,14 +71,15 @@ public class LogicController {
             });
         }
     }
-    
+
     public void drawCircle(int row, int column, Boolean player) {
         System.out.println("HOLA");
         Color color;
         if (player) {
-            color = new Color(256, 0, 0, 0);
+            color = new Color(255, 0, 0, 1);
         } else {
-            color = new Color(0, 0, 256, 0); }
+            color = new Color(0, 0, 255, 1);
+        }
         double cellWidth = canv.getWidth() / CLMN;
         double cellHeight = canv.getHeight() / 5;
         double radius = Math.min(cellWidth, cellHeight) / 2 * 0.8; // Adjust the radius to fit within the cell
@@ -89,14 +91,19 @@ public class LogicController {
         gc.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius); // Draw the circle
     }
 
-
     private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
         btn.setPrefSize(grid.getPrefWidth() / CLMN,
                 (grid.getPrefHeight() / CLMN) * 3);
         grid.add(btn, row, column);
     }
 
-    protected static void showAlert(String title, String header, String content, boolean flag) {
+    public void clear() {
+        // Clear the canvas by filling it with white color
+        gc.setFill(Color.WHITE);
+        gc.fillRect(0, 0, canv.getWidth(), canv.getHeight());
+    }
+
+    public static void showAlert(String title, String header, String content, boolean flag) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         if (!flag) {
             alert.setAlertType(AlertType.ERROR);

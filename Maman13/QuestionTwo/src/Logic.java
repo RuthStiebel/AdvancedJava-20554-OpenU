@@ -11,12 +11,11 @@ public class Logic extends Application {
     private final int CLMN = 7;
     private final int ROW = 5;
     private int clmns[] = new int[CLMN]; // each index hold the index of the last mark in that column
-    private LogicController logicController;
+    private LogicController logicController = new LogicController();
     private boolean blueRed = false; // red starts
     private boolean endGame = false;
     private int[][] board = new int[ROW][CLMN]; // every time that a circle is added then the borad is updated
-                                                // accordingly - 0
-    // is red, 1 is blue
+                                                // accordingly - 0 is red, 1 is blue
 
     /**
      * The main method to launch the application.
@@ -71,8 +70,9 @@ public class Logic extends Application {
         }
     }
 
-    private static void handleClearButtonClicked() {
+    private void handleClearButtonClicked() {
         // clear grid
+        logicController.clear();
         LogicController.showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
                 true);
 
