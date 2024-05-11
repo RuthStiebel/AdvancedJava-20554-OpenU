@@ -71,6 +71,7 @@ public class LogicController {
             });
         }
     }
+    
     public void drawCircle(int row, int column, Boolean player) {
         System.out.println("HOLA");
         Color color;

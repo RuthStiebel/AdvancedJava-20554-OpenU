@@ -14,6 +14,8 @@ public class Logic extends Application {
     private LogicController logicController;
     private boolean blueRed = false; // red starts
     private boolean endGame = false;
+    private int[][] board = new int[ROW][CLMN]; // every time that a circle is added then the borad is updated accordingly - 0
+                           // is red, 1 is blue
 
     /**
      * The main method to launch the application.
@@ -43,7 +45,7 @@ public class Logic extends Application {
         logicController = new LogicController();
     }
 
-    public void buttonLogic(Button clickedButton) {
+    private void buttonLogic(Button clickedButton) {
         column = Integer.parseInt(clickedButton.getText()) - 1;
         System.out.println("HERE1 ..." + column);
         if (clmns[column] < ROW - 1) {
@@ -52,16 +54,16 @@ public class Logic extends Application {
             logicController.drawCircle(clmns[column], column, blueRed); // row, column, colour
             System.out.println("HERE3");
             endGame = checkWinner(blueRed);
-            if (endGame) { //meaning the game finished
+            if (endGame) { // meaning the game finished
                 LogicController.showAlert("Game Over", "X", "WON", true);
             }
-            if (blueRed) //switch turn
+            if (blueRed) // switch turn
                 blueRed = false;
             else
                 blueRed = true;
         } else {
-            System.out.println("HERE4");
-            LogicController.showAlert("ERROR", "Column pressed is full", "All the rows in the column pressed, column no' " + column + " , are full.\nTry again.", false);
+            LogicController.showAlert("ERROR", "Column pressed is full",
+                    "All the rows in the column pressed, column no' " + column + " , are full.\nTry again.", false);
         }
     }
 
@@ -84,6 +86,13 @@ public class Logic extends Application {
         }
     }
 
+    private void updateBoard(int row, int collumn) {
+        if (blueRed) // red's turn - 0
+            board[row][column] = 0;
+        else
+            board[row][column] = 1;
+    }
+
     private boolean checkWinner(boolean blueRed) {
         return false;
     }
@@ -91,12 +100,6 @@ public class Logic extends Application {
 
 /*
  * Logic Class:
- * 
- * isCircleDrawn(Button button): Checks if a circle is drawn in the specified
- * button.
- * isButtonsBelowHaveCircles(Button button, Button[][] board, int column):
- * Checks if all buttons below the specified button in the same column have
- * circles.
  * isFourInARow(Button[][] board, int row, int column): Checks if the placement
  * of a circle at the specified row and column results in four circles of the
  * same type (either horizontally, vertically, or diagonally) in a row,
