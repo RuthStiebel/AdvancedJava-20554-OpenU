@@ -59,19 +59,23 @@ public class DrawController {
 
     @FXML
     void confirmPressed(ActionEvent event) {
-        // Get selected shape
-        RadioButton selectedShapeRadioButton = (RadioButton) Shape.getSelectedToggle();
-        selectedShape = selectedShapeRadioButton.getText();
-
-        // Get selected color
-        RadioButton selectedColorRadioButton = (RadioButton) Colour.getSelectedToggle();
-        selectedColor = selectedColorRadioButton.getText();
-
-        // Get selected fill option
-        isFilled = Fill.getSelectedToggle() == fullFill;
-
-        // Set confirmPressed flag to true
-        confirmPressed = true;
+        try {
+            // Get selected shape
+            RadioButton selectedShapeRadioButton = (RadioButton) Shape.getSelectedToggle();
+            selectedShape = selectedShapeRadioButton.getText();
+    
+            // Get selected color
+            RadioButton selectedColorRadioButton = (RadioButton) Colour.getSelectedToggle();
+            selectedColor = selectedColorRadioButton.getText();
+    
+            // Get selected fill option
+            isFilled = Fill.getSelectedToggle() == fullFill;
+    
+            // Set confirmPressed flag to true
+            confirmPressed = true;
+        } catch (Exception e) {
+            System.out.println("OOPS");
+        }
 
         // Close the window
         Stage stage = (Stage) circleShape.getScene().getWindow();
