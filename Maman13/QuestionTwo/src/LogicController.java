@@ -23,11 +23,11 @@ public class LogicController {
     private Button buttons[];
     private Logic logic;
 
+
     /**
      * Initializes the controller class.
      */
     public void initialize() {
-        logic = new Logic();
         gc = canv.getGraphicsContext2D();
         drawTable();
         initializeButtons();
@@ -98,9 +98,7 @@ public class LogicController {
     }
 
     public void clear() {
-        // Clear the canvas by filling it with white color
-        gc.setFill(Color.WHITE);
-        gc.fillRect(0, 0, canv.getWidth(), canv.getHeight());
+        gc.clearRect(0, 0, canv.getWidth(), canv.getHeight()); // Clear the canvas
     }
 
     public static void showAlert(String title, String header, String content, boolean flag) {

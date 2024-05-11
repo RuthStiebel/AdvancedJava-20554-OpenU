@@ -11,7 +11,7 @@ public class Logic extends Application {
     private final int CLMN = 7;
     private final int ROW = 5;
     private int clmns[] = new int[CLMN]; // each index hold the index of the last mark in that column
-    private LogicController logicController = new LogicController();
+    private LogicController logicController;
     private boolean blueRed = false; // red starts
     private boolean endGame = false;
     private int[][] board = new int[ROW][CLMN]; // every time that a circle is added then the borad is updated
@@ -33,10 +33,14 @@ public class Logic extends Application {
      * @throws Exception If an error occurs while loading the FXML file.
      */
     public void start(Stage stage) throws Exception {
-        Parent root = (Parent) FXMLLoader.load(getClass().getResource("Logic.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("Logic.fxml"));
+        Parent root = (Parent) loader.load();
         Scene scene = new Scene(root);
         stage.setTitle("Logic");
         stage.setScene(scene);
+
+        logicController = loader.getController(); // Set the LogicController instance
+
         stage.show();
     }
 
@@ -72,7 +76,7 @@ public class Logic extends Application {
 
     private void handleClearButtonClicked() {
         // clear grid
-        logicController.clear();
+        logicController.clear(); // QQ
         LogicController.showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
                 true);
 
