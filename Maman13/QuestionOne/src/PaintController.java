@@ -8,6 +8,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
+
 public class PaintController {
     private double startX;
     private double startY;
@@ -20,15 +21,15 @@ public class PaintController {
 
     @FXML
     void drawAction(ActionEvent event) {
-   
-        try{
-            
+
+        try {
+
             // Load the draw options pop-up window
             Stage stage = new Stage();
             FXMLLoader loader = new FXMLLoader(getClass().getResource("Draw.fxml"));
             stage.setScene(new Scene(loader.load()));
             stage.setTitle("Draw");
-            stage.showAndWait(); 
+            stage.showAndWait();
 
             // Get the controller instance
             DrawController controller = loader.getController();
@@ -38,32 +39,37 @@ public class PaintController {
                 String selectedShape = controller.getSelectedShape();
                 Color selectedColor = controller.getSelectedColor();
                 boolean isFilled = controller.isFilled();
-                   // Draw selected shape according to parameters
-            Shape shape = null; // Initialize shape variable
-            switch (selectedShape) {
-                case "Rectangle":
-                    shape = new Rectangle(startX, startY, endX - startX, endY - startY);
-                    break;
-                case "Circle":
-                    shape = new Circle(startX, startY, Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
-                    break;
-                // Add cases for other shapes as needed
-            }
-            shape.setFill(selectedColor); // Set the fill color
-            if (!isFilled) {
-                shape.setStroke(selectedColor); // Set the stroke color
-                shape.setStrokeWidth(2); // Set the stroke width
-            }
-            pane.getChildren().add(shape); // Add the shape to the pane
-            paintStack.push(shape); // Push the shape to the stack
+                // Draw selected shape according to parameters
+                Shape shape = null; // Initialize shape variable
+                switch (selectedShape) {
+                    case "Rectangle":
+                        shape = new Rectangle(startX, startY, endX - startX, endY - startY);
+                        break;
+                    case "Circle":
+                        shape = new Circle(startX, startY,
+                                Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
+                        break;
+                    // Add cases for other shapes as needed
+                }
+                Color javafxColor = Color.rgb((int)selectedColor.getRed(), (int)selectedColor.getGreen(),
+                        (int)selectedColor.getBlue());
 
-//draw selected shape accoring to parameters QQ
+                shape.setFill(javafxColor);
+                if (!isFilled) {
+                    shape.setStroke(selectedColor); // Set the stroke color
+                    shape.setStrokeWidth(2); // Set the stroke width
+                }
+                pane.getChildren().add(shape); // Add the shape to the pane
+                paintStack.push(shape); // Push the shape to the stack
 
-            } 
+                // draw selected shape accoring to parameters QQ
+
+            }
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
     @FXML
     void mousePressed(MouseEvent e) {
         startX = e.getX();
@@ -84,7 +90,6 @@ public class PaintController {
 
     @FXML
     void clearAction(ActionEvent event) {
-    
 
     }
 }
