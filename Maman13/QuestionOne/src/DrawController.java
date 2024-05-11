@@ -1,7 +1,9 @@
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
@@ -74,6 +76,11 @@ public class DrawController {
             // Set confirmPressed flag to true
             confirmPressed = true;
         } catch (Exception e) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText("ERROR");
+            alert.setTitle("You must choose an option for the shape type, color and fill.");
+            alert.setContentText("Please try again and this time make sure to pick a option in each colummn.");
+            alert.showAndWait();
             System.out.println("OOPS");
         }
 
