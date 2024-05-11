@@ -14,8 +14,9 @@ public class Logic extends Application {
     private LogicController logicController;
     private boolean blueRed = false; // red starts
     private boolean endGame = false;
-    private int[][] board = new int[ROW][CLMN]; // every time that a circle is added then the borad is updated accordingly - 0
-                           // is red, 1 is blue
+    private int[][] board = new int[ROW][CLMN]; // every time that a circle is added then the borad is updated
+                                                // accordingly - 0
+    // is red, 1 is blue
 
     /**
      * The main method to launch the application.
@@ -42,6 +43,9 @@ public class Logic extends Application {
 
     // here we check whos turn is it, did they win and if the board is full
     public void game() {
+        for (int i = 0; i < ROW; i++)
+            for (int j = 0; j < CLMN; j++)
+                board[i][j] = -1;
         logicController = new LogicController();
     }
 
@@ -53,7 +57,7 @@ public class Logic extends Application {
             // then draw correct circle
             logicController.drawCircle(clmns[column], column, blueRed); // row, column, colour
             System.out.println("HERE3");
-            endGame = isFourInARow();
+            endGame = isFourInARow(clmns[column], column);
             if (endGame) { // meaning the game finished
                 LogicController.showAlert("Game Over", "X", "WON", true);
             }
@@ -93,13 +97,69 @@ public class Logic extends Application {
             board[row][column] = 1;
     }
 
-    private boolean isFourInARow() {
-        /*
-        * isFourInARow(Button[][] board, int row, int column): Checks if the placement
-        * of a circle at the specified row and column results in four circles of the
-        * same type (either horizontally, vertically, or diagonally) in a row,
-        * indicating a win condition.
-        */
+    private boolean isFourInARow(int row, int column) {
+        int player = board[row][column]; // Get the player's ID (0 or 1)
+
+        // Check horizontally
+        for (int c = column - 3; c <= column; c++) {
+            if (c >= 0 && c + 3 < CLMN) { // Ensure the range is within the board
+                boolean found = true;
+                for (int k = 0; k < 4; k++) {
+                    if (board[row][c + k] != player) {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                    return true;
+            }
+        }
+
+        // Check vertically
+        for (int r = row - 3; r <= row; r++) {
+            if (r >= 0 && r + 3 < 5) { // Ensure the range is within the board
+                boolean found = true;
+                for (int k = 0; k < 4; k++) {
+                    if (board[r + k][column] != player) {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                    return true;
+            }
+        }
+
+        // Check diagonally (from top-left to bottom-right)
+        for (int r = row - 3, c = column - 3; r <= row && c <= column; r++, c++) {
+            if (r >= 0 && c >= 0 && r + 3 < 5 && c + 3 < CLMN) { // Ensure the range is within the board
+                boolean found = true;
+                for (int k = 0; k < 4; k++) {
+                    if (board[r + k][c + k] != player) {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                    return true;
+            }
+        }
+
+        // Check diagonally (from top-right to bottom-left)
+        for (int r = row - 3, c = column + 3; r <= row && c >= column; r++, c--) {
+            if (r >= 0 && c >= 0 && r + 3 < 5 && c - 3 >= 0) { // Ensure the range is within the board
+                boolean found = true;
+                for (int k = 0; k < 4; k++) {
+                    if (board[r + k][c - k] != player) {
+                        found = false;
+                        break;
+                    }
+                }
+                if (found)
+                    return true;
+            }
+        }
+
         return false;
     }
 }
