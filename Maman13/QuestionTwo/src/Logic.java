@@ -39,7 +39,8 @@ public class Logic extends Application {
         stage.setTitle("Logic");
         stage.setScene(scene);
 
-        logicController = loader.getController(); // Set the LogicController instance
+        LogicController logicController = loader.getController();
+        logicController.setLogic(this); // Set the Logic instance
 
         stage.show();
     }

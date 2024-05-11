@@ -23,6 +23,10 @@ public class LogicController {
     private Button buttons[];
     private Logic logic;
 
+    public void setLogic(Logic logic) {
+        this.logic = logic;
+    }
+
 
     /**
      * Initializes the controller class.
