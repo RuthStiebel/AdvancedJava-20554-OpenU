@@ -109,5 +109,3 @@ public class LogicController {
         alert.showAndWait();
     }
 }
-
-// here we build the board, colour the circles and print messages to the user

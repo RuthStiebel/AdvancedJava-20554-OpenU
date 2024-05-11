@@ -53,7 +53,7 @@ public class Logic extends Application {
             // then draw correct circle
             logicController.drawCircle(clmns[column], column, blueRed); // row, column, colour
             System.out.println("HERE3");
-            endGame = checkWinner(blueRed);
+            endGame = isFourInARow();
             if (endGame) { // meaning the game finished
                 LogicController.showAlert("Game Over", "X", "WON", true);
             }
@@ -93,17 +93,13 @@ public class Logic extends Application {
             board[row][column] = 1;
     }
 
-    private boolean checkWinner(boolean blueRed) {
+    private boolean isFourInARow() {
+        /*
+        * isFourInARow(Button[][] board, int row, int column): Checks if the placement
+        * of a circle at the specified row and column results in four circles of the
+        * same type (either horizontally, vertically, or diagonally) in a row,
+        * indicating a win condition.
+        */
         return false;
     }
 }
-
-/*
- * Logic Class:
- * isFourInARow(Button[][] board, int row, int column): Checks if the placement
- * of a circle at the specified row and column results in four circles of the
- * same type (either horizontally, vertically, or diagonally) in a row,
- * indicating a win condition.
- * 
- * 
- */
