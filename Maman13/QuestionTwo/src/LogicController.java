@@ -54,7 +54,6 @@ public class LogicController {
 
     private void initializeButtons() {
         buttons = new Button[CLMN + 1];
-
         for (int i = 0; i < CLMN + 1; i++) {
             if (i == CLMN) {
                 buttons[i] = new Button("Clear");
@@ -67,24 +66,29 @@ public class LogicController {
 
                 @Override
                 public void handle(ActionEvent event) {
-                    handleButtonClicked(event);
+                    logic.handleButtonClicked(event);
                 }
             });
-
         }
     }
-
-    private void handleButtonClicked(ActionEvent event) {
-        // Get the source button from the event
-        Button clickedButton = (Button) event.getSource();
-
-        // Check if the clicked button is the clear button
-        if (clickedButton.getText().equals("Clear")) {
-            handleClearButtonClicked();
+    public void drawCircle(int row, int column, Boolean player) {
+        System.out.println("HOLA");
+        Color color;
+        if (player) {
+            color = new Color(256, 0, 0, 0);
         } else {
-            logic.buttonLogic(clickedButton);
-        }
+            color = new Color(0, 0, 256, 0); }
+        double cellWidth = canv.getWidth() / CLMN;
+        double cellHeight = canv.getHeight() / 5;
+        double radius = Math.min(cellWidth, cellHeight) / 2 * 0.8; // Adjust the radius to fit within the cell
+
+        double centerX = (column + 0.5) * cellWidth; // Calculate the x-coordinate of the center of the cell
+        double centerY = (row + 0.5) * cellHeight; // Calculate the y-coordinate of the center of the cell
+
+        gc.setFill(color); // Set the fill color
+        gc.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius); // Draw the circle
     }
+
 
     private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
         btn.setPrefSize(grid.getPrefWidth() / CLMN,
@@ -92,38 +96,12 @@ public class LogicController {
         grid.add(btn, row, column);
     }
 
-    private static void handleClearButtonClicked() {
-        // clear grid
-        LogicController.showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
-                true);
-
-    }
-
-    public void drawCircle(int row, int column, Boolean player) {
-        Color color;
-        if (player) {
-            color = new Color(256, 0, 0, 0);
-        }
-        else {
-            color = new Color(0, 0, 256, 0);
-        }
-        double cellWidth = canv.getWidth() / CLMN;
-        double cellHeight = canv.getHeight() / 5;
-        double radius = Math.min(cellWidth, cellHeight) / 2 * 0.8; // Adjust the radius to fit within the cell
-    
-        double centerX = (column + 0.5) * cellWidth; // Calculate the x-coordinate of the center of the cell
-        double centerY = (row + 0.5) * cellHeight; // Calculate the y-coordinate of the center of the cell
-    
-        gc.setFill(color); // Set the fill color
-        gc.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius); // Draw the circle
-    }
-    
-
     protected static void showAlert(String title, String header, String content, boolean flag) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         if (!flag) {
-            alert.setAlertType(AlertType.ERROR);;
-        } 
+            alert.setAlertType(AlertType.ERROR);
+            ;
+        }
         alert.setTitle(title);
         alert.setHeaderText(header);
         alert.setContentText(content);
