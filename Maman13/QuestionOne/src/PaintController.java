@@ -38,10 +38,11 @@ public class PaintController {
                 double tmp = endX;
                 endX = startX;
                 startX = tmp;
-                tmp = endY;
-                endY = startY;
+                tmp = Math.max(startY, endY);
+                endY = Math.min(startY, endY);
                 startY = tmp;
             }
+
             // Check if draw is requested and get selected options
             if (controller.isDrawRequested()) {
                 String selectedShape = controller.getSelectedShape();
@@ -115,11 +116,14 @@ public class PaintController {
 
     @FXML
     void undoAction(ActionEvent event) {
-        paintStack.pop();
+        if (!paintStack.isEmpty()) { // Check if the stack is not empty
+            Shape lastShape = paintStack.pop(); // Pop the last added shape from the stack
+            pane.getChildren().remove(lastShape); // Remove the shape from the Pane
+        }
     }
 
     @FXML
     void clearAction(ActionEvent event) {
-
+        pane.getChildren().clear(); // Remove all children from the Pane
     }
 }
