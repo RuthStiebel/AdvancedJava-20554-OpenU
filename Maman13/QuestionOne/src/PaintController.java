@@ -1,11 +1,19 @@
+import java.util.Stack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.scene.paint.Color;
+import javafx.scene.shape.*;
 import javafx.stage.Stage;
-
 public class PaintController {
+    private double startX;
+    private double startY;
+    private double endX;
+    private double endY;
+    private Stack<Shape> paintStack = new Stack<Shape>();
 
     @FXML
     private Pane pane;
@@ -30,31 +38,53 @@ public class PaintController {
                 String selectedShape = controller.getSelectedShape();
                 String selectedColor = controller.getSelectedColor();
                 boolean isFilled = controller.isFilled();
+                   // Draw selected shape according to parameters
+            Shape shape = null; // Initialize shape variable
+            switch (selectedShape) {
+                case "Rectangle":
+                    shape = new Rectangle(startX, startY, endX - startX, endY - startY);
+                    break;
+                case "Circle":
+                    shape = new Circle(startX, startY, Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
+                    break;
+                // Add cases for other shapes as needed
+            }
+            shape.setFill(Color.web(selectedColor)); // Set the fill color
+            if (!isFilled) {
+                shape.setStroke(Color.web(selectedColor)); // Set the stroke color
+                shape.setStrokeWidth(2); // Set the stroke width
+            }
+            pane.getChildren().add(shape); // Add the shape to the pane
+            paintStack.push(shape); // Push the shape to the stack
 
-                // Set mouse event handlers for drawing shapes on the original pane
-                pane.setOnMousePressed(e -> {
-                    double startX = e.getX();
-                    double startY = e.getY();
+//draw selected shape accoring to parameters QQ
 
-                    // Draw shape according to selected options
-                    // For demonstration, let's just print the shape and its properties
-                    System.out.println("Drawing " + selectedShape + " at (" + startX + ", " + startY + ")");
-                    System.out.println("Color: " + selectedColor);
-                    System.out.println("Filled: " + isFilled);
-                });
             } 
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
-
     @FXML
-    void undoAction(ActionEvent event) {
+    void mousePressed(MouseEvent e) {
+        startX = e.getX();
+        startY = e.getY();
 
     }
 
     @FXML
+    void mouseReleased(MouseEvent e) {
+        endX = e.getX();
+        endY = e.getY();
+    }
+
+    @FXML
+    void undoAction(ActionEvent event) {
+        paintStack.pop();
+    }
+
+    @FXML
     void clearAction(ActionEvent event) {
+    
 
     }
 }
