@@ -33,7 +33,15 @@ public class PaintController {
 
             // Get the controller instance
             DrawController controller = loader.getController();
-
+            // updating the coordinates if needed
+            if (endX < startX) {
+                double tmp = endX;
+                endX = startX;
+                startX = tmp;
+                tmp = endY;
+                endY = startY;
+                startY = tmp;
+            }
             // Check if draw is requested and get selected options
             if (controller.isDrawRequested()) {
                 String selectedShape = controller.getSelectedShape();
@@ -46,7 +54,7 @@ public class PaintController {
                         shape = new Line(startX, startY, endX, endY);
                         break;
                     case "Rectangle":
-                        shape = new Rectangle(startX, startY, endX - startX, endY - startY);
+                        shape = new Rectangle(startX, startY, Math.abs(endX - startX), Math.abs(endY - startY));
                         break;
                     case "Triangle":
                         // Calculate the midpoint between the start and end points
@@ -76,13 +84,13 @@ public class PaintController {
                                 Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
                         break;
                 }
-                Color javafxColor = Color.rgb((int) selectedColor.getRed(), (int) selectedColor.getGreen(),
-                        (int) selectedColor.getBlue());
-
-                shape.setFill(javafxColor);
-                if (!isFilled) {
-                    shape.setStroke(selectedColor); // Set the stroke color
-                    shape.setStrokeWidth(2); // Set the stroke width
+                shape.setStroke(selectedColor); // Set the stroke color
+                shape.setStrokeWidth(2); // Set the stroke width
+                if (isFilled) {
+                    shape.setFill(selectedColor);
+                } else {
+                    // Assuming selectedColor is a Color object
+                    shape.setFill(selectedColor.deriveColor(0, 1, 1, 0)); // Set the fill color with transparency
                 }
                 pane.getChildren().add(shape); // Add the shape to the pane
                 paintStack.push(shape); // Push the shape to the stack

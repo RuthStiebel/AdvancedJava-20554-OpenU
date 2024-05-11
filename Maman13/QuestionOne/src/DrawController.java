@@ -112,7 +112,7 @@ public class DrawController {
                 color = Color.BLACK;
                 break;
             default:
-                color = Color.BLACK;
+                color = Color.VIOLET;
                 break;
         }
         return color;
