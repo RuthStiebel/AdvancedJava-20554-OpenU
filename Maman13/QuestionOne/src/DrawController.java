@@ -43,7 +43,7 @@ public class DrawController {
     private RadioButton redColour;
 
     @FXML
-    private RadioButton squareShape;
+    private RadioButton rectangleShape;
 
     @FXML
     private RadioButton starShape;

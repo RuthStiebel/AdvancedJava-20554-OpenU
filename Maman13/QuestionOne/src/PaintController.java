@@ -42,17 +42,27 @@ public class PaintController {
                 // Draw selected shape according to parameters
                 Shape shape = null; // Initialize shape variable
                 switch (selectedShape) {
+                    case "Line":
+                        shape = new Line(startX, startY, endX, endY);
+                        break;
                     case "Rectangle":
                         shape = new Rectangle(startX, startY, endX - startX, endY - startY);
+                        break;
+                    case "Triangle":
+                        shape = new Circle(startX, startY,
+                                Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
                         break;
                     case "Circle":
                         shape = new Circle(startX, startY,
                                 Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
                         break;
-                    // Add cases for other shapes as needed
+                    case "Star":
+                        shape = new Circle(startX, startY,
+                                Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
+                        break;
                 }
-                Color javafxColor = Color.rgb((int)selectedColor.getRed(), (int)selectedColor.getGreen(),
-                        (int)selectedColor.getBlue());
+                Color javafxColor = Color.rgb((int) selectedColor.getRed(), (int) selectedColor.getGreen(),
+                        (int) selectedColor.getBlue());
 
                 shape.setFill(javafxColor);
                 if (!isFilled) {
@@ -61,9 +71,6 @@ public class PaintController {
                 }
                 pane.getChildren().add(shape); // Add the shape to the pane
                 paintStack.push(shape); // Push the shape to the stack
-
-                // draw selected shape accoring to parameters QQ
-
             }
         } catch (Exception e) {
             e.printStackTrace();
