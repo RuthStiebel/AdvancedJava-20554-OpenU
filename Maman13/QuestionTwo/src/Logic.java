@@ -46,7 +46,6 @@ public class Logic extends Application {
         for (int i = 0; i < ROW; i++)
             for (int j = 0; j < CLMN; j++)
                 board[i][j] = -1;
-        logicController = new LogicController();
     }
 
     private void buttonLogic(Button clickedButton) {
@@ -56,6 +55,7 @@ public class Logic extends Application {
             System.out.println("HERE2");
             // then draw correct circle
             logicController.drawCircle(clmns[column], column, blueRed); // row, column, colour
+            updateBoard(clmns[column], column);
             System.out.println("HERE3");
             endGame = isFourInARow(clmns[column], column);
             if (endGame) { // meaning the game finished
@@ -90,7 +90,7 @@ public class Logic extends Application {
         }
     }
 
-    private void updateBoard(int row, int collumn) {
+    private void updateBoard(int row, int column) {
         if (blueRed) // red's turn - 0
             board[row][column] = 0;
         else
