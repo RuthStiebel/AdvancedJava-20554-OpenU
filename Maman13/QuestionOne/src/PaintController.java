@@ -36,7 +36,7 @@ public class PaintController {
             // Check if draw is requested and get selected options
             if (controller.isDrawRequested()) {
                 String selectedShape = controller.getSelectedShape();
-                String selectedColor = controller.getSelectedColor();
+                Color selectedColor = controller.getSelectedColor();
                 boolean isFilled = controller.isFilled();
                    // Draw selected shape according to parameters
             Shape shape = null; // Initialize shape variable
@@ -49,9 +49,9 @@ public class PaintController {
                     break;
                 // Add cases for other shapes as needed
             }
-            shape.setFill(Color.web(selectedColor)); // Set the fill color
+            shape.setFill(selectedColor); // Set the fill color
             if (!isFilled) {
-                shape.setStroke(Color.web(selectedColor)); // Set the stroke color
+                shape.setStroke(selectedColor); // Set the stroke color
                 shape.setStrokeWidth(2); // Set the stroke width
             }
             pane.getChildren().add(shape); // Add the shape to the pane

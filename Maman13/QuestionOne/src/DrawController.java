@@ -2,6 +2,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 public class DrawController {
@@ -85,18 +86,37 @@ public class DrawController {
         return selectedShape;
     }
 
-    public String getSelectedColor() {
-        return selectedColor;
+    public Color getSelectedColor() {
+        Color color = new Color(0, 0, 0, 0);
+        switch (selectedColor) {
+            case "Red":
+                color = Color.RED;
+                break;
+            case "Blue":
+                color = Color.BLUE;
+                break;
+            case "Green":
+                color = Color.GREEN;
+                break;
+            case "Yellow":
+                color = Color.YELLOW;
+                break;
+            case "Black":
+                color = Color.BLACK;
+                break;
+            default:
+                color = Color.BLACK;
+                break;
+        }
+        return color;
     }
 
     public boolean isFilled() {
         return isFilled;
     }
 
-
     @FXML
     void cancelPressed(ActionEvent event) {
 
     }
 }
-
