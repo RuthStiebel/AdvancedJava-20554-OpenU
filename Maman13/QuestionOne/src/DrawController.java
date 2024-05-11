@@ -77,11 +77,10 @@ public class DrawController {
             confirmPressed = true;
         } catch (Exception e) {
             Alert alert = new Alert(AlertType.ERROR);
-            alert.setHeaderText("ERROR");
-            alert.setTitle("You must choose an option for the shape type, color and fill.");
-            alert.setContentText("Please try again and this time make sure to pick a option in each colummn.");
+            alert.setTitle("ERROR");
+            alert.setHeaderText("You must choose an option for the shape type, color and fill.");
+            alert.setContentText("Please try again and this time make sure to pick an option in each column.");
             alert.showAndWait();
-            System.out.println("OOPS");
         }
 
         // Close the window
