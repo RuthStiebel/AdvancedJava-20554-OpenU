@@ -21,11 +21,7 @@ public class LogicController {
 
     private final int CLMN = 7;
     private Button buttons[];
-    private Logic logic;
-
-    public void setLogic(Logic logic) {
-        this.logic = logic;
-    }
+    private Logic logic = new Logic();
 
 
     /**
