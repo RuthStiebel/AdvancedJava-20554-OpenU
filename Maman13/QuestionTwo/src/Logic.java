@@ -76,7 +76,7 @@ public class Logic extends Application {
 
     private void handleClearButtonClicked() {
         // clear grid
-        logicController.clear(); // QQ
+        logicController.clear(); 
         LogicController.showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
                 true);
 

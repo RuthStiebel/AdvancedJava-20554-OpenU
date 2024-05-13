@@ -34,7 +34,6 @@ public class LogicController {
     }
 
     private void drawTable() {
-        clear();
         // Drawing black lines for the grid
         int rows = 5; // Number of rows
         int columns = 7; // Number of columns
@@ -99,6 +98,7 @@ public class LogicController {
 
     public void clear() {
         gc.clearRect(0, 0, canv.getWidth(), canv.getHeight()); // Clear the canvas
+        drawTable();
     }
 
     public static void showAlert(String title, String header, String content, boolean flag) {
