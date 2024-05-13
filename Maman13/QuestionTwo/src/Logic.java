@@ -167,3 +167,4 @@ public class Logic extends Application {
         return false;
     }
 }
+//המחלקה הלוגית תכיל מטריצה לוגית ופונקציות הוספת עיגול, בדיקה אם יש ניצחון, אתחול
