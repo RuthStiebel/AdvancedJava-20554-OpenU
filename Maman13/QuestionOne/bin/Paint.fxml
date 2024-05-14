@@ -26,7 +26,7 @@
               </items>
             </MenuButton>
             <Button fx:id="colorButton" mnemonicParsing="false" onAction="#colorPressed" text="Color" />
-            <Button fx:id="undoPressed" mnemonicParsing="false" text="Undo" />
+            <Button fx:id="undo" mnemonicParsing="false" onAction="#undoPressed" text="Undo" />
             <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearPressed" text="Clear" />
          </buttons>
       </ButtonBar>
