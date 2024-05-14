@@ -2,18 +2,33 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
+
 <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="PaintController">
    <children>
-      <Pane fx:id="pane" onMousePressed="#mousePressed" onMouseReleased="#mouseReleased" prefHeight="368.0" prefWidth="600.0" />
-      <ButtonBar prefHeight="34.0" prefWidth="500.0">
-        <buttons>
-          <Button mnemonicParsing="false" onAction="#drawAction" text="Draw" />
-            <Button mnemonicParsing="false" onAction="#undoAction" text="Undo" />
-            <Button mnemonicParsing="false" onAction="#clearAction" text="Clear" />
-        </buttons>
+      <Pane prefHeight="363.0" prefWidth="600.0" />
+      <ButtonBar prefHeight="40.0" prefWidth="439.0">
+         <buttons>
+            <MenuButton fx:id="typeButton" mnemonicParsing="false" onAction="#typeChosen" text="Shape Type">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+            <MenuButton fx:id="fillMenu" mnemonicParsing="false" onAction="#fillChosen" text="Shape Fill">
+              <items>
+                <MenuItem mnemonicParsing="false" text="Action 1" />
+                <MenuItem mnemonicParsing="false" text="Action 2" />
+              </items>
+            </MenuButton>
+            <Button fx:id="colorButton" mnemonicParsing="false" onAction="#colorPressed" text="Color" />
+            <Button fx:id="undoPressed" mnemonicParsing="false" text="Undo" />
+            <Button fx:id="clearButton" mnemonicParsing="false" onAction="#clearPressed" text="Clear" />
+         </buttons>
       </ButtonBar>
    </children>
 </VBox>
