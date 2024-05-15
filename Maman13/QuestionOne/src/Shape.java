@@ -14,6 +14,10 @@ public class Shape {
         OUTLINE
     }
 
+    public static final String ShapeType = null;
+
+    public static final String ShapeType = null;
+
     public ShapeType type;
     public Color color; // Changed from ShapeColor to javafx.scene.paint.Color
     public ShapeFill fill;

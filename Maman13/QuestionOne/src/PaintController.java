@@ -7,7 +7,6 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
-import javafx.stage.Stage;
 
 import java.util.Stack;
 
@@ -26,9 +25,9 @@ public class PaintController {
         OUTLINE
     }
 
-    public ShapeType type;
-    public Color color; // Changed from ShapeColor to javafx.scene.paint.Color
-    public ShapeFill fill;
+    private ShapeType type;
+    private Color color; 
+    private ShapeFill fill;
 
     @FXML
     private MenuItem circle;
@@ -61,11 +60,11 @@ public class PaintController {
     private double startY;
     private double endX;
     private double endY;
-    private Stack<Shape> shapesStack = new Stack<>();
+    private Stack<javafx.scene.shape.Shape> shapesStack = new Stack<>();
 
     @FXML
     void circleChosen(ActionEvent event) {
-        setType(Shape.ShapeType.CIRCLE);
+        setType(ShapeType.CIRCLE);
     }
 
     @FXML
@@ -81,22 +80,22 @@ public class PaintController {
 
     @FXML
     void emptyPressed(ActionEvent event) {
-        setFill(Shape.ShapeFill.SOLID);
+        setFill(ShapeFill.SOLID);
     }
 
     @FXML
     void lineAction(ActionEvent event) {
-        setType(Shape.ShapeType.LINE);
+        setType(ShapeType.LINE);
     }
 
     @FXML
     void rectangle(ActionEvent event) {
-        setType(Shape.ShapeType.RECTANGLE);
+        setType(ShapeType.RECTANGLE);
     }
 
     @FXML
     void solidPressed(ActionEvent event) {
-        setFill(Shape.ShapeFill.SOLID);
+        setFill(ShapeFill.SOLID);
     }
 
     @FXML
@@ -119,22 +118,19 @@ public class PaintController {
         drawShape();
     }
 
-    private void setType(Shape.ShapeType type) {
+    private void setType(ShapeType type) {
+        this.type = type;
         typeButton.setText(type.toString());
     }
 
-    private void setFill(Shape.ShapeFill fill) {
+    private void setFill(ShapeFill fill) {
+        this.fill = fill;
         fillMenu.setText(fill.toString());
     }
 
     private void drawShape() {
-        Shape Shape = new Shape(
-                Shape.ShapeType.valueOf(typeButton.getText()),
-                Color.BLACK, // Assuming default color is black, change as needed
-                Shape.ShapeFill.valueOf(fillMenu.getText()));
-
-        Shape shape = null;
-        switch (Shape.getType()) {
+        javafx.scene.shape.Shape shape = null;
+        switch (type) {
             case LINE:
                 shape = new Line(startX, startY, endX, endY);
                 break;
@@ -149,7 +145,7 @@ public class PaintController {
         shape.setStroke(Color.BLACK); // Set default stroke color
         shape.setStrokeWidth(2); // Set default stroke width
 
-        if (Shape.getFill() == Shape.ShapeFill.SOLID) {
+        if (fill == ShapeFill.SOLID) {
             shape.setFill(Color.TRANSPARENT); // Fill color will be set later
         } else {
             shape.setFill(Color.TRANSPARENT); // Outline shape, no fill
