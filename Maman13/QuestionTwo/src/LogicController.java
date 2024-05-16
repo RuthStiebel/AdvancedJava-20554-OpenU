@@ -22,8 +22,8 @@ public class LogicController {
     private final int CLMNS = 7;
     private final int ROWS = 5;
     private final double C_HEIGHT = canv.getHeight() / ROWS;
-    
     private final double C_WIDTH = canv.getWidth() / CLMNS;
+    private final double RADIUS = Math.min(C_WIDTH, C_HEIGHT) / 2 * 0.8; // Adjust the radius to fit within the cell
     private Button buttons[];
     private Logic logic = new Logic();
     private int column;
@@ -121,13 +121,12 @@ public class LogicController {
         } else {
             color = new Color(0, 0, 153/100, 0.5); // blue
         }
-        double radius = Math.min(C_WIDTH, C_HEIGHT) / 2 * 0.8; // Adjust the radius to fit within the cell
 
         double centerX = (column + 0.5) * C_WIDTH; // Calculate the x-coordinate of the center of the cell
         double centerY = (row + 0.5) * C_HEIGHT; // Calculate the y-coordinate of the center of the cell
 
         gc.setFill(color); // Set the fill color
-        gc.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius); // Draw the circle
+        gc.fillOval(centerX - RADIUS, centerY - RADIUS, 2 * RADIUS, 2 * RADIUS); // Draw the circle
 
     }
 
