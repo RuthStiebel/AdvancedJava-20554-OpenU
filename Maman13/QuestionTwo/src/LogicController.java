@@ -21,10 +21,6 @@ public class LogicController {
 
     private final int CLMNS = 7;
     private final int ROWS = 5;
-    private static double C_HEIGHT;
-    private static double C_WIDTH;
-    private final double RADIUS = Math.min(C_WIDTH, C_HEIGHT) / 2 * 0.8; // Adjust the radius to fit within the cell
-    private final double DIAMETER = RADIUS*2;
     private Button buttons[];
     private Logic logic = new Logic();
     private int column;
@@ -43,16 +39,14 @@ public class LogicController {
     }
 
     private void drawTable() {
-        C_WIDTH = canv.getWidth() / CLMNS;
-        C_HEIGHT = canv.getHeight() / ROWS;
         // Drawing black lines for the grid
         for (int i = 0; i <= CLMNS; i++) {
-            double x = i * C_WIDTH;
+            double x = i * canv.getWidth() / CLMNS;
             gc.strokeLine(x, 0, x, canv.getHeight()); // Vertical lines
         }
 
         for (int i = 0; i <= ROWS; i++) {
-            double y = i * C_HEIGHT;
+            double y = i * canv.getHeight() / ROWS;
             gc.strokeLine(0, y, canv.getWidth(), y); // Horizontal lines
         }
     }
@@ -125,14 +119,15 @@ public class LogicController {
         if (player) {
             color = Color.RED; // red
         } else {
-            color = Color.BLUEVIOLET; // blue
+            color = Color.BLUE; // blue
         }
 
-        double centerX = (column + 0.5) * C_WIDTH; // Calculate the x-coordinate of the center of the cell
-        double centerY = (row + 0.5) * C_HEIGHT; // Calculate the y-coordinate of the center of the cell
+        double centerX = (column + 0.5) * canv.getWidth() / CLMNS; // Calculate the x-coordinate of the center of the cell
+        double centerY = (row + 0.5) * canv.getHeight() / ROWS; // Calculate the y-coordinate of the center of the cell
+        double radius = Math.min(canv.getWidth() / CLMNS, canv.getHeight() / ROWS) / 2 * 0.8;
 
         gc.setFill(color); // Set the fill color
-        gc.fillOval(centerX - RADIUS, centerY - RADIUS, DIAMETER, DIAMETER); // Draw the circle
+        gc.fillOval(centerX - radius, centerY - radius, radius*2, radius*2); // Draw the circle
 
     }
 

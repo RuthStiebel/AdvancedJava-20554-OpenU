@@ -44,8 +44,6 @@ public class Logic extends Application {
         while(i<board.length &&  board[(board.length-row-i)][column]!=-1){
             i++;
         }
-
-        System.out.println("IN UPDATE BOARD " + (board.length-row-i));
         if (blueRed) // red's turn - 0
             board[(board.length-row-i)][column] = 0;
         else
