@@ -77,9 +77,9 @@ public class LogicController {
         /*
         Color color;
         if (player) {
-            color = new Color(255, 0, 0, 1);
+            color = new Color(255, 0, 0, 1); //red
         } else {
-            color = new Color(0, 0, 255, 1);
+            color = new Color(0, 0, 255, 1); //blue
         }
         double cellWidth = canv.getWidth() / CLMN;
         double cellHeight = canv.getHeight() / 5;
