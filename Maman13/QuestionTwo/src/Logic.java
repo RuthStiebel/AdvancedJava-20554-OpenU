@@ -39,7 +39,7 @@ public class Logic extends Application {
                 board[i][j] = -1;
     }
 
-    public void updateBoard(int row, int column, boolean blueRed) {
+    public int updateBoard(int row, int column, boolean blueRed) {
         int i = 1;
         while(i<board.length &&  board[(board.length-row-i)][column]!=-1){
             i++;
@@ -48,6 +48,7 @@ public class Logic extends Application {
             board[(board.length-row-i)][column] = 0;
         else
             board[(board.length-row-i)][column] = 1;
+        return (board.length-row-i);
     }
 
     public boolean isValid(int row, int column) {
@@ -56,7 +57,7 @@ public class Logic extends Application {
         return false;
     }
 
-    public void isFourInARow(int row, int column) {
+    public boolean isFourInARow(int row, int column) {
         int player = board[row][column]; // Get the player's ID (0 or 1)
 
         // Check horizontally
@@ -69,8 +70,8 @@ public class Logic extends Application {
                         break;
                     }
                 }
-            //    if (found)
-                 //   return true;
+                if (found)
+                    return true;
             }
         }
 
@@ -84,8 +85,8 @@ public class Logic extends Application {
                         break;
                     }
                 }
-             //   if (found)
-                  //  return true;
+               if (found)
+                   return true;
             }
         }
 
@@ -99,8 +100,8 @@ public class Logic extends Application {
                         break;
                     }
                 }
-               // if (found)
-                  //  return true;
+                if (found)
+                 return true;
             }
         }
 
@@ -114,11 +115,11 @@ public class Logic extends Application {
                         break;
                     }
                 }
-             //   if (found)
-                 //   return true;
+              if (found)
+                 return true;
             }
         }
 
-       // return false;
+        return false;
     }
 }

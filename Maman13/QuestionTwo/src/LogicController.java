@@ -72,18 +72,16 @@ public class LogicController {
     }
 
     private void buttonLogic(Button clickedButton) {
-        System.out.println( "HEY1");
         column = Integer.parseInt(clickedButton.getText()) - 1;
+        int row;
         if (logic.isValid(clmns[column], column)) { //checking if the column is full
             // then draw correct circle
-            System.out.println( "HEY2");
-            drawCircle(clmns[column], column, blueRed); // row, column, colour
-            logic.updateBoard(clmns[column], column, blueRed);
-            System.out.println( "HEY3");
-           /*/ endGame = logic.isFourInARow(clmns[column], column);
+            row = logic.updateBoard(clmns[column], column, blueRed);
+            drawCircle(row, column, blueRed); // row, column, colour
+            endGame = logic.isFourInARow(clmns[column], column);
             if (endGame) { // meaning the game finished
                 showAlert("Game Over", "X", "WON", true);
-            } */
+            } 
             if (blueRed) // switch turn
                 blueRed = false;
             else
