@@ -19,13 +19,16 @@ public class LogicController {
 
     private GraphicsContext gc; // Graphics context for drawing on the canvas
 
-    private final int CLMN = 7;
-    private final int ROW = 5;
+    private final int CLMNS = 7;
+    private final int ROWS = 5;
+    private final double C_HEIGHT = canv.getHeight() / ROWS;
+    
+    private final double C_WIDTH = canv.getWidth() / CLMNS;
     private Button buttons[];
     private Logic logic = new Logic();
     private int column;
     private boolean endGame = false;
-    private int clmns[] = new int[CLMN]; // each index hold the index of the last mark in that column
+    private int clmns[] = new int[CLMNS]; // each index hold the index of the last mark in that column
     private boolean blueRed = false; // red starts
 
     /**
@@ -35,33 +38,28 @@ public class LogicController {
         gc = canv.getGraphicsContext2D();
         drawTable();
         initializeButtons();
-        logic.game(ROW, CLMN);
+        logic.game(ROWS, CLMNS);
     }
 
     private void drawTable() {
         // Drawing black lines for the grid
-        int rows = 5; // Number of rows
-        int columns = 7; // Number of columns
-        double cellWidth = canv.getWidth() / columns;
-        double cellHeight = canv.getHeight() / rows;
-
-        for (int i = 0; i <= columns; i++) {
-            double x = i * cellWidth;
+        for (int i = 0; i <= CLMNS; i++) {
+            double x = i * C_WIDTH;
             gc.strokeLine(x, 0, x, canv.getHeight()); // Vertical lines
         }
 
-        for (int i = 0; i <= rows; i++) {
-            double y = i * cellHeight;
+        for (int i = 0; i <= ROWS; i++) {
+            double y = i * C_HEIGHT;
             gc.strokeLine(0, y, canv.getWidth(), y); // Horizontal lines
         }
     }
 
     private void initializeButtons() {
-        buttons = new Button[CLMN + 1];
-        for (int i = 0; i < CLMN + 1; i++) {
-            if (i == CLMN) {
+        buttons = new Button[CLMNS + 1];
+        for (int i = 0; i < CLMNS + 1; i++) {
+            if (i == CLMNS) {
                 buttons[i] = new Button("Clear");
-                addButtonToGrid(grid, buttons[i], CLMN / 2, 1);
+                addButtonToGrid(grid, buttons[i], CLMNS / 2, 1);
             } else {
                 buttons[i] = new Button((i + 1) + "");
                 addButtonToGrid(grid, buttons[i], i, 0);
@@ -78,7 +76,7 @@ public class LogicController {
 
     private void buttonLogic(Button clickedButton) {
         column = Integer.parseInt(clickedButton.getText()) - 1;
-        if (clmns[column] < ROW - 1) {
+        if (clmns[column] < ROWS - 1) {
             // then draw correct circle
             drawCircle(clmns[column], column, blueRed); // row, column, colour
             logic.updateBoard(clmns[column], column, blueRed);
@@ -117,20 +115,16 @@ public class LogicController {
     }
 
     private void drawCircle(int row, int column, Boolean player) {
-        System.out.println("HOLA");
-
         Color color;
         if (player) {
-            color = new Color(255, 0, 0, 1); // red
+            color = new Color(153/1000, 0, 0, 0.5); // red
         } else {
-            color = new Color(0, 0, 255, 1); // blue
+            color = new Color(0, 0, 153/1000, 0.5); // blue
         }
-        double cellWidth = canv.getWidth() / CLMN;
-        double cellHeight = canv.getHeight() / 5;
-        double radius = Math.min(cellWidth, cellHeight) / 2 * 0.8; // Adjust the radius to fit within the cell
+        double radius = Math.min(C_WIDTH, C_HEIGHT) / 2 * 0.8; // Adjust the radius to fit within the cell
 
-        double centerX = (column + 0.5) * cellWidth; // Calculate the x-coordinate of the center of the cell
-        double centerY = (row + 0.5) * cellHeight; // Calculate the y-coordinate of the center of the cell
+        double centerX = (column + 0.5) * C_WIDTH; // Calculate the x-coordinate of the center of the cell
+        double centerY = (row + 0.5) * C_HEIGHT; // Calculate the y-coordinate of the center of the cell
 
         gc.setFill(color); // Set the fill color
         gc.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius); // Draw the circle
@@ -138,8 +132,8 @@ public class LogicController {
     }
 
     private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
-        btn.setPrefSize(grid.getPrefWidth() / CLMN,
-                (grid.getPrefHeight() / CLMN) * 3);
+        btn.setPrefSize(grid.getPrefWidth() / CLMNS,
+                (grid.getPrefHeight() / CLMNS) * 3);
         grid.add(btn, row, column);
     }
 
