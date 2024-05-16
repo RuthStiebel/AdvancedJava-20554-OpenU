@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Logic extends Application {
-    private int[][] board; // every time that a circle is added then the borad is updated
+    private int[][] board; // every time that a circle is added then the board is updated
                            // accordingly - 0 is red, 1 is blue
 
     /**
@@ -31,103 +31,110 @@ public class Logic extends Application {
         stage.show();
     }
 
+    /**
+     * Initializes the game board with the given number of rows and columns.
+     *
+     * @param rows    The number of rows in the game board.
+     * @param columns The number of columns in the game board.
+     */
     public void initializeBoard(int rows, int columns) {
         board = new int[rows][columns];
         for (int i = 0; i < rows; i++)
             for (int j = 0; j < columns; j++)
                 board[i][j] = -1;
-        print();
     }
 
+    /**
+     * Updates the game board with the player's move.
+     *
+     * @param row     The row where the player's piece is placed.
+     * @param column  The column where the player's piece is placed.
+     * @param blueRed True if the player is blue, false if red.
+     * @return The row index where the piece was placed.
+     */
     public int updateBoard(int row, int column, boolean blueRed) {
         int i = 1;
         while (i < board.length && board[(board.length - row - i)][column] != -1) {
             i++;
         }
-        if (blueRed) // red's turn - 0
+        if (blueRed) // Red's turn - 0
             board[(board.length - row - i)][column] = 0;
         else
             board[(board.length - row - i)][column] = 1;
         return (board.length - row - i);
     }
 
+    /**
+     * Checks if the specified position on the board is valid for placing a piece.
+     *
+     * @param row    The row index.
+     * @param column The column index.
+     * @return True if the position is valid, false otherwise.
+     */
     public boolean isValid(int row, int column) {
         if (board[row][column] == -1)
             return true;
         return false;
     }
 
+    /**
+     * Checks if there are four pieces of the same color in a row, column, or
+     * diagonal starting from the specified position.
+     *
+     * @param row    The row index.
+     * @param column The column index.
+     * @return True if there are four in a row, false otherwise.
+     */
     public boolean isFourInARow(int row, int column) {
-        int player = board[row][column]; // Get the player's ID (0 or 1)
+        int player = board[row][column]; // Gets the player's ID (0 or 1)
         int fourInARow = 0;
 
-        // check vertically
+        // Checks vertically
         for (int r = 0; r < board.length; r++) {
-            if (board[r][column] == player) {
-                fourInARow++;
+            if (board[r][column] == player && ++fourInARow == 4) {
+                return true;
             }
         }
-
-        if (fourInARow == 4) {
-            return true;
-        }
-        // check horizontally
+        // Checks horizontally
         fourInARow = 0;
         for (int c = 0; c < board[0].length; c++) {
-            if (board[row][c] == player) {
-                fourInARow++;
+            if (board[row][c] == player && ++fourInARow == 4) {
+                return true;
             }
         }
-        if (fourInARow == 4) {
-            return true;
-        }
-        // check diagonally (left)
+
+        // Checks diagonally (left)
         fourInARow = 0;
-        //up
+        // Up
         for (int c = column, r = row; c < board[0].length && r >= 0; c++, r--) {
-            if (board[r][c] == player) {
-                fourInARow++;
+            if (board[r][c] == player && ++fourInARow == 4) {
+                return true;
             }
         }
-        //down
+        // Down
         fourInARow--;
-        for (int c = column, r = row; c >=0 && r < board.length; c--, r++) {
-            if (board[r][c] == player) {
-                fourInARow++;
+        for (int c = column, r = row; c >= 0 && r < board.length; c--, r++) {
+            if (board[r][c] == player && ++fourInARow == 4) {
+                return true;
             }
         }
 
-        if (fourInARow == 4) {
-            return true;
-        }
-        // check diagonally (right)
+        // Checks diagonally (right)
         fourInARow = 0;
-        //up
+        // Up
         for (int c = column, r = row; c < board[0].length && r < board.length; c++, r++) {
-            if (board[r][c] == player) {
-                fourInARow++;
+            if (board[r][c] == player && ++fourInARow == 4) {
+                return true;
             }
         }
-        //down
+        // Down
         fourInARow--;
-        for (int c = column, r = row; c >=0 && r >=0; c--, r--) {
-            if (board[r][c] == player) {
-                fourInARow++;
+        for (int c = column, r = row; c >= 0 && r >= 0; c--, r--) {
+            if (board[r][c] == player && ++fourInARow == 4) {
+                return true;
             }
-        }
-
-        if (fourInARow == 4) {
-            return true;
         }
 
         return false;
-    }
-
-    public void print() {
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++)
-                System.out.print(board[i][j] + "\t");
-            System.out.println();
-        }
     }
 }

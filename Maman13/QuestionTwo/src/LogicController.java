@@ -17,20 +17,17 @@ public class LogicController {
     @FXML
     private GridPane grid;
 
-    private GraphicsContext gc; // Graphics context for drawing on the canvas
-
+    private GraphicsContext gc;
     private final int CLMNS = 7;
     private final int ROWS = 5;
     private Button buttons[];
     private Logic logic = new Logic();
     private int column;
     private boolean endGame = false;
-    private int clmns[] = new int[CLMNS]; // each index hold the index of the last mark in that column
-    private boolean blueRed = false; // blue starts
+    private int clmns[] = new int[CLMNS]; // Each index holds the index of the last mark in that column
+    private boolean blueRed = false; // Blue starts
 
-    /**
-     * Initializes the controller class.
-     */
+    // Initializes the controller class
     public void initialize() {
         gc = canv.getGraphicsContext2D();
         drawTable();
@@ -38,6 +35,7 @@ public class LogicController {
         logic.initializeBoard(ROWS, CLMNS);
     }
 
+    // Draws the game grid on the canvas.
     private void drawTable() {
         // Drawing black lines for the grid
         for (int i = 0; i <= CLMNS; i++) {
@@ -51,6 +49,8 @@ public class LogicController {
         }
     }
 
+    // Initializes the buttons used for column selection and assigns event handlers
+    // to the buttons.
     private void initializeButtons() {
         buttons = new Button[CLMNS + 1];
         for (int i = 0; i < CLMNS + 1; i++) {
@@ -71,38 +71,55 @@ public class LogicController {
         }
     }
 
+    // Adds a button to the specified grid cell.
     private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
         btn.setPrefSize(grid.getPrefWidth() / CLMNS,
                 (grid.getPrefHeight() / CLMNS) * 3);
         grid.add(btn, row, column);
     }
 
+    /**
+     * Handles the logic when a column selection button is clicked.
+     * Determines the validity of the selected column, updates the game board if
+     * valid, draws the corresponding game piece, checks for a win condition, and
+     * switches player turns.
+     */
     private void buttonLogic(Button clickedButton) {
-        column = Integer.parseInt(clickedButton.getText()) - 1;
-        int row;
-        if (logic.isValid(clmns[column], column)) { // check if the column is full
-            // if not then draw correct circle
+        column = Integer.parseInt(clickedButton.getText()) - 1; // Get the selected column index
+        int row; // Variable to store the row index of the placed game piece
+
+        if (endGame) // If game was won previously
+            showAlert("Game Over", "The game finished last turn. What are you trying to do?",
+                    "You must either close the window or clear the board for a new game.", false);
+        // Check if the selected column is valid (not full)
+        else if (logic.isValid(clmns[column], column)) {
+            // If the column is not full, updates the game board with the new move
             row = logic.updateBoard(clmns[column], column, blueRed);
-            drawCircle(row, column, blueRed); // row, column, colour
+            // Draws the corresponding game piece on the canvas
+            drawCircle(row, column, blueRed); // Parameters: row, column, color
+            // Checks if the game has been won
             endGame = logic.isFourInARow(row, column);
-            if (endGame) { // the game finished
-                showAlert("Game Over", "Congradulations!", blueRed ? "The red player won" : "The blue player won", true);
+            if (endGame) {
+                showAlert("Game Over", "Congratulations!",
+                        blueRed ? "The red player won" : "The blue player won", true);
             }
-            if (blueRed) // switch turn
-                blueRed = false;
-            else
-                blueRed = true;
+            // Switches player turns
+            blueRed = !blueRed;
         } else {
+            // If the selected column is full, shows an error message
             showAlert("ERROR", "Column pressed is full",
-                    "All the rows in the column pressed, column no' " + column + " , are full.\nTry choosing a different column.", false);
+                    "All the rows in the column pressed, column no' " + column +
+                            " , are full.\nTry choosing a different column.",
+                    false);
         }
     }
 
+    // Handles the logic when a button is clicked.
     private void handleButtonClicked(ActionEvent event) {
-        // Get the source button from the event
+        // Gets the source button from the event
         Button clickedButton = (Button) event.getSource();
 
-        // Check if the clicked button is the clear button
+        // Checks if the clicked button is the clear button
         if (clickedButton.getText().equals("Clear")) {
             handleClearButtonClicked();
         } else {
@@ -110,36 +127,42 @@ public class LogicController {
         }
     }
 
+    // Handles the logic when the clear button is clicked.
     private void handleClearButtonClicked() {
-        clear(); // clear grid
+        clear(); // Clears grid
         showAlert("Board cleared", null, "You may begin another game or close the window if so you wish.",
                 true);
 
     }
 
+    // Draws a circle representing a game piece on the canvas.
     private void drawCircle(int row, int column, Boolean player) {
         Color color;
         if (player) {
-            color = Color.RED; // red
+            color = Color.RED;
         } else {
-            color = Color.BLUE; // blue
+            color = Color.BLUE;
         }
 
-        double centerX = (column + 0.5) * canv.getWidth() / CLMNS; // Calculate the x-coordinate of the center of the cell
-        double centerY = (row + 0.5) * canv.getHeight() / ROWS; // Calculate the y-coordinate of the center of the cell
+        double centerX = (column + 0.5) * canv.getWidth() / CLMNS; // Calculates the x-coordinate of the center of the
+                                                                   // cell
+        double centerY = (row + 0.5) * canv.getHeight() / ROWS; // Calculates the y-coordinate of the center of the cell
         double radius = Math.min(canv.getWidth() / CLMNS, canv.getHeight() / ROWS) / 2 * 0.8;
 
         gc.setFill(color); // Set the fill color
-        gc.fillOval(centerX - radius, centerY - radius, radius * 2, radius * 2); // Draw the circle
+        gc.fillOval(centerX - radius, centerY - radius, radius * 2, radius * 2); // Draws the circle
 
     }
 
+    // Clears the game grid and resets the game state.
     private void clear() {
-        gc.clearRect(0, 0, canv.getWidth(), canv.getHeight()); // Clear the canvas
+        gc.clearRect(0, 0, canv.getWidth(), canv.getHeight());
         drawTable();
         logic.initializeBoard(ROWS, CLMNS);
     }
 
+    // Shows an alert dialog with the specified title, header, and content. The
+    // alert type is indicated by the flag (true - confirmation, false - error)
     private static void showAlert(String title, String header, String content, boolean flag) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         if (!flag) {
