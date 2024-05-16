@@ -31,6 +31,7 @@ public class LogicController {
         gc = canv.getGraphicsContext2D();
         drawTable();
         initializeButtons();
+        logic.game();
     }
 
     private void drawTable() {
@@ -73,6 +74,7 @@ public class LogicController {
 
     public void drawCircle(int row, int column, Boolean player) {
         System.out.println("HOLA");
+        /*
         Color color;
         if (player) {
             color = new Color(255, 0, 0, 1);
@@ -88,6 +90,7 @@ public class LogicController {
 
         gc.setFill(color); // Set the fill color
         gc.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius); // Draw the circle
+        */
     }
 
     private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
