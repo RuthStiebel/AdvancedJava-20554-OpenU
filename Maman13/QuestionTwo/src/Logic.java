@@ -6,7 +6,7 @@ import javafx.stage.Stage;
 
 public class Logic extends Application {
     private int[][] board; // every time that a circle is added then the borad is updated
-                                                // accordingly - 0 is red, 1 is blue
+                           // accordingly - 0 is red, 1 is blue
 
     /**
      * The main method to launch the application.
@@ -24,8 +24,7 @@ public class Logic extends Application {
      * @throws Exception If an error occurs while loading the FXML file.
      */
     public void start(Stage stage) throws Exception {
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("Logic.fxml"));
-        Parent root = (Parent) loader.load();
+        Parent root = (Parent) FXMLLoader.load(getClass().getResource("Logic.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Logic");
         stage.setScene(scene);
@@ -45,6 +44,12 @@ public class Logic extends Application {
             board[row][column] = 0;
         else
             board[row][column] = 1;
+    }
+
+    public boolean isValid(int row, int column) {
+        if (board[row][column] == -1)
+            return true;
+        return false;
     }
 
     public boolean isFourInARow(int row, int column) {
@@ -113,4 +118,3 @@ public class Logic extends Application {
         return false;
     }
 }
-//המחלקה הלוגית תכיל מטריצה לוגית ופונקציות הוספת עיגול, בדיקה אם יש ניצחון, אתחול

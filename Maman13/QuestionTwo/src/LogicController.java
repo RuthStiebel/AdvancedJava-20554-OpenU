@@ -24,6 +24,7 @@ public class LogicController {
     private final double C_HEIGHT = canv.getHeight() / ROWS;
     private final double C_WIDTH = canv.getWidth() / CLMNS;
     private final double RADIUS = Math.min(C_WIDTH, C_HEIGHT) / 2 * 0.8; // Adjust the radius to fit within the cell
+    private final double DIAMETER = RADIUS*2;
     private Button buttons[];
     private Logic logic = new Logic();
     private int column;
@@ -76,20 +77,20 @@ public class LogicController {
 
     private void buttonLogic(Button clickedButton) {
         column = Integer.parseInt(clickedButton.getText()) - 1;
-        if (clmns[column] < ROWS - 1) {
+        if (logic.isValid(clmns[column], column)) { //checking if the column is full
             // then draw correct circle
             drawCircle(clmns[column], column, blueRed); // row, column, colour
             logic.updateBoard(clmns[column], column, blueRed);
             endGame = logic.isFourInARow(clmns[column], column);
             if (endGame) { // meaning the game finished
-                LogicController.showAlert("Game Over", "X", "WON", true);
+                showAlert("Game Over", "X", "WON", true);
             }
             if (blueRed) // switch turn
                 blueRed = false;
             else
                 blueRed = true;
         } else {
-            LogicController.showAlert("ERROR", "Column pressed is full",
+            showAlert("ERROR", "Column pressed is full",
                     "All the rows in the column pressed, column no' " + column + " , are full.\nTry again.", false);
         }
     }
@@ -126,7 +127,7 @@ public class LogicController {
         double centerY = (row + 0.5) * C_HEIGHT; // Calculate the y-coordinate of the center of the cell
 
         gc.setFill(color); // Set the fill color
-        gc.fillOval(centerX - RADIUS, centerY - RADIUS, 2 * RADIUS, 2 * RADIUS); // Draw the circle
+        gc.fillOval(centerX - RADIUS, centerY - RADIUS, DIAMETER, DIAMETER); // Draw the circle
 
     }
 
