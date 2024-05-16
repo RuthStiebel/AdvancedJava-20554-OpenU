@@ -47,9 +47,9 @@ public class Logic extends Application {
 
         System.out.println("IN UPDATE BOARD " + (board.length-row-i));
         if (blueRed) // red's turn - 0
-            board[(board.length-row-1)][column] = 0;
+            board[(board.length-row-i)][column] = 0;
         else
-            board[(board.length-row-1)][column] = 1;
+            board[(board.length-row-i)][column] = 1;
     }
 
     public boolean isValid(int row, int column) {

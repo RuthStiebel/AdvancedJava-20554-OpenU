@@ -123,9 +123,9 @@ public class LogicController {
     private void drawCircle(int row, int column, Boolean player) {
         Color color;
         if (player) {
-            color = new Color(153/255.0, 0, 0, 1); // red
+            color = Color.RED; // red
         } else {
-            color = new Color(0, 0, 153/255.0, 1); // blue
+            color = Color.BLUEVIOLET; // blue
         }
 
         double centerX = (column + 0.5) * C_WIDTH; // Calculate the x-coordinate of the center of the cell
