@@ -9,23 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
 import javafx.stage.Stage;
 
-public class PaintControllerX {
-    public enum ShapeType {
-        Circle,
-        Rectangle,
-        Line
-    }
-
-    // Enum for shape fill
-    public enum ShapeFill {
-        SOLID,
-        OUTLINE
-    }
-
-    private ShapeType type;
-    private Color color; // Changed from ShapeColor to javafx.scene.paint.Color
-    private ShapeFill fill;
-
+public class PaintController {
     private double startX;
     private double startY;
     private double endX;
