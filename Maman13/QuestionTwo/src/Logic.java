@@ -59,7 +59,7 @@ public class Logic extends Application {
 
     public boolean isFourInARow(int row, int column) {
         int player = board[row][column]; // Get the player's ID (0 or 1)
-        int fourInARow = 0, lowestC = column, lowestR = row;
+        int fourInARow = 0;
 
         // check vertically
         for (int r = 0; r < board.length; r++) {
@@ -90,6 +90,7 @@ public class Logic extends Application {
             }
         }
         //down
+        fourInARow--;
         for (int c = column, r = row; c >=0 && r < board.length; c--, r++) {
             if (board[r][c] == player) {
                 fourInARow++;
@@ -108,6 +109,7 @@ public class Logic extends Application {
             }
         }
         //down
+        fourInARow--;
         for (int c = column, r = row; c >=0 && r >=0; c--, r--) {
             if (board[r][c] == player) {
                 fourInARow++;

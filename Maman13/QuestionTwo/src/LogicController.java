@@ -26,7 +26,7 @@ public class LogicController {
     private int column;
     private boolean endGame = false;
     private int clmns[] = new int[CLMNS]; // each index hold the index of the last mark in that column
-    private boolean blueRed = false; // red starts
+    private boolean blueRed = false; // blue starts
 
     /**
      * Initializes the controller class.
@@ -86,7 +86,7 @@ public class LogicController {
             drawCircle(row, column, blueRed); // row, column, colour
             endGame = logic.isFourInARow(row, column);
             if (endGame) { // the game finished
-                showAlert("Game Over", "Congradulations!", blueRed ? "The blue player won" : "The red player won", true);
+                showAlert("Game Over", "Congradulations!", blueRed ? "The red player won" : "The blue player won", true);
             }
             if (blueRed) // switch turn
                 blueRed = false;
@@ -94,7 +94,7 @@ public class LogicController {
                 blueRed = true;
         } else {
             showAlert("ERROR", "Column pressed is full",
-                    "All the rows in the column pressed, column no' " + column + " , are full.\nTry again.", false);
+                    "All the rows in the column pressed, column no' " + column + " , are full.\nTry choosing a different column.", false);
         }
     }
 
@@ -112,7 +112,7 @@ public class LogicController {
 
     private void handleClearButtonClicked() {
         clear(); // clear grid
-        showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
+        showAlert("Board cleared", null, "You may begin another game or close the window if so you wish.",
                 true);
 
     }
