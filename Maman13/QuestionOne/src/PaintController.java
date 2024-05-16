@@ -1,22 +1,19 @@
+import java.util.Stack;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.MenuButton;
-import javafx.scene.control.MenuItem;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.*;
+import javafx.stage.Stage;
 
-import java.util.Stack;
-
-public class PaintController {
-
-    // Enum for shape type
+public class PaintControllerX {
     public enum ShapeType {
-        CIRCLE,
-        RECTANGLE,
-        LINE
+        Circle,
+        Rectangle,
+        Line
     }
 
     // Enum for shape fill
@@ -26,82 +23,97 @@ public class PaintController {
     }
 
     private ShapeType type;
-    private Color color; 
+    private Color color; // Changed from ShapeColor to javafx.scene.paint.Color
     private ShapeFill fill;
-
-    @FXML
-    private MenuItem circle;
-
-    @FXML
-    private Button clearButton;
-
-    @FXML
-    private Button colorButton;
-
-    @FXML
-    private MenuButton fillMenu;
-
-    @FXML
-    private MenuItem line;
-
-    @FXML
-    private MenuItem rectangle;
-
-    @FXML
-    private MenuButton typeButton;
-
-    @FXML
-    private Button undo;
-
-    @FXML
-    private Pane pane;
 
     private double startX;
     private double startY;
     private double endX;
     private double endY;
-    private Stack<javafx.scene.shape.Shape> shapesStack = new Stack<>();
+    private Stack<Shape> paintStack = new Stack<Shape>();
 
     @FXML
-    void circleChosen(ActionEvent event) {
-        setType(ShapeType.CIRCLE);
-    }
+    private Pane pane;
 
     @FXML
-    void clearPressed(ActionEvent event) {
-        pane.getChildren().clear();
-        shapesStack.clear();
-    }
+    void drawAction(ActionEvent event) {
 
-    @FXML
-    void colorPressed(ActionEvent event) {
-        // Implement color selection logic here
-    }
+        try {
 
-    @FXML
-    void emptyPressed(ActionEvent event) {
-        setFill(ShapeFill.SOLID);
-    }
+            // Load the draw options pop-up window
+            Stage stage = new Stage();
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("Draw.fxml"));
+            stage.setScene(new Scene(loader.load()));
+            stage.setTitle("Draw");
+            stage.showAndWait();
 
-    @FXML
-    void lineAction(ActionEvent event) {
-        setType(ShapeType.LINE);
-    }
+            // Get the controller instance
+            DrawController controller = loader.getController();
+            // updating the coordinates if needed
+            if (endX < startX) {
+                double tmp = endX;
+                endX = startX;
+                startX = tmp;
+                tmp = Math.max(startY, endY);
+                endY = Math.min(startY, endY);
+                startY = tmp;
+            }
 
-    @FXML
-    void rectangle(ActionEvent event) {
-        setType(ShapeType.RECTANGLE);
-    }
+            // Check if draw is requested and get selected options
+            if (controller.isDrawRequested()) {
+                String selectedShape = controller.getSelectedShape();
+                Color selectedColor = controller.getSelectedColor();
+                boolean isFilled = controller.isFilled();
+                // Draw selected shape according to parameters
+                Shape shape = null; // Initialize shape variable
+                switch (selectedShape) {
+                    case "Line":
+                        shape = new Line(startX, startY, endX, endY);
+                        break;
+                    case "Rectangle":
+                        shape = new Rectangle(startX, startY, Math.abs(endX - startX), Math.abs(endY - startY));
+                        break;
+                    case "Triangle":
+                        // Calculate the midpoint between the start and end points
+                        double midX = (startX + endX) / 2;
+                        double midY = (startY + endY) / 2;
 
-    @FXML
-    void solidPressed(ActionEvent event) {
-        setFill(ShapeFill.SOLID);
-    }
+                        // Calculate the height of the triangle (distance from midpoint to end point)
+                        double height = Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2));
 
-    @FXML
-    void undoPressed(ActionEvent event) {
-        if (!shapesStack.isEmpty()) {
-            pane.getChildren().remove(shapesStack.pop());
+                        // Calculate the distance from the midpoint to each vertex of the triangle (use
+                        // trigonometry)
+                        double angle = Math.atan2(endY - startY, endX - startX); // Angle of the line from start to end
+                        double angle1 = angle + Math.toRadians(150); // Angle for the first vertex
+                        double angle2 = angle + Math.toRadians(210); // Angle for the second vertex
+
+                        // Calculate the coordinates of the vertices based on the angles and height
+                        double x1 = midX + height * Math.cos(angle1);
+                        double y1 = midY + height * Math.sin(angle1);
+                        double x2 = midX + height * Math.cos(angle2);
+                        double y2 = midY + height * Math.sin(angle2);
+
+                        // Create the triangle shape
+                        shape = new Polygon(startX, startY, x1, y1, x2, y2);
+                        break;
+                    case "Circle":
+                        shape = new Circle(startX, startY,
+                                Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
+                        break;
+                }
+                shape.setStroke(selectedColor); // Set the stroke color
+                shape.setStrokeWidth(2); // Set the stroke width
+                if (isFilled) {
+                    shape.setFill(selectedColor);
+                } else {
+                    // Assuming selectedColor is a Color object
+                    shape.setFill(selectedColor.deriveColor(0, 1, 1, 0)); // Set the fill color with transparency
+                }
+                pane.getChildren().add(shape); // Add the shape to the pane
+                paintStack.push(shape); // Push the shape to the stack
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 
@@ -109,49 +121,25 @@ public class PaintController {
     void mousePressed(MouseEvent e) {
         startX = e.getX();
         startY = e.getY();
+
     }
 
     @FXML
     void mouseReleased(MouseEvent e) {
         endX = e.getX();
         endY = e.getY();
-        drawShape();
     }
 
-    private void setType(ShapeType type) {
-        this.type = type;
-        typeButton.setText(type.toString());
-    }
-
-    private void setFill(ShapeFill fill) {
-        this.fill = fill;
-        fillMenu.setText(fill.toString());
-    }
-
-    private void drawShape() {
-        javafx.scene.shape.Shape shape = null;
-        switch (type) {
-            case LINE:
-                shape = new Line(startX, startY, endX, endY);
-                break;
-            case RECTANGLE:
-                shape = new Rectangle(startX, startY, Math.abs(endX - startX), Math.abs(endY - startY));
-                break;
-            case CIRCLE:
-                shape = new Circle(startX, startY, Math.sqrt(Math.pow(endX - startX, 2) + Math.pow(endY - startY, 2)));
-                break;
+    @FXML
+    void undoAction(ActionEvent event) {
+        if (!paintStack.isEmpty()) { // Check if the stack is not empty
+            Shape lastShape = paintStack.pop(); // Pop the last added shape from the stack
+            pane.getChildren().remove(lastShape); // Remove the shape from the Pane
         }
+    }
 
-        shape.setStroke(Color.BLACK); // Set default stroke color
-        shape.setStrokeWidth(2); // Set default stroke width
-
-        if (fill == ShapeFill.SOLID) {
-            shape.setFill(Color.TRANSPARENT); // Fill color will be set later
-        } else {
-            shape.setFill(Color.TRANSPARENT); // Outline shape, no fill
-        }
-
-        pane.getChildren().add(shape);
-        shapesStack.push(shape);
+    @FXML
+    void clearAction(ActionEvent event) {
+        pane.getChildren().clear(); // Remove all children from the Pane
     }
 }
