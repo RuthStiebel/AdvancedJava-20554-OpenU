@@ -117,9 +117,9 @@ public class LogicController {
     private void drawCircle(int row, int column, Boolean player) {
         Color color;
         if (player) {
-            color = new Color(153/1000, 0, 0, 0.5); // red
+            color = new Color(153/100, 0, 0, 0.5); // red
         } else {
-            color = new Color(0, 0, 153/1000, 0.5); // blue
+            color = new Color(0, 0, 153/100, 0.5); // blue
         }
         double radius = Math.min(C_WIDTH, C_HEIGHT) / 2 * 0.8; // Adjust the radius to fit within the cell
 
