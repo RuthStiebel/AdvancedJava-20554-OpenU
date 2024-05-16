@@ -76,16 +76,12 @@ public class LogicController {
         }
     }
 
-    
     private void buttonLogic(Button clickedButton) {
         column = Integer.parseInt(clickedButton.getText()) - 1;
-        System.out.println("HERE1 ..." + column);
         if (clmns[column] < ROW - 1) {
-            System.out.println("HERE2");
             // then draw correct circle
             drawCircle(clmns[column], column, blueRed); // row, column, colour
             logic.updateBoard(clmns[column], column, blueRed);
-            System.out.println("HERE3");
             endGame = logic.isFourInARow(clmns[column], column);
             if (endGame) { // meaning the game finished
                 LogicController.showAlert("Game Over", "X", "WON", true);
@@ -102,7 +98,7 @@ public class LogicController {
 
     private void handleClearButtonClicked() {
         // clear grid
-  clear(); 
+        clear();
         LogicController.showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
                 true);
 
@@ -122,12 +118,12 @@ public class LogicController {
 
     private void drawCircle(int row, int column, Boolean player) {
         System.out.println("HOLA");
-        /*
+
         Color color;
         if (player) {
-            color = new Color(255, 0, 0, 1); //red
+            color = new Color(255, 0, 0, 1); // red
         } else {
-            color = new Color(0, 0, 255, 1); //blue
+            color = new Color(0, 0, 255, 1); // blue
         }
         double cellWidth = canv.getWidth() / CLMN;
         double cellHeight = canv.getHeight() / 5;
@@ -138,7 +134,7 @@ public class LogicController {
 
         gc.setFill(color); // Set the fill color
         gc.fillOval(centerX - radius, centerY - radius, 2 * radius, 2 * radius); // Draw the circle
-        */
+
     }
 
     private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
