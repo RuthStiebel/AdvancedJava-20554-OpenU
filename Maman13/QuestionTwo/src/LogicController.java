@@ -35,7 +35,7 @@ public class LogicController {
         gc = canv.getGraphicsContext2D();
         drawTable();
         initializeButtons();
-        logic.game(ROWS, CLMNS);
+        logic.initializeBoard(ROWS, CLMNS);
     }
 
     private void drawTable() {

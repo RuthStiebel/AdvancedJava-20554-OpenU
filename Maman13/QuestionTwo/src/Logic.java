@@ -32,23 +32,26 @@ public class Logic extends Application {
     }
 
     // here we check whos turn is it, did they win and if the board is full
-    public void game(int rows, int columns) {
+    public void initializeBoard(int rows, int columns) {
         board = new int[rows][columns];
         for (int i = 0; i < rows; i++)
             for (int j = 0; j < columns; j++)
                 board[i][j] = -1;
+        print();
     }
 
     public int updateBoard(int row, int column, boolean blueRed) {
         int i = 1;
-        while(i<board.length &&  board[(board.length-row-i)][column]!=-1){
+        while (i < board.length && board[(board.length - row - i)][column] != -1) {
             i++;
         }
         if (blueRed) // red's turn - 0
-            board[(board.length-row-i)][column] = 0;
+            board[(board.length - row - i)][column] = 0;
         else
-            board[(board.length-row-i)][column] = 1;
-        return (board.length-row-i);
+            board[(board.length - row - i)][column] = 1;
+        System.out.println("AFTER UPDATING");
+        print();
+        return (board.length - row - i);
     }
 
     public boolean isValid(int row, int column) {
@@ -59,67 +62,27 @@ public class Logic extends Application {
 
     public boolean isFourInARow(int row, int column) {
         int player = board[row][column]; // Get the player's ID (0 or 1)
+        int fourInARow = 0;
 
-        // Check horizontally
-        for (int c = column - 3; c <= column; c++) {
-            if (c >= 0 && c + 3 < board[row].length) { // Ensure the range is within the board
-                boolean found = true;
-                for (int k = 0; k < 4; k++) {
-                    if (board[row][c + k] != player) {
-                        found = false;
-                        break;
-                    }
-                }
-                if (found)
-                    return true;
+        // check vertically
+        for (int r = 0; r < board.length; r++) {
+            if (board[r][column] == player) {
+                fourInARow++;
             }
         }
-
-        // Check vertically
-        for (int r = row - 3; r <= row; r++) {
-            if (r >= 0 && r + 3 < 5) { // Ensure the range is within the board
-                boolean found = true;
-                for (int k = 0; k < 4; k++) {
-                    if (board[r + k][column] != player) {
-                        found = false;
-                        break;
-                    }
-                }
-               if (found)
-                   return true;
-            }
-        }
-
-        // Check diagonally (from top-left to bottom-right)
-        for (int r = row - 3, c = column - 3; r <= row && c <= column; r++, c++) {
-            if (r >= 0 && c >= 0 && r + 3 < 5 && c + 3 < board[row].length) { // Ensure the range is within the board
-                boolean found = true;
-                for (int k = 0; k < 4; k++) {
-                    if (board[r + k][c + k] != player) {
-                        found = false;
-                        break;
-                    }
-                }
-                if (found)
-                 return true;
-            }
-        }
-
-        // Check diagonally (from top-right to bottom-left)
-        for (int r = row - 3, c = column + 3; r <= row && c >= column; r++, c--) {
-            if (r >= 0 && c >= 0 && r + 3 < 5 && c - 3 >= 0) { // Ensure the range is within the board
-                boolean found = true;
-                for (int k = 0; k < 4; k++) {
-                    if (board[r + k][c - k] != player) {
-                        found = false;
-                        break;
-                    }
-                }
-              if (found)
-                 return true;
-            }
+        if (fourInARow == 4) {
+            return false;
         }
 
         return false;
+    }
+
+    public void print() {
+        for (int i = 0; i < board.length; i++)
+        {
+            for (int j = 0; j < board[0].length; j++)
+                System.out.print(board[i][j]+"/t");
+            System.out.println();
+        }
     }
 }
