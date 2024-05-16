@@ -21,8 +21,8 @@ public class LogicController {
 
     private final int CLMNS = 7;
     private final int ROWS = 5;
-    private final double C_HEIGHT = canv.getHeight() / ROWS;
-    private final double C_WIDTH = canv.getWidth() / CLMNS;
+    private static double C_HEIGHT;
+    private static double C_WIDTH;
     private final double RADIUS = Math.min(C_WIDTH, C_HEIGHT) / 2 * 0.8; // Adjust the radius to fit within the cell
     private final double DIAMETER = RADIUS*2;
     private Button buttons[];
@@ -43,6 +43,8 @@ public class LogicController {
     }
 
     private void drawTable() {
+        C_WIDTH = canv.getWidth() / CLMNS;
+        C_HEIGHT = canv.getHeight() / ROWS;
         // Drawing black lines for the grid
         for (int i = 0; i <= CLMNS; i++) {
             double x = i * C_WIDTH;
@@ -76,15 +78,18 @@ public class LogicController {
     }
 
     private void buttonLogic(Button clickedButton) {
+        System.out.println( "HEY1");
         column = Integer.parseInt(clickedButton.getText()) - 1;
         if (logic.isValid(clmns[column], column)) { //checking if the column is full
             // then draw correct circle
+            System.out.println( "HEY2");
             drawCircle(clmns[column], column, blueRed); // row, column, colour
             logic.updateBoard(clmns[column], column, blueRed);
-            endGame = logic.isFourInARow(clmns[column], column);
+            System.out.println( "HEY3");
+           /*/ endGame = logic.isFourInARow(clmns[column], column);
             if (endGame) { // meaning the game finished
                 showAlert("Game Over", "X", "WON", true);
-            }
+            } */
             if (blueRed) // switch turn
                 blueRed = false;
             else
@@ -118,9 +123,9 @@ public class LogicController {
     private void drawCircle(int row, int column, Boolean player) {
         Color color;
         if (player) {
-            color = new Color(153/100, 0, 0, 0.5); // red
+            color = new Color(153/255.0, 0, 0, 1); // red
         } else {
-            color = new Color(0, 0, 153/100, 0.5); // blue
+            color = new Color(0, 0, 153/255.0, 1); // blue
         }
 
         double centerX = (column + 0.5) * C_WIDTH; // Calculate the x-coordinate of the center of the cell
