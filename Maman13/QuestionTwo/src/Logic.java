@@ -78,6 +78,19 @@ public class Logic extends Application {
     }
 
     /**
+     * Checks if the game board is full.
+     * 
+     * @return True if the board is full, false otherwise.
+     */
+    public boolean boardFull() {
+        for (int i = 0; i < board.length; i++)
+            for (int j = 0; j < board[0].length; j++)
+                if (board[i][j] == -1)
+                    return false;
+        return true;
+    }
+
+    /**
      * Checks if there are four pieces of the same color in a row, column, or
      * diagonal starting from the specified position.
      *

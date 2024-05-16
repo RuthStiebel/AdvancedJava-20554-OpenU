@@ -8,7 +8,7 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-
+//TODO check why the blue wins if the bottom is checkered
 public class LogicController {
 
     @FXML
@@ -91,6 +91,9 @@ public class LogicController {
         if (endGame) // If game was won previously
             showAlert("Game Over", "The game finished last turn. What are you trying to do?",
                     "You must either close the window or clear the board for a new game.", false);
+        else if (logic.boardFull()) // If board if full
+            showAlert("Game Over", "Neither player won",
+                    "The board was filled without a winner.", false);
         // Check if the selected column is valid (not full)
         else if (logic.isValid(clmns[column], column)) {
             // If the column is not full, updates the game board with the new move
@@ -159,6 +162,8 @@ public class LogicController {
         gc.clearRect(0, 0, canv.getWidth(), canv.getHeight());
         drawTable();
         logic.initializeBoard(ROWS, CLMNS);
+        endGame = false;
+        blueRed = false;
     }
 
     // Shows an alert dialog with the specified title, header, and content. The
