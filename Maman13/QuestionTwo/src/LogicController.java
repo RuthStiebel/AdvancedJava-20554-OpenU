@@ -20,9 +20,13 @@ public class LogicController {
     private GraphicsContext gc; // Graphics context for drawing on the canvas
 
     private final int CLMN = 7;
+    private final int ROW = 5;
     private Button buttons[];
     private Logic logic = new Logic();
-
+    private int column;
+    private boolean endGame = false;
+    private int clmns[] = new int[CLMN]; // each index hold the index of the last mark in that column
+    private boolean blueRed = false; // red starts
 
     /**
      * Initializes the controller class.
@@ -31,7 +35,7 @@ public class LogicController {
         gc = canv.getGraphicsContext2D();
         drawTable();
         initializeButtons();
-        logic.game();
+        logic.game(ROW, CLMN);
     }
 
     private void drawTable() {
@@ -66,13 +70,57 @@ public class LogicController {
 
                 @Override
                 public void handle(ActionEvent event) {
-                    logic.handleButtonClicked(event);
+                    handleButtonClicked(event);
                 }
             });
         }
     }
 
-    public void drawCircle(int row, int column, Boolean player) {
+    
+    private void buttonLogic(Button clickedButton) {
+        column = Integer.parseInt(clickedButton.getText()) - 1;
+        System.out.println("HERE1 ..." + column);
+        if (clmns[column] < ROW - 1) {
+            System.out.println("HERE2");
+            // then draw correct circle
+            drawCircle(clmns[column], column, blueRed); // row, column, colour
+            logic.updateBoard(clmns[column], column, blueRed);
+            System.out.println("HERE3");
+            endGame = logic.isFourInARow(clmns[column], column);
+            if (endGame) { // meaning the game finished
+                LogicController.showAlert("Game Over", "X", "WON", true);
+            }
+            if (blueRed) // switch turn
+                blueRed = false;
+            else
+                blueRed = true;
+        } else {
+            LogicController.showAlert("ERROR", "Column pressed is full",
+                    "All the rows in the column pressed, column no' " + column + " , are full.\nTry again.", false);
+        }
+    }
+
+    private void handleClearButtonClicked() {
+        // clear grid
+  clear(); 
+        LogicController.showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
+                true);
+
+    }
+
+    private void handleButtonClicked(ActionEvent event) {
+        // Get the source button from the event
+        Button clickedButton = (Button) event.getSource();
+
+        // Check if the clicked button is the clear button
+        if (clickedButton.getText().equals("Clear")) {
+            handleClearButtonClicked();
+        } else {
+            buttonLogic(clickedButton);
+        }
+    }
+
+    private void drawCircle(int row, int column, Boolean player) {
         System.out.println("HOLA");
         /*
         Color color;
@@ -99,12 +147,12 @@ public class LogicController {
         grid.add(btn, row, column);
     }
 
-    public void clear() {
+    private void clear() {
         gc.clearRect(0, 0, canv.getWidth(), canv.getHeight()); // Clear the canvas
         drawTable();
     }
 
-    public static void showAlert(String title, String header, String content, boolean flag) {
+    private static void showAlert(String title, String header, String content, boolean flag) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         if (!flag) {
             alert.setAlertType(AlertType.ERROR);
