@@ -31,7 +31,6 @@ public class Logic extends Application {
         stage.show();
     }
 
-    // here we check whos turn is it, did they win and if the board is full
     public void initializeBoard(int rows, int columns) {
         board = new int[rows][columns];
         for (int i = 0; i < rows; i++)
@@ -49,8 +48,6 @@ public class Logic extends Application {
             board[(board.length - row - i)][column] = 0;
         else
             board[(board.length - row - i)][column] = 1;
-        System.out.println("AFTER UPDATING");
-        print();
         return (board.length - row - i);
     }
 
@@ -62,7 +59,7 @@ public class Logic extends Application {
 
     public boolean isFourInARow(int row, int column) {
         int player = board[row][column]; // Get the player's ID (0 or 1)
-        int fourInARow = 0;
+        int fourInARow = 0, lowestC = column, lowestR = row;
 
         // check vertically
         for (int r = 0; r < board.length; r++) {
@@ -70,18 +67,64 @@ public class Logic extends Application {
                 fourInARow++;
             }
         }
+
         if (fourInARow == 4) {
-            return false;
+            return true;
+        }
+        // check horizontally
+        fourInARow = 0;
+        for (int c = 0; c < board[0].length; c++) {
+            if (board[row][c] == player) {
+                fourInARow++;
+            }
+        }
+        if (fourInARow == 4) {
+            return true;
+        }
+        // check diagonally (left)
+        fourInARow = 0;
+        //up
+        for (int c = column, r = row; c < board[0].length && r >= 0; c++, r--) {
+            if (board[r][c] == player) {
+                fourInARow++;
+            }
+        }
+        //down
+        for (int c = column, r = row; c >=0 && r < board.length; c--, r++) {
+            if (board[r][c] == player) {
+                fourInARow++;
+            }
+        }
+
+        if (fourInARow == 4) {
+            return true;
+        }
+        // check diagonally (right)
+        fourInARow = 0;
+        //up
+        for (int c = column, r = row; c < board[0].length && r < board.length; c++, r++) {
+            if (board[r][c] == player) {
+                fourInARow++;
+            }
+        }
+        //down
+        for (int c = column, r = row; c >=0 && r >=0; c--, r--) {
+            if (board[r][c] == player) {
+                fourInARow++;
+            }
+        }
+
+        if (fourInARow == 4) {
+            return true;
         }
 
         return false;
     }
 
     public void print() {
-        for (int i = 0; i < board.length; i++)
-        {
+        for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++)
-                System.out.print(board[i][j]+"/t");
+                System.out.print(board[i][j] + "\t");
             System.out.println();
         }
     }

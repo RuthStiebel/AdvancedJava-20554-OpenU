@@ -71,17 +71,23 @@ public class LogicController {
         }
     }
 
+    private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
+        btn.setPrefSize(grid.getPrefWidth() / CLMNS,
+                (grid.getPrefHeight() / CLMNS) * 3);
+        grid.add(btn, row, column);
+    }
+
     private void buttonLogic(Button clickedButton) {
         column = Integer.parseInt(clickedButton.getText()) - 1;
         int row;
-        if (logic.isValid(clmns[column], column)) { //checking if the column is full
-            // then draw correct circle
+        if (logic.isValid(clmns[column], column)) { // check if the column is full
+            // if not then draw correct circle
             row = logic.updateBoard(clmns[column], column, blueRed);
             drawCircle(row, column, blueRed); // row, column, colour
-            endGame = logic.isFourInARow(clmns[column], column);
-            if (endGame) { // meaning the game finished
-                showAlert("Game Over", "X", "WON", true);
-            } 
+            endGame = logic.isFourInARow(row, column);
+            if (endGame) { // the game finished
+                showAlert("Game Over", "Congradulations!", blueRed ? "The blue player won" : "The red player won", true);
+            }
             if (blueRed) // switch turn
                 blueRed = false;
             else
@@ -90,14 +96,6 @@ public class LogicController {
             showAlert("ERROR", "Column pressed is full",
                     "All the rows in the column pressed, column no' " + column + " , are full.\nTry again.", false);
         }
-    }
-
-    private void handleClearButtonClicked() {
-        // clear grid
-        clear();
-        LogicController.showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
-                true);
-
     }
 
     private void handleButtonClicked(ActionEvent event) {
@@ -110,6 +108,13 @@ public class LogicController {
         } else {
             buttonLogic(clickedButton);
         }
+    }
+
+    private void handleClearButtonClicked() {
+        clear(); // clear grid
+        showAlert("Board cleared", null, "You may begin another game or close it if you so wish.",
+                true);
+
     }
 
     private void drawCircle(int row, int column, Boolean player) {
@@ -125,26 +130,20 @@ public class LogicController {
         double radius = Math.min(canv.getWidth() / CLMNS, canv.getHeight() / ROWS) / 2 * 0.8;
 
         gc.setFill(color); // Set the fill color
-        gc.fillOval(centerX - radius, centerY - radius, radius*2, radius*2); // Draw the circle
+        gc.fillOval(centerX - radius, centerY - radius, radius * 2, radius * 2); // Draw the circle
 
-    }
-
-    private void addButtonToGrid(GridPane grid, Button btn, int row, int column) {
-        btn.setPrefSize(grid.getPrefWidth() / CLMNS,
-                (grid.getPrefHeight() / CLMNS) * 3);
-        grid.add(btn, row, column);
     }
 
     private void clear() {
         gc.clearRect(0, 0, canv.getWidth(), canv.getHeight()); // Clear the canvas
         drawTable();
+        logic.initializeBoard(ROWS, CLMNS);
     }
 
     private static void showAlert(String title, String header, String content, boolean flag) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         if (!flag) {
             alert.setAlertType(AlertType.ERROR);
-            ;
         }
         alert.setTitle(title);
         alert.setHeaderText(header);
