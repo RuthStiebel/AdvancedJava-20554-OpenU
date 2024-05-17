@@ -5,7 +5,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class Paint extends Application {
-     /**
+      /**
        * The main method to launch the application.
        */
       public static void main(String[] args) {
@@ -27,6 +27,5 @@ public class Paint extends Application {
             stage.setScene(scene);
             stage.show();
       }
-
 
 }

@@ -128,9 +128,9 @@ public class Logic extends Application {
             if (board[r][c] == player) {
                 fourInARow++;
                 if (fourInARow == 4)
-                return true;
+                    return true;
             } else
-            fourInARow = 0;
+                fourInARow = 0;
         }
 
         // Checks diagonally (left)

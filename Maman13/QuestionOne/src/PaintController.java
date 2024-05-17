@@ -16,7 +16,7 @@ public class PaintController {
     private String selectedShape;
     private Color selectedColor;
     private boolean isFilled;
-    
+
     @FXML
     private ColorPicker colorPicker;
 
@@ -38,7 +38,8 @@ public class PaintController {
                     shape = new Line(startX, startY, endX, endY);
                     break;
                 case "Rectangle":
-                    shape = new Rectangle(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX), Math.abs(endY - startY));
+                    shape = new Rectangle(Math.min(startX, endX), Math.min(startY, endY), Math.abs(endX - startX),
+                            Math.abs(endY - startY));
                     break;
             }
             shape.setStroke(selectedColor); // Sets the stroke color
@@ -85,6 +86,7 @@ public class PaintController {
         selectedShape = "Rectangle";
     }
 
+    // Gets the starting coordinates for the shape
     @FXML
     void mousePressed(MouseEvent e) {
         startX = e.getX();
@@ -92,6 +94,7 @@ public class PaintController {
 
     }
 
+    // Gets the ending coordinates for the shape
     @FXML
     void mouseReleased(MouseEvent e) {
         endX = e.getX();
@@ -100,7 +103,7 @@ public class PaintController {
 
     @FXML
     void undoPressed(ActionEvent event) {
-        if (!paintStack.isEmpty()) { 
+        if (!paintStack.isEmpty()) {
             Shape lastShape = paintStack.pop(); // Pops the last added shape from the stack
             pane.getChildren().remove(lastShape); // Removes the shape from the pane
         }
