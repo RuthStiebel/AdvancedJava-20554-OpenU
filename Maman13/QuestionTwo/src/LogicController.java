@@ -8,7 +8,6 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-//TODO check why the blue wins if the bottom is checkered
 public class LogicController {
 
     @FXML

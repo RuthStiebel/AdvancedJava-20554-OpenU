@@ -104,50 +104,45 @@ public class Logic extends Application {
 
         // Checks vertically
         for (int r = 0; r < board.length; r++) {
-            if (board[r][column] == player && ++fourInARow == 4) {
-                return true;
-            }
+            if (board[r][column] == player) {
+                fourInARow++;
+                if (fourInARow == 4)
+                    return true;
+            } else
+                fourInARow = 0;
         }
         // Checks horizontally
         fourInARow = 0;
         for (int c = 0; c < board[0].length; c++) {
-            if (board[row][c] == player && ++fourInARow == 4) {
-                return true;
-            }
-        }
-
-        // Checks diagonally (left)
-        fourInARow = 0;
-        // Up
-        for (int c = column, r = row; c < board[0].length && r >= 0; c++, r--) {
-            if (board[r][c] == player && ++fourInARow == 4) {
-                return true;
-            }
-        }
-        // Down
-        fourInARow--;
-        for (int c = column, r = row; c >= 0 && r < board.length; c--, r++) {
-            if (board[r][c] == player && ++fourInARow == 4) {
-                return true;
-            }
+            if (board[row][c] == player) {
+                fourInARow++;
+                if (fourInARow == 4)
+                    return true;
+            } else
+                fourInARow = 0;
         }
 
         // Checks diagonally (right)
         fourInARow = 0;
-        // Up
         for (int c = column, r = row; c < board[0].length && r < board.length; c++, r++) {
-            if (board[r][c] == player && ++fourInARow == 4) {
+            if (board[r][c] == player) {
+                fourInARow++;
+                if (fourInARow == 4)
                 return true;
-            }
-        }
-        // Down
-        fourInARow--;
-        for (int c = column, r = row; c >= 0 && r >= 0; c--, r--) {
-            if (board[r][c] == player && ++fourInARow == 4) {
-                return true;
-            }
+            } else
+            fourInARow = 0;
         }
 
+        // Checks diagonally (left)
+        fourInARow = 0;
+        for (int c = column, r = row; c >= 0 && r >= 0; c--, r--) {
+            if (board[r][c] == player) {
+                fourInARow++;
+                if (fourInARow == 4)
+                    return true;
+            } else
+                fourInARow = 0;
+        }
         return false;
     }
 }
