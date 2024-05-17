@@ -91,9 +91,11 @@ public class LogicController {
         if (endGame) // If game was won previously
             showAlert("Game Over", "The game finished last turn. What are you trying to do?",
                     "You must either close the window or clear the board for a new game.", false);
-        else if (logic.boardFull()) // If board if full
+        else if (logic.boardFull()) { // If board if full
             showAlert("Game Over", "Neither player won",
                     "The board was filled without a winner.", false);
+            endGame = true;
+        }
         // Check if the selected column is valid (not full)
         else if (logic.isValid(clmns[column], column)) {
             // If the column is not full, updates the game board with the new move
@@ -111,7 +113,7 @@ public class LogicController {
         } else {
             // If the selected column is full, shows an error message
             showAlert("ERROR", "Column pressed is full",
-                    "All the rows in the column pressed, column no' " + column +
+                    "All the rows in the column pressed, column no' " + (column + 1) +
                             " , are full.\nTry choosing a different column.",
                     false);
         }
