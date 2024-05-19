@@ -99,6 +99,7 @@ public class Logic extends Application {
      * @return True if there are four in a row, false otherwise.
      */
     public boolean isFourInARow(int row, int column) {
+        print();
         int player = board[row][column]; // Gets the player's ID (0 or 1)
         int fourInARow = 0;
 
@@ -135,8 +136,12 @@ public class Logic extends Application {
 
         // Checks diagonally (left)
         fourInARow = 0;
+        System.out.println("R"+ row +"\t"+"C"+ column);
         for (int c = column, r = row; c >= 0 && r >= 0; c--, r--) {
+            System.out.println("BEFORE IF - R"+ r +"\t"+"C"+ c + "\n"+board[r][c]);
+
             if (board[r][c] == player) {
+                System.out.println("IN IF - R"+ r +"\t"+"C"+ c);
                 fourInARow++;
                 if (fourInARow == 4)
                     return true;
@@ -144,5 +149,13 @@ public class Logic extends Application {
                 fourInARow = 0;
         }
         return false;
+    }
+
+    public void print () {
+        for (int i=0; i<board.length; i++){
+            for (int j=0; j<board[0].length; j++)
+                System.out.print(board[i][j] + "\t");
+            System.out.println();
+        }
     }
 }

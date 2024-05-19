@@ -104,6 +104,7 @@ public class LogicController {
             drawCircle(row, column, blueRed); // Parameters: row, column, color
             // Checks if the game has been won
             endGame = logic.isFourInARow(row, column);
+            
             if (endGame) {
                 showAlert("Game Over", "Congratulations!",
                         blueRed ? "The red player won" : "The blue player won", true);
