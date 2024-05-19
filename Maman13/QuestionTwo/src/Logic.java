@@ -136,12 +136,8 @@ public class Logic extends Application {
 
         // Checks diagonally (left)
         fourInARow = 0;
-        System.out.println("R"+ row +"\t"+"C"+ column);
-        for (int c = column, r = row; c >= 0 && r >= 0; c--, r--) {
-            System.out.println("BEFORE IF - R"+ r +"\t"+"C"+ c + "\n"+board[r][c]);
-
+        for (int c = column, r = row; c >= 0 && r<board.length; c--, r++) {
             if (board[r][c] == player) {
-                System.out.println("IN IF - R"+ r +"\t"+"C"+ c);
                 fourInARow++;
                 if (fourInARow == 4)
                     return true;
@@ -151,7 +147,7 @@ public class Logic extends Application {
         return false;
     }
 
-    public void print () {
+    private void print () {
         for (int i=0; i<board.length; i++){
             for (int j=0; j<board[0].length; j++)
                 System.out.print(board[i][j] + "\t");
