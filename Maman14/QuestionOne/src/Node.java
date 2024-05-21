@@ -1,13 +1,13 @@
 public class Node<E> {
     private E nodeContent;
-    private E nextNode;
+    private Node<E> nextNode;
 
     public Node(E nodeContent) {
         this.nodeContent = nodeContent;
         this.nextNode = null;
     }
 
-    public Node(E nodeContent, E nextNode) {
+    public Node(E nodeContent, Node<E> nextNode) {
         this.nodeContent = nodeContent;
         this.nextNode = nextNode;
     }
@@ -17,7 +17,7 @@ public class Node<E> {
         return nodeContent;
     }
 
-    public E getNext() {
+    public Node<E> getNext() {
         return nextNode;
     }
     // setters
@@ -25,7 +25,7 @@ public class Node<E> {
         this.nodeContent = content;
     }
 
-    public void setNext (E next) {
+    public void setNext (Node<E> next) {
         this.nextNode = next;
     }
 }
