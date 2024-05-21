@@ -1,25 +1,31 @@
-public class Node <E>{
+public class Node<E> {
     private E nodeContent;
-    private E next;
+    private E nextNode;
 
-    public Node (E nodeContent) {
+    public Node(E nodeContent) {
         this.nodeContent = nodeContent;
-        this.next = null;       
-        
-    }
-    public Node (E nodeContent, E next) {
-        this.nodeContent = nodeContent;
-        this.next = next;       
+        this.nextNode = null;
     }
 
+    public Node(E nodeContent, E nextNode) {
+        this.nodeContent = nodeContent;
+        this.nextNode = nextNode;
+    }
 
-    /*
-     * שדה מטיפוס ג
-- שדה המשמש כמצביע לתא הבא ברשימה.
-.null אי ליצירת תא, המקבל את תוכן התא ויוצר תא עם התוכן הרצוי ומצביע  - ב
-אי ליצירת תא, המקבל את תוכן התא ומצביע לתא הבא ויוצר את התא המבוקש.  - ב
-לעדכון והחזרת תוכן התא. get- ו set - מתודות
-לעדכון והחזרת המצביע לתא הבא. get- ו set - מתודות
-     */
+    // getters
+    public E getContent() {
+        return nodeContent;
+    }
 
+    public E getNext() {
+        return nextNode;
+    }
+    // setters
+    public void setContent (E content) {
+        this.nodeContent = content;
+    }
+
+    public void setNext (E next) {
+        this.nextNode = next;
+    }
 }
