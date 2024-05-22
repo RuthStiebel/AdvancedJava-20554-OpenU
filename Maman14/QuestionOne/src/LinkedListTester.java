@@ -24,7 +24,7 @@ public class LinkedListTester extends Application {
             dialog.setHeaderText("Enter string no' " + (i + 1));
             Optional<String> result = dialog.showAndWait();
             System.out.println(i + "\t" + result.get());
-            if (result.get().trim().isEmpty()) {
+            if (!result.get().trim().isEmpty()) {
                 strings[i] = result.get();
             } else {
                 Alert alert = new Alert(AlertType.ERROR);
