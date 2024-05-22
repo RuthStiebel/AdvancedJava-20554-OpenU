@@ -1,39 +1,41 @@
-import javafx.application.Application;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.Alert.AlertType;
-import javafx.stage.Stage;
+import javafx.scene.control.Alert;
+import java.util.Scanner;
 
-import java.util.Optional;
-
-public class LinkedListTester extends Application {
+public class LinkedListTester {
+    private static int MAX = 6;
+    
     public static void main(String[] args) {
-        launch(args);
-    }
+        Scanner scan = new Scanner(System.in);
+        String[] list = new String[MAX];
 
-    @Override
-    public void start(Stage primaryStage) {
-        // Array to store the strings
-        String[] strings = new String[6];
-
-        // Loop to get input from the user
-        for (int i = 0; i < 6; i++) {
-            TextInputDialog dialog = new TextInputDialog();
-            dialog.setTitle("String Input");
-            dialog.setHeaderText("Enter string no' " + (i + 1));
-            Optional<String> result = dialog.showAndWait();
-            System.out.println(i + "\t" + result.get());
-            if (result.isPresent()) {
-                strings[i] = result.get();
+        for (int i = 0; i < MAX; i++) {
+            System.out.print("Enter string " + (i + 1) + ": ");
+            String input = scan.nextLine();
+            if (isValidInput(input)) {
+                list[i] = input;
             } else {
-                Alert alert = new Alert(AlertType.ERROR);
-                alert.setContentText("You must enter something in the box.");
-                alert.setTitle("ERROR");
-                alert.setHeaderText("ERROR");
+                System.out.println("Invalid input. Please enter a non-empty string."); //                sendAlert("Invalid input. Please enter a non-empty string.", "ERROR", "ERROR");
+                i--; // Retry for the same position
             }
         }
-        primaryStage.setScene(new Scene(null));
-        primaryStage.show();
+
+        // Print the array
+        System.out.println("The array elements are:");
+        for (String str : list) {
+            System.out.println(str);
+        }
+
+        scan.close();
+    }
+
+    public static boolean isValidInput(String input) {
+        return input != null && !input.trim().isEmpty();
+    }
+    private static void sendAlert(String alertContext, String alertTitle, String alertHeader) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setContentText(alertContext);
+        alert.setTitle(alertTitle);
+        alert.setHeaderText(alertHeader);
     }
 }
