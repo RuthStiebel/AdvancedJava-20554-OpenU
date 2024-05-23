@@ -38,4 +38,9 @@ public class Person implements Comparable<Person> {
         else
             return 1;
     }
+
+    @Override
+    public String toString () {
+        return "Name: " + this.name + "\tID number: " + this.id + "\tBirth year: "+this.yearOfBirth;
+    }
 }
