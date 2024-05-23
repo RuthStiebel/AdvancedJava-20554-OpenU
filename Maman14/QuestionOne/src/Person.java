@@ -1,12 +1,12 @@
 public class Person {
     private String name;
     private int id;
-    private String date;
+    private int yearOfBirth;
 
-    public Person (String name, int id, String date) {
+    public Person (String name, int id, int yearOfBirth) {
         this.name = name;
         this.id = id;
-        this.date = date;
+        this.yearOfBirth = yearOfBirth;
     }
 
 }
