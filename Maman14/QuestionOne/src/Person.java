@@ -1,4 +1,6 @@
-public class Person {
+import java.time.Year;
+
+public class Person implements Comparable<Person> {
     private String name;
     private int id;
     private int yearOfBirth;
@@ -10,7 +12,6 @@ public class Person {
     }
 
     // getters
-
     public String getName() {
         return this.name;
     }
@@ -21,5 +22,20 @@ public class Person {
 
     public int getYearOfBirth() {
         return this.yearOfBirth;
+    }
+
+    private int getAge() {
+        return Year.now().getValue() - this.yearOfBirth;
+
+    }
+
+    @Override
+    public int compareTo(Person o) {
+        if (o.getAge() == this.getAge())
+            return 0;
+        else if (o.getAge() > this.getAge())
+            return -1;
+        else
+            return 1;
     }
 }
