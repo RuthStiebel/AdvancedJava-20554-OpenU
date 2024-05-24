@@ -6,10 +6,12 @@ public class Max {
         }
     
         Node<E> max = list.getHead();
-        for (Node<E> element : list) {
+        Node<E> element = list.getHead();
+        while (element != null) {
             if (element.compareTo(max) > 0) {
                 max = element;
             }
+            element = element.getNext();
         }
     
         return max;
