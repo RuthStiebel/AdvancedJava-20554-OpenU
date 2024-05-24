@@ -17,15 +17,24 @@ public class Node<E> {
         return nodeContent;
     }
 
+    public String getContentString() {
+        return nodeContent.toString();
+    }
+
     public Node<E> getNext() {
         return nextNode;
     }
+
     // setters
-    public void setContent (E content) {
+    public void setContent(E content) {
         this.nodeContent = content;
     }
 
-    public void setNext (Node<E> next) {
+    public void setNext(Node<E> next) {
         this.nextNode = next;
+    }
+
+    public int compareTo(Node<E> max) {
+        return max.getContentString().compareTo(getContentString());
     }
 }
