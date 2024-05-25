@@ -15,16 +15,17 @@ public class LinkedListTester {
             if (isValidInput(input)) {
                 list[i] = input;
             } else {
-                System.out.println("Invalid input. Please enter a non-empty string."); //                sendAlert("Invalid input. Please enter a non-empty string.", "ERROR", "ERROR");
+                showAlert("ERROR", "Invalid input", "Please enter a non-empty string.", false);
                 i--; // Retry for the same position
             }
         }
-
+        StringBuilder listContent = new StringBuilder();
         // Print the array
-        System.out.println("The array elements are:");
+        System.out.println();
         for (String str : list) {
-            System.out.println(str);
+            listContent.append(str).append("\n");
         }
+        showAlert("", "The array elements are:", listContent.toString(), true);
 
         scan.close();
     }
