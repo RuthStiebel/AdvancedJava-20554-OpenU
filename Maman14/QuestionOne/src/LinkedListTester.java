@@ -15,7 +15,7 @@ public class LinkedListTester {
             if (isValidInput(input)) {
                 list[i] = input;
             } else {
-                showAlert("ERROR", "Invalid input", "Please enter a non-empty string.", false);
+                LinkedListController.showAlert("ERROR", "Invalid input", "Please enter a non-empty string.", false);
                 i--; // Retry for the same position
             }
         }
@@ -25,7 +25,7 @@ public class LinkedListTester {
         for (String str : list) {
             listContent.append(str).append("\n");
         }
-        showAlert("", "The array elements are:", listContent.toString(), true);
+        LinkedListController.showAlert("", "The array elements are:", listContent.toString(), true);
 
         scan.close();
     }
@@ -34,14 +34,5 @@ public class LinkedListTester {
         return input != null && !input.trim().isEmpty();
     }
 
-    private static void showAlert(String title, String header, String content, boolean flag) {
-        Alert alert = new Alert(AlertType.CONFIRMATION);
-        if (!flag) {
-            alert.setAlertType(AlertType.ERROR);
-        }
-        alert.setTitle(title);
-        alert.setHeaderText(header);
-        alert.setContentText(content);
-        alert.showAndWait();
-    }
+
 }
