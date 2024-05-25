@@ -32,10 +32,15 @@ public class LinkedListTester {
     public static boolean isValidInput(String input) {
         return input != null && !input.trim().isEmpty();
     }
-    private static void sendAlert(String alertContext, String alertTitle, String alertHeader) {
-        Alert alert = new Alert(AlertType.ERROR);
-        alert.setContentText(alertContext);
-        alert.setTitle(alertTitle);
-        alert.setHeaderText(alertHeader);
+
+    private static void showAlert(String title, String header, String content, boolean flag) {
+        Alert alert = new Alert(AlertType.CONFIRMATION);
+        if (!flag) {
+            alert.setAlertType(AlertType.ERROR);
+        }
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
     }
 }
