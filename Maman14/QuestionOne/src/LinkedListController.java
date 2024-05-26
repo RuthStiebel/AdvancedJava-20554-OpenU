@@ -5,32 +5,44 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
 
 public class LinkedListController {
+    private LinkedList<String> myList;
 
     @FXML
-    private TextField fiveString;
+    private TextField string1;
 
     @FXML
-    private TextField fourString;
+    private TextField string2;
 
     @FXML
-    private TextField oneString;
+    private TextField string3;
 
     @FXML
-    private TextField sixString;
+    private TextField string4;
 
     @FXML
-    private TextField threeString;
+    private TextField string5;
 
     @FXML
-    private TextField twoString;
+    private TextField string6;
 
     @FXML
     void cancelPressed(ActionEvent event) {
+        // just close the window
 
     }
 
     @FXML
     void okPressed(ActionEvent event) {
+        myList = new LinkedList<String>();
+        for (int i=0; i<LinkedListTester.MAX; i++) {
+            if (string1.getText().trim().isEmpty()) {
+                showAlert("ERROR", "Invalid input", "Please enter a non-empty string.", false);
+            }
+            else {
+                Node<String> newNode = new Node<String> (string1.getText());
+                myList.addNode(newNode);
+            }
+        }
 
     }
 
