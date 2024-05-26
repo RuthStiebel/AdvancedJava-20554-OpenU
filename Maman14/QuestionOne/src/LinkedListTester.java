@@ -3,10 +3,10 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-public class LinkedListTester extends Application{
-    public static int MAX = 6;
-    
-        /**
+
+public class LinkedListTester extends Application {
+
+    /**
      * The main method to launch the application.
      */
     public static void main(String[] args) {
