@@ -2,7 +2,6 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ButtonBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -15,7 +14,7 @@
    <children>
       <HBox prefHeight="44.0" prefWidth="330.0">
          <children>
-            <Text lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter six text strings. They may contain any character you wish - however, each string must contain at least one character (you cannot leave the string empty empty)." wrappingWidth="291.603515625">
+            <Text lineSpacing="2.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please enter six text strings. They may contain any character you wish - however, each string must contain at least one character (you cannot leave the string empty)." wrappingWidth="291.603515625">
                <HBox.margin>
                   <Insets left="20.0" top="10.0" />
                </HBox.margin>
@@ -52,11 +51,17 @@
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Sixth String" GridPane.halignment="CENTER" GridPane.rowIndex="6" />
          </children>
       </GridPane>
-      <ButtonBar prefHeight="40.0" prefWidth="200.0">
-        <buttons>
-          <Button mnemonicParsing="false" onAction="#okPressed" text="OK" />
-            <Button mnemonicParsing="false" onAction="#cancelPressed" text="Cancel" />
-        </buttons>
-      </ButtonBar>
+      <HBox prefHeight="45.0" prefWidth="330.0">
+         <children>
+            <Button alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" onAction="#okPressed" text="OK" textAlignment="CENTER">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+         </children>
+         <VBox.margin>
+            <Insets left="280.0" top="10.0" />
+         </VBox.margin>
+      </HBox>
    </children>
 </VBox>
