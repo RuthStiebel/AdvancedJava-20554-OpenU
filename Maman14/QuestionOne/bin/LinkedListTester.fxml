@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.TextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
@@ -55,7 +55,7 @@
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
         <buttons>
           <Button mnemonicParsing="false" onAction="#okPressed" text="OK" />
-            <Button mnemonicParsing="false" onAction="#cancelPressed" text="Cancel" textFill="#a81f1f" />
+            <Button mnemonicParsing="false" onAction="#cancelPressed" text="Cancel" />
         </buttons>
       </ButtonBar>
    </children>
