@@ -48,9 +48,9 @@ public class LinkedListController {
             myList = null;
         }
         else {
-            //show list
-            //traverse it
-            //show it
+            showAlert(null, "The list inputted is:", myList.toString(), true);
+            myList = myList.traverseList();
+            showAlert(null, "The list after traversing is:", myList.toString(), true);
         }
     }
 
