@@ -1,15 +1,18 @@
 public class Node<E> {
     private E nodeContent;
     private Node<E> nextNode;
+    private Node<E> previousNode;
 
     public Node(E nodeContent) {
         this.nodeContent = nodeContent;
         this.nextNode = null;
+        this.previousNode = null;
     }
 
-    public Node(E nodeContent, Node<E> nextNode) {
+    public Node(E nodeContent, Node<E> nextNode, Node<E> previousNode) {
         this.nodeContent = nodeContent;
         this.nextNode = nextNode;
+        this.previousNode = previousNode;
     }
 
     // getters
@@ -25,6 +28,10 @@ public class Node<E> {
         return nextNode;
     }
 
+    public Node<E> getPrevious() {
+        return previousNode;
+    }
+
     // setters
     public void setContent(E content) {
         this.nodeContent = content;
@@ -32,6 +39,10 @@ public class Node<E> {
 
     public void setNext(Node<E> next) {
         this.nextNode = next;
+    }
+
+    public void setPrevious(Node<E> previous) {
+        this.previousNode = previous;
     }
 
     public int compareTo(Node<E> max) {

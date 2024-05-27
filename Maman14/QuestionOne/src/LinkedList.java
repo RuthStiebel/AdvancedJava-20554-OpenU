@@ -36,6 +36,17 @@ public class LinkedList<E> {
         return content;
     }
 
+    public LinkedList<E> traverseList() {
+        LinkedList<E> myList = new LinkedList<E>();
+        Node<E> tmp = this.tailNode;
+        while (tmp != null) {
+            myList.headNode = tmp;
+            myList.headNode.setPrevious(null);
+            tmp = tmp.getPrevious();
+        }
+        return myList;
+    }
+
     // toString
     @Override
     public String toString() {
