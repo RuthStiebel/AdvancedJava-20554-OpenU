@@ -3,8 +3,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.TextField;
+
 public class LinkedListController {
-    private LinkedList<String> myList;
 
     @FXML
     private TextField string1;
@@ -26,7 +26,7 @@ public class LinkedListController {
 
     @FXML
     void okPressed(ActionEvent event) {
-        myList = new LinkedList<String>();
+        LinkedList<String> myList = new LinkedList<String>();
         TextField[] textFields = { string1, string2, string3, string4, string5, string6 };
         boolean showAlert = false; // Flag to track if an alert has been shown
 
@@ -38,7 +38,7 @@ public class LinkedListController {
                 showAlert = true; // Set flag to true if an alert is shown
                 break; // Exit the loop if an alert is shown
             } else {
-                Node<String> newNode = new Node<>(textField.getText());
+                Node<String> newNode = new Node<String>(textField.getText());
                 myList.addNode(newNode);
             }
         }
@@ -46,12 +46,16 @@ public class LinkedListController {
         // Reset linked list if an alert was shown
         if (showAlert) {
             myList = null;
-        }
-        else {
+        } else {
+            // show lsit, flip it and then show the flipped list
             showAlert(null, "The list inputted is:", myList.toString(), true);
             myList = myList.flipList();
             showAlert(null, "The list after traversing is:", myList.toString(), true);
         }
+        //create person list, show it and show the oldest person in the list 
+        LinkedList<Person> personLinkedList = LinkedListTester.personList();
+        showAlert(null, "The person list is:", personLinkedList.toString(), true);
+     //   showAlert(null, "The oldest person on the list is:", personLinkedList.toString(), true);
     }
 
     public static void showAlert(String title, String header, String content, boolean flag) {

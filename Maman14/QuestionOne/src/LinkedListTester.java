@@ -3,7 +3,6 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-
 public class LinkedListTester extends Application {
 
     /**
@@ -28,4 +27,18 @@ public class LinkedListTester extends Application {
         stage.setScene(scene);
         stage.show();
     }
+
+    public static LinkedList<Person> personList() {
+        LinkedList<Person> personLinkedList = new LinkedList<Person>();
+        String[] names = { "Arnold", "Benedict", "Christopher", "Dale" };
+        int[] ids = { 123, 345, 567, 789 };
+        int[] yearsOfBirth = { 1990, 1995, 1993, 1998 };
+    
+        for (int i = 0; i < names.length; i++) {
+            Person person = new Person(names[i], ids[i], yearsOfBirth[i]);
+            personLinkedList.addNode(new Node<Person>(person));
+        }
+        return personLinkedList;
+    }
+    
 }

@@ -41,6 +41,6 @@ public class Person implements Comparable<Person> {
 
     @Override
     public String toString () {
-        return "Name: " + this.name + "\tID number: " + this.id + "\tBirth year: "+this.yearOfBirth;
+        return "Name: " + this.name + "\nID number: " + this.id + "\nBirth year: "+this.yearOfBirth + "\n\n";
     }
 }
