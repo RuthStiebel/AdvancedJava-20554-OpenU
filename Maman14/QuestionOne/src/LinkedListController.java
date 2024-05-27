@@ -47,6 +47,11 @@ public class LinkedListController {
         if (showAlert) {
             myList = null;
         }
+        else {
+            //show list
+            //traverse it
+            //show it
+        }
     }
 
     public static void showAlert(String title, String header, String content, boolean flag) {
