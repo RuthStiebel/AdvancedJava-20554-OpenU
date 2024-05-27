@@ -36,16 +36,31 @@ public class LinkedList<E> {
         return content;
     }
 
-    public LinkedList<E> traverseList() {
-        LinkedList<E> myList = new LinkedList<E>();
-        Node<E> tmp = this.tailNode;
-        while (tmp != null) {
-            myList.headNode = tmp;
-            myList.headNode.setPrevious(null);
-            tmp = tmp.getPrevious();
+    public LinkedList<E> flipList() {
+        LinkedList<E> flippedList = new LinkedList<>();
+        Node<E> current = this.headNode;
+    
+        while (current != null) {
+            // Create a new node with the same data as current node
+            Node<E> newNode = new Node<>(current.getContent());
+            
+            // Insert the new node at the beginning of the flipped list
+            if (flippedList.headNode == null) {
+                flippedList.headNode = newNode;
+                flippedList.tailNode = newNode;
+            } else {
+                newNode.setNext(flippedList.headNode);
+                flippedList.headNode.setPrevious(newNode);
+                flippedList.headNode = newNode;
+            }
+            
+            // Move to the next node in the original list
+            current = current.getNext();
         }
-        return myList;
+    
+        return flippedList;
     }
+    
 
     // toString
     @Override
@@ -53,7 +68,7 @@ public class LinkedList<E> {
         StringBuilder stringBuilder = new StringBuilder();
         Node<E> current = headNode;
         while (current != null) {
-            stringBuilder.append(current.getContent()).append(" ");
+            stringBuilder.append(current.getContent()).append("\n");
             current = current.getNext();
         }
         return stringBuilder.toString();

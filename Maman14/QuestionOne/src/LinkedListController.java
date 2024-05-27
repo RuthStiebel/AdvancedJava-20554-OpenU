@@ -49,7 +49,7 @@ public class LinkedListController {
         }
         else {
             showAlert(null, "The list inputted is:", myList.toString(), true);
-            myList = myList.traverseList();
+            myList = myList.flipList();
             showAlert(null, "The list after traversing is:", myList.toString(), true);
         }
     }
