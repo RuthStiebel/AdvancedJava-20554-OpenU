@@ -52,8 +52,10 @@ public class Dictionary {
     }
 
     // Checks if a word exists in the dictionary
-    public boolean containsWord(String word) {
-        return words.containsKey(word);
+    public String containsWord(String word) {
+        if (words.containsKey(word))
+            return words.get(word);
+        return null;
     }
 
     // Gets the number of words in the dictionary
