@@ -13,7 +13,6 @@ public class Max {
             }
             element = element.getNext();
         }
-    
         return max;
     }
     

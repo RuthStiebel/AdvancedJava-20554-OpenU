@@ -55,7 +55,7 @@ public class LinkedListController {
         //create person list, show it and show the oldest person in the list 
         LinkedList<Person> personLinkedList = LinkedListTester.personList();
         showAlert(null, "The person list is:", personLinkedList.toString(), true);
-     //   showAlert(null, "The oldest person on the list is:", personLinkedList.toString(), true);
+        showAlert(null, "The oldest person on the list is:", Max.max(personLinkedList).toString(), true);
     }
 
     public static void showAlert(String title, String header, String content, boolean flag) {
