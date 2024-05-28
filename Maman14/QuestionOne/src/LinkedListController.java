@@ -24,6 +24,17 @@ public class LinkedListController {
     @FXML
     private TextField string6;
 
+    /**
+     * Handles the action when the "OK" button is pressed.
+     * Validates input text fields, creates a linked list of strings, and performs
+     * actions accordingly.
+     * If any input field is empty, shows an error alert and resets the linked list.
+     * Otherwise, displays the input list, flips it, and shows the flipped list.
+     * Additionally, generates a linked list of persons, displays it, and shows the
+     * oldest person in the list.
+     * 
+     * @param event The action event triggered by pressing the "OK" button.
+     */
     @FXML
     void okPressed(ActionEvent event) {
         LinkedList<String> myList = new LinkedList<String>();
@@ -35,29 +46,40 @@ public class LinkedListController {
             if (textField.getText().trim().isEmpty()) {
                 showAlert("ERROR", "Invalid input", "All fields must contain at least one non-whitespace character.",
                         false);
-                showAlert = true; // Set flag to true if an alert is shown
-                break; // Exit the loop if an alert is shown
+                showAlert = true; // Sets flag to true if an alert is shown
+                break; // Exits the loop if an alert is shown
             } else {
                 Node<String> newNode = new Node<String>(textField.getText());
                 myList.addNode(newNode);
             }
         }
 
-        // Reset linked list if an alert was shown
+        // Resets linked list if an alert was shown
         if (showAlert) {
             myList = null;
         } else {
-            // show lsit, flip it and then show the flipped list
+            // Shows list, flisp it, and then shows the flipped list
             showAlert(null, "The list inputted is:", myList.toString(), true);
             myList = myList.flipList();
             showAlert(null, "The list after traversing is:", myList.toString(), true);
         }
-        //create person list, show it and show the oldest person in the list 
+
+        // Creates a person list, shows it, and shows the oldest person in the list
         LinkedList<Person> personLinkedList = LinkedListTester.personList();
         showAlert(null, "The person list is:", personLinkedList.toString(), true);
-        showAlert(null, "The oldest person on the list is:", Max.max(personLinkedList).toString(), true);
+        Person oldestPerson = Max.max(personLinkedList).getContent();
+        showAlert(null, "The oldest person on the list is:", oldestPerson.toString(), true);
     }
 
+    /**
+     * Displays an alert dialog with the specified title, header, and content.
+     * 
+     * @param title   The title of the alert dialog.
+     * @param header  The header text of the alert dialog.
+     * @param content The content text of the alert dialog.
+     * @param flag    A flag indicating whether the alert type is informational
+     *                (true) or an error (false).
+     */
     public static void showAlert(String title, String header, String content, boolean flag) {
         Alert alert = new Alert(AlertType.CONFIRMATION);
         if (!flag) {
