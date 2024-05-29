@@ -23,13 +23,12 @@ public class MainClass extends Application {
      */
     public void start(Stage stage) throws Exception {
         System.out.println("HEY");
-        /*
-        Parent root = (Parent) FXMLLoader.load(getClass().getResource("Logic.fxml"));
+        
+        Parent root = (Parent) FXMLLoader.load(getClass().getResource("MainClass.fxml"));
         Scene scene = new Scene(root);
-        stage.setTitle("Logic");
+        stage.setTitle("Main");
         stage.setScene(scene);
         stage.show();
-        */
     }
 
 
