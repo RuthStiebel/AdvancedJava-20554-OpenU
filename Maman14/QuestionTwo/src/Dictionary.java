@@ -52,10 +52,13 @@ public class Dictionary {
     }
 
     // Checks if a word exists in the dictionary
-    public String containsWord(String word) {
-        if (words.containsKey(word))
-            return words.get(word);
-        return null;
+    public String searchWord(String word) {
+        StringBuilder str = new StringBuilder();
+        if (words.containsKey(word)) {
+            str.append("\n").append(word).append(": ").append(words.get(word));
+        }
+
+        return str.toString();
     }
 
     // Gets the number of words in the dictionary
@@ -64,9 +67,11 @@ public class Dictionary {
     }
 
     // Prints all words and their definitions in the dictionary
-    public void printDictionary() {
+    public String toString() {
+        StringBuilder str = new StringBuilder();
         for (Map.Entry<String, String> entry : words.entrySet()) {
-            System.out.println(entry.getKey() + ": " + entry.getValue());
+            str.append("\n").append(entry.getKey()).append(": ").append(entry.getValue());
         }
+        return str.toString();
     }
 }
