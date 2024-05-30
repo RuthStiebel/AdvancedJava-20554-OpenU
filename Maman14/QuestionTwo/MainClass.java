@@ -21,15 +21,11 @@ public class MainClass extends Application {
      * @param stage The primary stage of the application.
      * @throws Exception If an error occurs while loading the FXML file.
      */
-    public void start(Stage stage) throws Exception {
-        System.out.println("HEY");
-        
+    public void start(Stage stage) throws Exception {      
         Parent root = (Parent) FXMLLoader.load(getClass().getResource("MainClass.fxml"));
         Scene scene = new Scene(root);
         stage.setTitle("Main");
         stage.setScene(scene);
         stage.show();
     }
-
-
 }
