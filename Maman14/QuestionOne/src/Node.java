@@ -1,12 +1,11 @@
 /**
- * A node in a doubly linked list.
+ * A node in a linked list.
  * 
  * @param <E> The type of element stored in the node.
  */
 public class Node<E> {
     private E nodeContent;
     private Node<E> nextNode;
-    private Node<E> previousNode;
 
     /**
      * Constructs a node with the given content.
@@ -16,7 +15,6 @@ public class Node<E> {
     public Node(E nodeContent) {
         this.nodeContent = nodeContent;
         this.nextNode = null;
-        this.previousNode = null;
     }
 
     /**
@@ -26,10 +24,9 @@ public class Node<E> {
      * @param nextNode     The next node.
      * @param previousNode The previous node.
      */
-    public Node(E nodeContent, Node<E> nextNode, Node<E> previousNode) {
+    public Node(E nodeContent, Node<E> nextNode) {
         this.nodeContent = nodeContent;
         this.nextNode = nextNode;
-        this.previousNode = previousNode;
     }
 
     /**
@@ -60,15 +57,6 @@ public class Node<E> {
     }
 
     /**
-     * Gets the previous node.
-     * 
-     * @return The previous node.
-     */
-    public Node<E> getPrevious() {
-        return previousNode;
-    }
-
-    /**
      * Sets the content of the node.
      * 
      * @param content The new content of the node.
@@ -84,15 +72,6 @@ public class Node<E> {
      */
     public void setNext(Node<E> next) {
         this.nextNode = next;
-    }
-
-    /**
-     * Sets the previous node.
-     * 
-     * @param previous The previous node.
-     */
-    public void setPrevious(Node<E> previous) {
-        this.previousNode = previous;
     }
 
     /**

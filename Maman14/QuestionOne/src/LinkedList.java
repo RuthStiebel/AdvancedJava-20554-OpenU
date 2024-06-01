@@ -1,3 +1,5 @@
+import java.util.Stack;
+
 /**
  * A generic linked list implementation.
  * 
@@ -69,24 +71,17 @@ public class LinkedList<E> {
      */
     public LinkedList<E> flipList() {
         LinkedList<E> flippedList = new LinkedList<>();
+        Stack<E> listStack = new Stack<E>();
         Node<E> current = this.headNode;
 
         while (current != null) {
-            // Creates a new node with the same data as current node
-            Node<E> newNode = new Node<>(current.getContent());
-
-            // Inserts the new node at the beginning of the flipped list
-            if (flippedList.headNode == null) {
-                flippedList.headNode = newNode;
-                flippedList.tailNode = newNode;
-            } else {
-                newNode.setNext(flippedList.headNode);
-                flippedList.headNode.setPrevious(newNode);
-                flippedList.headNode = newNode;
-            }
-
-            // Moves to the next node in the original list
+            listStack.push(current.getContent());
             current = current.getNext();
+        }
+
+        while (!listStack.isEmpty()) {
+            Node<E> newNode = new Node<>(listStack.pop());
+            flippedList.addNode(newNode);
         }
 
         return flippedList;

@@ -24,6 +24,7 @@ public class ClassController {
     @FXML
     void removePressed(ActionEvent event) {
         
+        
 
     }
 

@@ -61,7 +61,7 @@ public class LinkedListController {
             // Shows list, flisp it, and then shows the flipped list
             showAlert(null, "The list inputted is:", myList.toString(), true);
             myList = myList.flipList();
-            showAlert(null, "The list after traversing is:", myList.toString(), true);
+            showAlert(null, "The list after flipping is:", myList.toString(), true);
         }
 
         // Creates a person list, shows it, and shows the oldest person in the list
