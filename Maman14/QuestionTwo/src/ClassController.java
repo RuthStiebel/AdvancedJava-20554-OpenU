@@ -12,24 +12,36 @@ public class ClassController {
 
     @FXML
     void SearchPressed(ActionEvent event) {
+        String str = myDict.searchWord(text.getText());
+        if (str != null) {
+            showAlert("Success", null, str, true);
 
+        } else
+            showAlert("Error", "Oops!", "Word not found.", false);
     }
 
     @FXML
     void addPressed(ActionEvent event) {
+        // needs a pop up window to get word definition TODO
+        String str = myDict.addWord(text.getText(), "hey");
+        if (str == null) {
+            showAlert("Success", "Yay!", "Word added successfully.", true);
+            str = myDict.toString();
+            showAlert(null, "Dictionary after word addition:", str, true);
 
+        } else
+            showAlert("Error", "Oops!", str, false);
     }
 
     @FXML
     void removePressed(ActionEvent event) {
         String str = myDict.removeWord(text.getText());
-        if (str == null){
+        if (str == null) {
             showAlert("Success", "Yay!", "Word removed successfully.", true);
             str = myDict.toString();
             showAlert(null, "Dictionary after word removal:", str, true);
 
-        }
-        else
+        } else
             showAlert("Error", "Oops!", str, false);
 
     }

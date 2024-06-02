@@ -17,7 +17,7 @@ public class Dictionary {
         } else
             // If the word exists, returns an error message
             return ("Word '" + word
-                    + "' is already in the dictionary - if you would like to update the value then use the correct way.");
+                    + "' is already in the dictionary - if you would like to update the definition then use the correct way.");
     }
 
     // Retrieves the definition of a word from the dictionary
