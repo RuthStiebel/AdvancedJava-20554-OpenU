@@ -21,15 +21,14 @@ public class ClassController {
     }
 
     @FXML
-    void closePressed(ActionEvent event) {
-
-    }
-
-    @FXML
     void removePressed(ActionEvent event) {
         String str = myDict.removeWord(text.getText());
-        if (str == null)
+        if (str == null){
             showAlert("Success", "Yay!", "Word removed successfully.", true);
+            str = myDict.toString();
+            showAlert(null, "Dictionary after word removal:", str, true);
+
+        }
         else
             showAlert("Error", "Oops!", str, false);
 
