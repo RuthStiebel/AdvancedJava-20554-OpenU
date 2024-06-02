@@ -1,9 +1,14 @@
+import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
 public class ClassController {
+    private Dictionary myDict = new Dictionary();
+
+    @FXML
+    private TextField text;
 
     @FXML
     void SearchPressed(ActionEvent event) {
@@ -17,14 +22,16 @@ public class ClassController {
 
     @FXML
     void closePressed(ActionEvent event) {
-        // close the window
 
     }
 
     @FXML
     void removePressed(ActionEvent event) {
-        
-        
+        String str = myDict.removeWord(text.getText());
+        if (str == null)
+            showAlert("Success", "Yay!", "Word removed successfully.", true);
+        else
+            showAlert("Error", "Oops!", str, false);
 
     }
 

@@ -5,7 +5,7 @@ public class Dictionary {
     private TreeMap<String, String> words;
 
     public Dictionary() {
-        words = new TreeMap<>();
+        words = new TreeMap<String, String>();
     }
 
     // Adds a word and its definition to the dictionary
