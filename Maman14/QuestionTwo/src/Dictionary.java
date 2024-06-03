@@ -4,13 +4,14 @@ import java.util.TreeMap;
 public class Dictionary {
     private TreeMap<String, String> words;
 
+    // Contructor
     public Dictionary() {
         words = new TreeMap<String, String>();
     }
 
     // Adds a word and its definition to the dictionary
     public String addWord(String word, String definition) {
-        // Check if the word exists in the dictionary
+        // Checks if the word exists in the dictionary
         if (!words.containsKey(word)) {
             words.put(word, definition);
             return null;
@@ -27,7 +28,7 @@ public class Dictionary {
 
     // Updates the definition of a word from the dictionary
     public String updateWord(String word, String newDefinition) {
-        // Check if the word exists in the dictionary
+        // Checks if the word exists in the dictionary
         if (words.containsKey(word)) {
             // If the word exists, updates its definition
             words.put(word, newDefinition);
@@ -70,7 +71,7 @@ public class Dictionary {
     public String toString() {
         StringBuilder str = new StringBuilder();
         for (Map.Entry<String, String> entry : words.entrySet()) {
-            str.append("\n").append(entry.getKey()).append(": ").append(entry.getValue());
+            str.append("\n").append(entry.getKey()).append(":\t").append(entry.getValue());
         }
         return str.toString();
     }
