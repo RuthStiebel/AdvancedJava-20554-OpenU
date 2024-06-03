@@ -1,9 +1,9 @@
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextInputDialog;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-
 public class ClassController {
     private Dictionary myDict = new Dictionary();
 
@@ -13,8 +13,8 @@ public class ClassController {
     @FXML
     void SearchPressed(ActionEvent event) {
         String str = myDict.searchWord(text.getText());
-        if (str != null) {
-            showAlert("Success", null, str, true);
+        if (str.contains(":")) {
+            showAlert(null, null, str, true);
 
         } else
             showAlert("Error", "Oops!", "Word not found.", false);
@@ -22,17 +22,23 @@ public class ClassController {
 
     @FXML
     void addPressed(ActionEvent event) {
-        // needs a pop up window to get word definition TODO
-        String str = myDict.addWord(text.getText(), "hey");
-        if (str == null) {
-            showAlert("Success", "Yay!", "Word added successfully.", true);
-            str = myDict.toString();
-            showAlert(null, "Dictionary after word addition:", str, true);
-
-        } else
-            showAlert("Error", "Oops!", str, false);
+        TextInputDialog definition = new TextInputDialog();
+        definition.setHeaderText("Enter word definition:");
+    
+        // Show the text input dialog and wait for user input
+        definition.showAndWait().ifPresent(result -> {
+            // After user input, try to add the word to the dictionary
+            String str = myDict.addWord(text.getText(), result);
+            if (str == null) {
+                showAlert("Success", "Yay!", "Word added successfully.", true);
+                str = myDict.toString();
+                showAlert(null, "Dictionary after word addition:", str, true);
+            } else {
+                showAlert("Error", "Oops!", str, false);
+            }
+        });
     }
-
+    
     @FXML
     void removePressed(ActionEvent event) {
         String str = myDict.removeWord(text.getText());
