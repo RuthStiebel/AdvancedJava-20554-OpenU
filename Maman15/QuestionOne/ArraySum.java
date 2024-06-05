@@ -3,7 +3,6 @@ import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class ArraySum {
-    private boolean endFlag;
     private Lock[] locks;
     private int[] arrNum;
     private LinkedList<Integer> listSum;
