@@ -42,4 +42,69 @@ public class ArraySum {
             locks[j].unlock();
         }
     }
+
+    /*
+     * import java.util.concurrent.*;
+
+public class ArraySum {
+    private int[] givenArr;
+    private int[] arrSum;
+    private int numThreads;
+
+    public ArraySum(int[] arr, int numThreads) {
+        givenArr = arr;
+        this.numThreads = numThreads;
+    }
+
+    public int getSum() {
+        ExecutorService executor = Executors.newFixedThreadPool(numThreads);
+        arrSum = new int[givenArr.length / 2];
+        int chunkSize = givenArr.length / numThreads;
+        int remainder = givenArr.length % numThreads;
+
+        int startIndex = 0;
+        for (int i = 0; i < numThreads; i++) {
+            int endIndex = startIndex + chunkSize + (i < remainder ? 1 : 0);
+            executor.submit(new SumTask(startIndex, endIndex));
+            startIndex = endIndex;
+        }
+
+        executor.shutdown();
+        try {
+            executor.awaitTermination(Long.MAX_VALUE, TimeUnit.NANOSECONDS);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        int totalSum = 0;
+        for (int sum : arrSum) {
+            totalSum += sum;
+        }
+        return totalSum;
+    }
+
+    private class SumTask implements Runnable {
+        private int startIndex;
+        private int endIndex;
+
+        SumTask(int startIndex, int endIndex) {
+            this.startIndex = startIndex;
+            this.endIndex = endIndex;
+        }
+
+        @Override
+        public void run() {
+            int sum = 0;
+            for (int i = startIndex; i < endIndex; i++) {
+                sum += givenArr[i];
+            }
+            int index = startIndex / 2;
+            synchronized (ArraySum.this) {
+                arrSum[index] = sum;
+            }
+        }
+    }
+}
+
+     */
 }
