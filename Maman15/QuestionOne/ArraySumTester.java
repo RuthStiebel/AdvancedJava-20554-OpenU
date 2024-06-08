@@ -7,7 +7,7 @@ public class ArraySumTester {
         int numThreads = 4;
 
         // Create an instance of ArraySum
-        ArraySum arraySum = new ArraySum(array, numThreads);
+        ArraySum arraySum = new ArraySum(array,// numThreads);
 
         // Calculate the sum of the array
         int sum = arraySum.getSum();
