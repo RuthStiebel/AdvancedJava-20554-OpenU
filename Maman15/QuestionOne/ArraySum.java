@@ -1,6 +1,7 @@
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
+//arrayList
 public class ArraySum {
     private Lock[] locks;
     private int[] givenArr;
