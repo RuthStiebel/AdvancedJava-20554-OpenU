@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -5,28 +6,28 @@ import java.util.concurrent.locks.ReentrantLock;
 public class ArraySum {
     private Lock[] locks;
     private int[] givenArr;
-    private int[] arrSum;
+    private ArrayList<Integer> arrSum;
 
     public ArraySum(int[] arr) {
         givenArr = arr;
-        arrSum = new int[givenArr.length / 2];
+        arrSum = new ArrayList<Integer>();
         locks = new Lock[arr.length];
         for (int i = 0; i < arr.length; i++) {
             locks[i] = new ReentrantLock();
         }
     }
 
-    public int getSum(int[] arr) {
-        if (arr.length == 1)
-            return arrSum[0];
+    public int getSum(ArrayList<Integer> arr) {
+        if (arr.size() == 1)
+            return arrSum.get(0);
         return getSum(addArray());
     }
 
-    private int[] addArray() {
-        int[] arr = new int[arrSum.length / 2];
+    private ArrayList<Integer> addArray() {
+        ArrayList<Integer> arr = new ArrayList<Integer>();
         int i = 0;
         while (i < givenArr.length - 2) {
-            arr[i] = sumOfTwo(i, i + i);
+            arr.set(i, sumOfTwo(i, i + i));
             i += 2;
         }
         arrSum = arr;
