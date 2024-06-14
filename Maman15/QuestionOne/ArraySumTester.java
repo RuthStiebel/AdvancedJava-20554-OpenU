@@ -16,3 +16,4 @@ public class ArraySumTester {
         System.out.println("The sum of the array is: " + sum);
     }
 }
+
