@@ -12,10 +12,9 @@ public class ArraySum {
     // Constructor to initialize the ArraySum object
     public ArraySum(int[] arr, int numThreads) {
         givenArr = arr;
-        this.numThreads = numThreads;
-        // Initialize ArrayList with the same size as input array
-        arrSum = new ArrayList<>(arr.length);
+        arrSum = new ArrayList<>();
         locks = new Lock[arr.length];
+        this.numThreads = numThreads;
         // Initializing locks for each element in the array
         for (int i = 0; i < arr.length; i++) {
             locks[i] = new ReentrantLock();
@@ -30,31 +29,23 @@ public class ArraySum {
         return getSumRecursive(givenArr, givenArr.length, numThreads);
     }
 
-    // Recursive method to divide the array and calculate the sum using multiple
-    // threads
+    // Recursive method to divide the array and calculate the sum using multiple threads
     private int getSumRecursive(int[] arr, int n, int threads) {
         // Base case: If only one element remains, return it
         if (n == 1)
             return arr[0];
-
         // Array to store the sums of consecutive pairs of elements
         int[] temp = new int[n / 2];
         Thread[] threadArr = new Thread[threads];
-
         // Calculating the sums and acquiring locks for each pair of elements
         for (int i = 0; i < n / 2; i++) {
             temp[i] = arr[i * 2] + arr[i * 2 + 1];
             locks[i * 2].lock();
             locks[i * 2 + 1].lock();
         }
-
-        // Accumulator for the sum calculated by each thread
-        int sum = 0;
-
-        // Loop through the subarray and calculate the sum
+        // Updating the result ArrayList and releasing locks
         for (int i = 0; i < n / 2; i++) {
-            sum += temp[i];
-            arrSum.add(temp[i]); // Add each sum to the ArrayList
+            arrSum.set(i, temp[i]);
             locks[i * 2].unlock();
             locks[i * 2 + 1].unlock();
         }
@@ -73,8 +64,9 @@ public class ArraySum {
                 synchronized (this) {
                     // Decrementing the number of active threads atomically
                     activeThreads.decrementAndGet();
-                    // If all threads have completed, notify the main thread
+                    // If all threads have completed, update the result and notify the main thread
                     if (activeThreads.get() == 0) {
+                        arrSum.set(0, result);
                         notify();
                     }
                 }
@@ -93,7 +85,7 @@ public class ArraySum {
             }
         }
 
-        // Returning the accumulated sum
-        return sum;
+        // Returning the final sum
+        return arrSum.get(0);
     }
 }
