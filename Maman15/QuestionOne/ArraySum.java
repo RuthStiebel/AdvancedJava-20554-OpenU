@@ -27,6 +27,7 @@ public class ArraySum {
         arrSum.add(0);
         // Calling the recursive method to calculate the sum
         System.out.println(givenArr.length);
+        return 0;
        // return getSumRecursive(givenArr, givenArr.length, numThreads);
     }
 
