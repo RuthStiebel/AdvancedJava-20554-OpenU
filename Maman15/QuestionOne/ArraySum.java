@@ -26,7 +26,8 @@ public class ArraySum {
         // Adding a placeholder value to the result ArrayList
         arrSum.add(0);
         // Calling the recursive method to calculate the sum
-        return getSumRecursive(givenArr, givenArr.length, numThreads);
+        System.out.println(givenArr.length);
+       // return getSumRecursive(givenArr, givenArr.length, numThreads);
     }
 
     // Recursive method to divide the array and calculate the sum using multiple threads
