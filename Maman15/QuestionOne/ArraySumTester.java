@@ -1,7 +1,7 @@
 public class ArraySumTester {
     public static void main(String[] args) {
         // Create an array of integers
-        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+        int[] arr = {1, 2, 3, 4, 5, 6, 7, 8};
         
         // Number of threads to use for parallel processing
         int numThreads = 4;
